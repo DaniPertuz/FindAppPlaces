@@ -115,9 +115,6 @@ const RegisterDetailsScreen = ({ navigation, route }: Props) => {
                 { text: 'OK', onPress: () => navigation.replace('MainPictureScreen') }
             ]);
         }
-        // Alert.alert('Lugar registrado exitosamente', '', [
-        //     { text: 'OK', onPress: () => navigation.replace('MainPictureScreen') }
-        // ]);
     };
 
     return (
