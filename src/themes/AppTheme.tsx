@@ -118,6 +118,15 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginEnd: 10
     },
+    pillsContainer: {
+        alignSelf: 'flex-start',
+        backgroundColor: '#FFFFFF',
+        borderRadius: 10,
+        marginBottom: 10,
+        marginEnd: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 5
+    },
     registerFormContainer: {
         paddingHorizontal: 30,
         marginTop: 10
