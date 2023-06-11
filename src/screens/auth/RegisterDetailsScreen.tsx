@@ -4,14 +4,14 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { Dropdown } from 'react-native-element-dropdown';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
-import { RootStackParams } from '../../navigation';
-import { useForm } from '../../hooks/useForm';
-
 import { PlacesContext } from '../../context';
-import CustomizedSchedule from '../../components/CustomizedSchedule';
+import { RootStackParams } from '../../navigation';
+
 import BusinessDaysSchedule from '../../components/BusinessDaysSchedule';
+import CustomizedSchedule from '../../components/CustomizedSchedule';
+import Pills from '../../components/Pills';
+import { useCoords, useForm } from '../../hooks';
 import { Location } from '../../interfaces';
-import { useCoords } from '../../hooks/useCoords';
 
 import styles from '../../themes/AppTheme';
 
@@ -27,7 +27,7 @@ const RegisterDetailsScreen = ({ navigation, route }: Props) => {
 
     const { name, email } = route.params;
 
-    const { registerPlace } = useContext(PlacesContext);
+    const { errors, place, registerPlace, removeError } = useContext(PlacesContext);
 
     const [days, setDays] = useState<string>('');
     const [placeSchedule, setPlaceSchedule] = useState<string[]>([]);
@@ -51,8 +51,6 @@ const RegisterDetailsScreen = ({ navigation, route }: Props) => {
         setPlaceSchedule(schedule);
     };
 
-    useEffect(() => { }, [coordinates]);
-
     const getCoords = async () => {
         const { lat, lng } = await useCoords(address);
         setCoordinates({ latitude: lat, longitude: lng });
@@ -66,11 +64,27 @@ const RegisterDetailsScreen = ({ navigation, route }: Props) => {
 
     const splitAddress = () => {
         const split = address.split(', ');
-        setPlaceAddress(split[0]);
-        setCity(split[1]);
-        setPlaceState(split[2]);
-        setCountry(split[3]);
-    }
+        setPlaceAddress(split[0].trim());
+        setCity(split[1].trim());
+        setPlaceState(split[2].trim());
+        setCountry(split[3].trim());
+    };
+
+    useEffect(() => { }, [coordinates]);
+
+    useEffect(() => {
+        if (errors.length === 0) return;
+
+        Alert.alert('Error', errors, [{ text: 'OK', onPress: removeError }]);
+    }, [errors]);
+
+    useEffect(() => {
+        if (place) {
+            Alert.alert('Lugar registrado exitosamente', '', [
+                { text: 'OK', onPress: () => navigation.replace('MainPictureScreen') }
+            ]);
+        }
+    }, [place]);
 
     const onRegister = () => {
         Keyboard.dismiss();
@@ -96,9 +110,14 @@ const RegisterDetailsScreen = ({ navigation, route }: Props) => {
             status: true
         });
 
-        Alert.alert('Lugar registrado exitosamente', '', [
-            {text: 'OK', onPress: () => navigation.replace('MainPictureScreen')}
-          ]);
+        if (place) {
+            Alert.alert('Lugar registrado exitosamente', '', [
+                { text: 'OK', onPress: () => navigation.replace('MainPictureScreen') }
+            ]);
+        }
+        // Alert.alert('Lugar registrado exitosamente', '', [
+        //     { text: 'OK', onPress: () => navigation.replace('MainPictureScreen') }
+        // ]);
     };
 
     return (
@@ -140,7 +159,7 @@ const RegisterDetailsScreen = ({ navigation, route }: Props) => {
                         value={description}
                     />
                     <TextInput
-                        placeholder='Dirección'
+                        placeholder='Dirección, ciudad, depto, país'
                         placeholderTextColor='rgba(255,255,255,0.4)'
                         underlineColorAndroid='#FFFFFF'
                         style={[
@@ -175,6 +194,7 @@ const RegisterDetailsScreen = ({ navigation, route }: Props) => {
                         onChangeText={setCategoryInput}
                         value={categoryInput}
                     />
+                    <Pills items={categories} />
                     {/* 
                     <Dropdown data={countries.all().map(country => {
                         return { label: country.isoCode, name: country.name };
