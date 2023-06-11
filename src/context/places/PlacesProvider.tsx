@@ -1,26 +1,43 @@
-import React from 'react';
-import { Alert } from 'react-native';
+import React, { useReducer } from 'react';
 import findAPI from '../../api/findapi';
-import { PlacesContext } from '.';
+import { PlacesContext, PlacesReducer } from '.';
 import { IPlace } from '../../interfaces';
+
+export interface PlacesState {
+    place: IPlace | null;
+    errors: string;
+}
+
+const PLACES_INITIAL_STATE: PlacesState = {
+    place: null,
+    errors: ''
+};
 
 export const PlacesProvider = ({ children }: any) => {
 
+    const [state, dispatch] = useReducer(PlacesReducer, PLACES_INITIAL_STATE);
+
     const registerPlace = async (place: IPlace) => {
         try {
-            await findAPI.post('/places', place);
+            const { data } = await findAPI.post<IPlace>('/places', place);
+            dispatch({ type: 'addPlace', payload: { place: data } });
         } catch (error: any) {
-            Alert.alert('Error', error.response.data.errors.map(({ msg }: any) => ( msg )).join('\n'));
-            // console.error(error.response.data.errors.map(({ msg }: any) => ( msg )).join('\n'));
+            dispatch({ type: 'addError', payload: error.response.data.errors.map(({ msg }: any) => (msg)).join('\n') });
         }
-    }
+    };
 
-return (
-    <PlacesContext.Provider value={{
-        registerPlace
-    }}
-    >
-        {children}
-    </PlacesContext.Provider>
-);
+    const removeError = (): void => {
+        dispatch({ type: 'removeError' });
+    };
+
+    return (
+        <PlacesContext.Provider value={{
+            ...state,
+            registerPlace,
+            removeError
+        }}
+        >
+            {children}
+        </PlacesContext.Provider>
+    );
 };
