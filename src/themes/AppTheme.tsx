@@ -148,6 +148,12 @@ const styles = StyleSheet.create({
         borderColor: '#FFFFFF',
         borderWidth: 2
     },
+    tempPhoto: {
+        alignSelf: 'center',
+        marginTop: 25,
+        height: 170,
+        width: '40%'
+    },
     white: {
         color: '#FFFFFF'
     }
