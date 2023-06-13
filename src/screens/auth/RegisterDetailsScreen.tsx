@@ -47,9 +47,7 @@ const RegisterDetailsScreen = ({ navigation, route }: Props) => {
         instagram: ''
     });
 
-    const handleSchedule = (schedule: string[]) => {
-        setPlaceSchedule(schedule);
-    };
+    const handleSchedule = (schedule: string[]) => setPlaceSchedule(schedule);
 
     const getCoords = async () => {
         const { lat, lng } = await useCoords(address);
@@ -57,10 +55,11 @@ const RegisterDetailsScreen = ({ navigation, route }: Props) => {
     };
 
     const onCategory = () => {
-        categories.push(categoryInput);
-        setCategories(categories);
+        setCategories([...categories, categoryInput]);
         setCategoryInput('');
     };
+
+    const removeCategory = (i: number) => setCategories(categories.filter((_, index) => index !== i));
 
     const splitAddress = () => {
         const split = address.split(', ');
@@ -191,7 +190,7 @@ const RegisterDetailsScreen = ({ navigation, route }: Props) => {
                         onChangeText={setCategoryInput}
                         value={categoryInput}
                     />
-                    <Pills items={categories} />
+                    <Pills items={categories} removeCategory={removeCategory} />
                     {/* 
                     <Dropdown data={countries.all().map(country => {
                         return { label: country.isoCode, name: country.name };
