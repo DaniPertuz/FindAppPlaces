@@ -12,7 +12,7 @@ interface Props extends StackScreenProps<any, any> { };
 
 const RegisterScreen = ({ navigation }: Props) => {
 
-    const { signUp, errorMessage, removeError } = useContext(AuthContext);
+    const { user, errorMessage, signUp, removeError } = useContext(AuthContext);
 
     const { name, email, password, onChange } = useForm({
         name: '',
@@ -25,6 +25,10 @@ const RegisterScreen = ({ navigation }: Props) => {
 
         Alert.alert('Error', errorMessage, [{ text: 'OK', onPress: removeError }]);
     }, [errorMessage]);
+
+    useEffect(() => {
+        if (user) navigation.navigate('RegisterDetailsScreen', { name, email });
+    }, [user]);
 
     const onRegister = () => {
         Keyboard.dismiss();
@@ -131,7 +135,7 @@ const RegisterScreen = ({ navigation }: Props) => {
                         <TouchableOpacity
                             activeOpacity={0.8}
                             style={styles.button}
-                            onPress={() => { onRegister(); navigation.navigate("RegisterDetailsScreen", { name, email }); }}
+                            onPress={onRegister}
                         >
                             <Text style={styles.buttonText}>Continuar</Text>
                         </TouchableOpacity>
