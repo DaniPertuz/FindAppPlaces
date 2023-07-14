@@ -145,7 +145,6 @@
 				A6A04EDEBFD62026EA0144B4 /* Pods-FindAppPlaces-FindAppPlacesTests.debug.xcconfig */,
 				400BE5C7E71B754485F6C4CF /* Pods-FindAppPlaces-FindAppPlacesTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
