@@ -1,27 +1,49 @@
 import React, { useContext } from 'react';
-import { Keyboard, Text, TouchableOpacity, View } from 'react-native';
+import { Keyboard, Text, TouchableOpacity } from 'react-native';
 import { AuthContext } from '../context/auth';
 import styles from '../themes/AppTheme';
 
-const LoginButton = ({ email = '', password = '' }) => {
+interface Props {
+    email: string;
+    password: string;
+    handleFieldLength: (email: boolean, password: boolean) => void;
+}
+
+const LoginButton = ({ email = '', password = '', handleFieldLength }: Props) => {
 
     const { signIn } = useContext(AuthContext);
 
     const onLogin = () => {
         Keyboard.dismiss();
-        signIn({ email, password });
+
+        if (email.length === 0 && password.length !== 0) {
+            handleFieldLength(true, false);
+            return;
+        }
+
+        if (email.length !== 0 && password.length === 0) {
+            handleFieldLength(false, true);
+            return;
+        }
+
+        if (email.length === 0 && password.length === 0) {
+            handleFieldLength(true, true);
+            return;
+        }
+
+        if (email.length !== 0 && password.length !== 0) {
+            signIn({ email, password });
+        }
     };
 
     return (
-        <View style={styles.buttonContainer}>
-            <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.button}
-                onPress={onLogin}
-            >
-                <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+            activeOpacity={0.8}
+            style={styles.button}
+            onPress={onLogin}
+        >
+            <Text style={styles.buttonText}>Iniciar Sesión</Text>
+        </TouchableOpacity>
     );
 };
 
