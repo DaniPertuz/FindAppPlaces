@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
     },
     warningText: {
         color: '#D13232',
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: '500',
         letterSpacing: -0.24,
         lineHeight: 20
