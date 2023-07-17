@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from 'react';
-import { Alert, Keyboard, KeyboardAvoidingView, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Keyboard, KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import SplashScreen from 'react-native-splash-screen';
 
 import Background from '../../components/Background';
 import FormInputs from '../../components/FormInputs';
+import { AuthContext } from '../../context/auth';
 import { useForm } from '../../hooks/useForm';
 
 import styles from '../../themes/AppTheme';
-import { AuthContext } from '../../context/auth';
 
 interface Props extends StackScreenProps<any, any> { }
 
@@ -37,34 +37,47 @@ const LoginScreen = ({ navigation }: Props) => {
         signIn({ email, password });
     };
     return (
-        <>
-            <Background />
+        <ScrollView
+            keyboardShouldPersistTaps='handled'
+            style={{
+                backgroundColor: 'rgba(104, 110, 222, 0.1)',
+                paddingBottom: 40
+            }}
+        >
             <KeyboardAvoidingView
-                style={{ flex: 1 }}
                 behavior={(Platform.OS === 'ios') ? 'padding' : 'height'}
             >
-                <View
-                    style={styles.loginFormContainer}
-                >
-                    <Text style={styles.bigTitle}>FindAPP</Text>
-                    <FormInputs
-                        email={email.trim()}
-                        password={password}
-                        onChange={onChange}
-                        onLogin={onLogin}
-                    />
-                </View>
-                <View style={styles.newUserButtonContainer}>
-                    <TouchableOpacity
-                        activeOpacity={0.8}
-                        style={styles.button}
-                        onPress={() => navigation.replace('RegisterScreen')}
-                    >
-                        <Text style={styles.buttonText}>Nueva cuenta</Text>
-                    </TouchableOpacity>
+                <Background />
+                <View style={styles.loginFormContainer}>
+                    <View style={styles.alignItemsCenter}>
+                        <Image
+                            source={require('../../assets/fa_complete_color.png')}
+                            style={styles.mainLogo}
+                        />
+                        <View style={{ marginTop: -75, marginEnd: 5 }}>
+                            <Text style={styles.footnote}>Empresas</Text>
+                        </View>
+                        <View style={styles.largeMarginTop}>
+                            <View style={styles.mediumMarginBottom}>
+                                <View style={styles.tinyMarginBottom}>
+                                    <Text style={styles.h4}>
+                                        Bienvenido
+                                    </Text>
+                                </View>
+                                <Text style={styles.bodySmall}>
+                                    Ingresa tus credenciales para continuar
+                                </Text>
+                            </View>
+                            <FormInputs
+                                email={email.trim()}
+                                password={password}
+                                onChange={onChange}
+                            />
+                        </View>
+                    </View>
                 </View>
             </KeyboardAvoidingView>
-        </>
+        </ScrollView>
     );
 };
 
