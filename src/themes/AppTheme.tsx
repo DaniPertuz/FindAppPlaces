@@ -98,6 +98,14 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textDecorationLine: 'underline'
     },
+    loginBackground: {
+        backgroundColor: '#081023',
+        borderBottomEndRadius: 16,
+        borderBottomStartRadius: 16,
+        height: 230,
+        position: 'absolute',
+        width: '100%'
+    },
     loginButtonContainer: {
         alignItems: 'center',
         marginTop: 20
