@@ -1,17 +1,36 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    alignItemsCenter: {
+        alignItems: 'center'
+    },
     bigTitle: {
         color: "#FFFFFF",
         fontSize: 60,
         textAlign: "center"
     },
+    body: {
+        color: '#2F2F2F',
+        fontSize: 16,
+        fontWeight: '500',
+        letterSpacing: -0.24,
+        lineHeight: 20,
+        marginBottom: 5,
+        marginTop: 20
+    },
+    bodySmall: {
+        color: '#2F2F2F',
+        fontSize: 16,
+        fontWeight: '500',
+        letterSpacing: -0.28,
+        lineHeight: 20
+    },
     button: {
-        borderColor: "#FFFFFF",
-        borderRadius: 100,
-        borderWidth: 2,
-        paddingHorizontal: 15,
-        paddingVertical: 5
+        alignItems: 'center',
+        backgroundColor: '#207CFD',
+        borderRadius: 8,
+        padding: 10,
+        width: '100%'
     },
     buttonContainer: {
         alignItems: "center",
@@ -42,8 +61,31 @@ const styles = StyleSheet.create({
         paddingVertical: 5
     },
     buttonText: {
-        color: "#FFFFFF",
-        fontSize: 18
+        color: 'rgba(250, 250, 250, 0.98)',
+        fontSize: 16,
+        fontWeight: '500',
+        lineHeight: 22,
+        letterSpacing: -0.32
+    },
+    caption: {
+        color: '#101F11',
+        fontSize: 13,
+        fontWeight: '500',
+        lineHeight: 15,
+        letterSpacing: -0.26
+    },
+    captionLink: {
+        color: '#207CFD',
+        fontSize: 13,
+        fontWeight: '500',
+        lineHeight: 15,
+        letterSpacing: -0.26
+    },
+    createAccountButtonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginBottom: 38,
+        marginTop: 32
     },
     decisionContainer: {
         flex: 1,
@@ -52,10 +94,33 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    flexDirectionRowTinyMarginTop: {
+        flexDirection: 'row',
+        marginTop: 5
+    },
+    forgotPasswordContainer: {
+        alignItems: 'flex-end',
+        marginBottom: 30,
+        marginTop: 12
+    },
     formContainer: {
         flex: 2,
         paddingHorizontal: 30,
         marginTop: 10
+    },
+    footnote: {
+        color: '#081023',
+        fontSize: 12,
+        fontWeight: '400',
+        lineHeight: 16,
+        letterSpacing: -0.24
+    },
+    h4: {
+        color: '#2F2F2F',
+        fontSize: 24,
+        fontWeight: '700',
+        letterSpacing: -0.4,
+        lineHeight: 28
     },
     hoursDropdownContainer: {
         alignItems: 'center',
@@ -75,18 +140,31 @@ const styles = StyleSheet.create({
         paddingVertical: 20
     },
     inputField: {
-        color: "#FFFFFF",
-        fontSize: 20
+        color: '#081023',
+        fontSize: 12,
+        letterSpacing: -0.24,
+        lineHeight: 16,
+        padding: 16
     },
-    inputFieldIOS: {
-        borderBottomColor: "#FFFFFF",
-        borderBottomWidth: 2,
-        paddingBottom: 4
+    inputFieldContainer: {
+        alignItems: 'center',
+        backgroundColor: 'rgba(104, 110, 222, 0.1)',
+        borderColor: '#2F2F2F',
+        borderRadius: 8,
+        borderWidth: 1,
+        flexDirection: 'row',
+        paddingHorizontal: 16
+    },
+    justifyContentCenter: {
+        justifyContent: 'center'
     },
     label: {
         color: "#FFFFFF",
         fontWeight: "bold",
         marginTop: 25
+    },
+    largeMarginTop: {
+        marginTop: 32
     },
     link: {
         color: '#5856D6',
@@ -110,10 +188,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20
     },
+    loginButtonText: {
+        color: '#207CFD',
+        fontSize: 16,
+        fontWeight: '500',
+        letterSpacing: -0.26,
+        lineHeight: 20
+    },
     loginFormContainer: {
-        flex: 1,
-        justifyContent: "center",
-        paddingHorizontal: 40
+        backgroundColor: '#FFFFFF',
+        borderRadius: 16,
+        marginBottom: 35,
+        marginHorizontal: 20,
+        marginTop: 74,
+        minHeight: 720,
+        paddingHorizontal: 22
+    },
+    mainLogo: {
+        height: 107,
+        marginVertical: 40,
+        width: 239
+    },
+    mediumMarginBottom: {
+        marginBottom: 20
     },
     mediumTitle: {
         color: '#FFFFFF',
@@ -134,6 +231,20 @@ const styles = StyleSheet.create({
         marginEnd: 10,
         paddingHorizontal: 10,
         paddingVertical: 5
+    },
+    plainMediumText: {
+        color: '#081023',
+        fontSize: 13,
+        fontWeight: '500',
+        letterSpacing: -0.24,
+        lineHeight: 20
+    },
+    plainMediumTextLink: {
+        color: '#207CFD',
+        fontSize: 13,
+        fontWeight: '500',
+        letterSpacing: -0.24,
+        lineHeight: 15
     },
     registerFormContainer: {
         paddingHorizontal: 30,
@@ -161,6 +272,36 @@ const styles = StyleSheet.create({
         marginTop: 25,
         height: 170,
         width: '40%'
+    },
+    tinyButtonSize: {
+        flex: 0.01
+    },
+    tinyMarginBottom: {
+        marginBottom: 5
+    },
+    tinyMarginEnd: {
+        marginEnd: 3
+    },
+    tinyMarginStart: {
+        marginStart: 3
+    },
+    warningBorder: {
+        borderColor: '#D13232',
+        borderWidth: 1
+    },
+    warningIconMargins: {
+        marginEnd: 5,
+        marginTop: 3
+    },
+    warningTopMargin: {
+        marginTop: 4
+    },
+    warningText: {
+        color: '#D13232',
+        fontSize: 14,
+        fontWeight: '500',
+        letterSpacing: -0.24,
+        lineHeight: 20
     },
     white: {
         color: '#FFFFFF'
