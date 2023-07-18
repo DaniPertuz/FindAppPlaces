@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Alert, Image, Keyboard, KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
+import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import SplashScreen from 'react-native-splash-screen';
@@ -32,17 +32,10 @@ const LoginScreen = ({ navigation }: Props) => {
         Alert.alert('Error', errorMessage, [{ text: 'OK', onPress: removeError }]);
     }, [errorMessage]);
 
-    const onLogin = () => {
-        Keyboard.dismiss();
-        signIn({ email, password });
-    };
     return (
         <ScrollView
             keyboardShouldPersistTaps='handled'
-            style={{
-                backgroundColor: 'rgba(104, 110, 222, 0.1)',
-                paddingBottom: 40
-            }}
+            style={{ backgroundColor: 'rgba(104, 110, 222, 0.1)', paddingBottom: 40 }}
         >
             <KeyboardAvoidingView
                 behavior={(Platform.OS === 'ios') ? 'padding' : 'height'}
