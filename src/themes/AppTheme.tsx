@@ -4,6 +4,18 @@ const styles = StyleSheet.create({
     alignItemsCenter: {
         alignItems: 'center'
     },
+    backButtonMargins: {
+        marginBottom: 22,
+        marginEnd: 2,
+        marginTop: 2
+    },
+    backButtonText: {
+        color: '#207CFD',
+        fontSize: 12,
+        fontWeight: '500',
+        letterSpacing: -0.24,
+        lineHeight: 20
+    },
     bigTitle: {
         color: "#FFFFFF",
         fontSize: 60,
@@ -35,6 +47,9 @@ const styles = StyleSheet.create({
     buttonContainer: {
         alignItems: "center",
         marginTop: 50
+    },
+    buttonContainerMarginTop: {
+        marginTop: 30
     },
     buttonImagesContainer: {
         flexDirection: 'row',
@@ -98,6 +113,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    flexDirectionRow: {
+        flexDirection: 'row'
+    },
     flexDirectionRowTinyMarginTop: {
         flexDirection: 'row',
         marginTop: 5
@@ -125,6 +143,9 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         letterSpacing: -0.4,
         lineHeight: 28
+    },
+    hideButtonContainer: {
+        alignItems: 'center'
     },
     hoursDropdownContainer: {
         alignItems: 'center',
@@ -157,15 +178,11 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderWidth: 1,
         flexDirection: 'row',
+        marginTop: 5,
         paddingHorizontal: 16
     },
     justifyContentCenter: {
         justifyContent: 'center'
-    },
-    label: {
-        color: "#FFFFFF",
-        fontWeight: "bold",
-        marginTop: 25
     },
     largeMarginTop: {
         marginTop: 32
@@ -221,6 +238,9 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         marginTop: 20
+    },
+    newPasswordInputTextSize: {
+        flex: 2
     },
     newUserButtonContainer: {
         alignItems: 'flex-end',
@@ -282,7 +302,7 @@ const styles = StyleSheet.create({
         width: '40%'
     },
     tinyButtonSize: {
-        flex: 0.01
+        flex: 0.2
     },
     tinyMarginBottom: {
         marginBottom: 5
@@ -292,6 +312,9 @@ const styles = StyleSheet.create({
     },
     tinyMarginStart: {
         marginStart: 3
+    },
+    titleMarginTopContainer: {
+        marginTop: 36
     },
     warningBorder: {
         borderColor: '#D13232',
