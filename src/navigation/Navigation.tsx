@@ -7,11 +7,12 @@ import NewPasswordScreen from '../screens/auth/NewPasswordScreen';
 const Stack = createStackNavigator();
 
 export type RootStackParams = {
-    RegisterDetailsScreen: { name: string, email: string; },
+    LoginScreen: undefined,
     MainPictureScreen: undefined,
     MainScreen: undefined,
     NewPasswordScreen: undefined,
     RegisterScreen: undefined,
+    RegisterDetailsScreen: { name: string, email: string; },
 };
 
 export const Navigation = () => {
