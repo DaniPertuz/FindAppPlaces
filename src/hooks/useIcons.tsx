@@ -83,6 +83,7 @@ import User from '../assets/user.svg';
 import UserCircle from '../assets/user-circle.svg';
 import UserCircleFocused from '../assets/user-circle-focused.svg';
 import UserCirclePlain from '../assets/user-circle-plain.svg';
+import Users from '../assets/users.svg';
 import Vegetarian from '../assets/vegetarian.svg';
 import Vet from '../assets/vet.svg';
 import Warning from '../assets/warning.svg';
@@ -256,6 +257,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <UserCircleFocused height={height} width={width} />;
         case 'UserCirclePlain':
             return <UserCirclePlain height={height} width={width} />;
+        case 'Users':
+            return <Users height={height} width={width} />;
         case 'Veterinaria':
             return <Vet height={height} width={width} />;
         case 'Videojuegos':
