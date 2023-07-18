@@ -33,33 +33,21 @@ const LoginScreen = ({ navigation }: Props) => {
     }, [errorMessage]);
 
     return (
-        <ScrollView
-            keyboardShouldPersistTaps='handled'
-            style={{ backgroundColor: 'rgba(104, 110, 222, 0.1)', paddingBottom: 40 }}
-        >
-            <KeyboardAvoidingView
-                behavior={(Platform.OS === 'ios') ? 'padding' : 'height'}
-            >
+        <ScrollView keyboardShouldPersistTaps='handled' style={styles.scrollViewBackground}>
+            <KeyboardAvoidingView behavior={(Platform.OS === 'ios') ? 'padding' : 'height'}>
                 <Background />
                 <View style={styles.loginFormContainer}>
                     <View style={styles.alignItemsCenter}>
-                        <Image
-                            source={require('../../assets/fa_complete_color.png')}
-                            style={styles.mainLogo}
-                        />
-                        <View style={{ marginTop: -75, marginEnd: 5 }}>
+                        <Image source={require('../../assets/fa_complete_color.png')} style={styles.mainLogo} />
+                        <View style={styles.companiesNameMargins}>
                             <Text style={styles.footnote}>Empresas</Text>
                         </View>
                         <View style={styles.largeMarginTop}>
                             <View style={styles.mediumMarginBottom}>
                                 <View style={styles.tinyMarginBottom}>
-                                    <Text style={styles.h4}>
-                                        Bienvenido
-                                    </Text>
+                                    <Text style={styles.h4}>Bienvenido</Text>
                                 </View>
-                                <Text style={styles.bodySmall}>
-                                    Ingresa tus credenciales para continuar
-                                </Text>
+                                <Text style={styles.bodySmall}>Ingresa tus credenciales para continuar</Text>
                             </View>
                             <FormInputs
                                 email={email.trim()}

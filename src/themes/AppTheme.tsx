@@ -81,6 +81,10 @@ const styles = StyleSheet.create({
         lineHeight: 15,
         letterSpacing: -0.26
     },
+    companiesNameMargins: {
+        marginEnd: 5,
+        marginTop: -75
+    },
     createAccountButtonsContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -256,6 +260,10 @@ const styles = StyleSheet.create({
     rowTextStyle: {
         color: '#FFFFFF',
         margin: 6
+    },
+    scrollViewBackground: {
+        backgroundColor: 'rgba(104, 110, 222, 0.1)',
+        paddingBottom: 40
     },
     subtitle: {
         color: '#FFFFFF',
