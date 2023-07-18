@@ -144,9 +144,6 @@ const styles = StyleSheet.create({
         letterSpacing: -0.4,
         lineHeight: 28
     },
-    hideButtonContainer: {
-        alignItems: 'center'
-    },
     hoursDropdownContainer: {
         alignItems: 'center',
         flexDirection: 'row',
