@@ -3,13 +3,15 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import { Navigation } from './src/navigation';
-import { AuthProvider, PlacesProvider } from './src/context';
+import { AuthProvider, PlacesProvider, UsersProvider } from './src/context';
 
 const AppState = ({ children }: { children: JSX.Element | JSX.Element[]; }) => {
   return (
     <AuthProvider>
       <PlacesProvider>
-        {children}
+        <UsersProvider>
+          {children}
+        </UsersProvider>
       </PlacesProvider>
     </AuthProvider>
   );
