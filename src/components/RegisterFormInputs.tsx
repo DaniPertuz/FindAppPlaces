@@ -139,10 +139,10 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                         onPress={handlePasswordVisibility}
                     >
                         {(passwordVisibility === false)
-                            ? <View style={styles.tinyButtonSize}>
+                            ? <View style={styles.hideButtonContainer}>
                                 {useIcons('Eye', 20, 20)}
                             </View>
-                            : <View style={styles.tinyButtonSize}>
+                            : <View style={styles.hideButtonContainer}>
                                 {useIcons('EyeClosed', 20, 20)}
                             </View>
                         }
