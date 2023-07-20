@@ -24,13 +24,9 @@ const RegisterScreen = () => {
                         <View style={styles.largeMarginTop}>
                             <View style={styles.mediumMarginBottom}>
                                 <View style={styles.tinyMarginBottom}>
-                                    <Text style={styles.h4}>
-                                        Crea tu cuenta
-                                    </Text>
+                                    <Text style={styles.h4}>Crea tu cuenta</Text>
                                 </View>
-                                <Text style={styles.bodySmall}>
-                                    Ingresa tus datos para crear una cuenta
-                                </Text>
+                                <Text style={styles.bodySmall}>Ingresa tus datos para crear una cuenta</Text>
                                 <RegisterFormInputs name={name} email={email.trim()} password={password} onChange={onChange} />
                             </View>
                         </View>
