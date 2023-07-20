@@ -37,6 +37,26 @@ const styles = StyleSheet.create({
         letterSpacing: -0.28,
         lineHeight: 20
     },
+    bottomTabNavigatorItem: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginTop: 20
+    },
+    bottomTabNavigatorItemFont: {
+        fontSize: 14,
+        fontWeight: '500',
+        letterSpacing: -0.28,
+        lineHeight: 20
+    },
+    bottomTabNavigatorLabStyle: {
+        fontSize: 14,
+        fontWeight: '500',
+        lineHeight: 20,
+        letterSpacing: -0.28
+    },
+    bottomTabNavigatorMinHeight: {
+        minHeight: 62
+    },
     button: {
         alignItems: 'center',
         backgroundColor: '#207CFD',
@@ -234,6 +254,9 @@ const styles = StyleSheet.create({
     },
     mediumMarginBottom: {
         marginBottom: 20
+    },
+    mediumMarginStart: {
+        marginStart: 10
     },
     mediumTitle: {
         color: '#FFFFFF',
