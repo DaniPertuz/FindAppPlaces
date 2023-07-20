@@ -1,36 +1,40 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
-import { LoginScreen, RegisterScreen, RegisterDetailsScreen, MainPictureScreen } from '../screens/auth';
-import { MainScreen } from '../screens/main';
-import NewPasswordScreen from '../screens/auth/NewPasswordScreen';
+import React, { useContext } from 'react';
+
+import { MainNavigator } from './';
+import { AuthContext } from '../context';
+import { LoginScreen, RegisterScreen, NewPasswordScreen, LoadingScreen } from '../screens';
 
 const Stack = createStackNavigator();
 
-export type RootStackParams = {
-    LoginScreen: undefined,
-    MainPictureScreen: undefined,
-    MainScreen: undefined,
-    NewPasswordScreen: undefined,
-    RegisterScreen: undefined,
-    RegisterDetailsScreen: { name: string, email: string; },
-};
+const Navigation = () => {
 
-export const Navigation = () => {
+    const { status, user } = useContext(AuthContext);
+
+    if (status === 'checking') return <LoadingScreen />;
+
     return (
         <Stack.Navigator
             screenOptions={{
-                headerShown: false,
-                cardStyle: {
-                    backgroundColor: '#FFFFFF'
-                }
+                headerShown: false
             }}
         >
-            <Stack.Screen name='LoginScreen' component={LoginScreen} />
-            <Stack.Screen name='NewPasswordScreen' component={NewPasswordScreen} />
-            <Stack.Screen name='RegisterScreen' component={RegisterScreen} />
-            <Stack.Screen name='RegisterDetailsScreen' component={RegisterDetailsScreen} />
-            <Stack.Screen name='MainPictureScreen' component={MainPictureScreen} />
-            <Stack.Screen name='MainScreen' component={MainScreen} />
+            {(!user || status !== 'authenticated')
+                ?
+                (
+                    <>
+                        <Stack.Screen name='LoginScreen' component={LoginScreen} />
+                        <Stack.Screen name='RegisterScreen' component={RegisterScreen} />
+                        <Stack.Screen name='NewPasswordScreen' component={NewPasswordScreen} />
+                    </>
+                )
+                :
+                <>
+                    <Stack.Screen name='MainScreen' component={MainNavigator} />
+                </>
+            }
         </Stack.Navigator>
     );
 };
+
+export default Navigation;
