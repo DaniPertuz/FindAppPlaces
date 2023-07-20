@@ -17,6 +17,16 @@ export const PlacesProvider = ({ children }: any) => {
 
     const [state, dispatch] = useReducer(PlacesReducer, PLACES_INITIAL_STATE);
 
+    const getFavorites = async (placeId: string): Promise<number> => {
+        try {
+            const { data } = await findAPI.get<number>(`/favorites/place/${placeId}`);
+            return data;
+        } catch (error: any) {
+            console.log(error.response.data.message);
+            throw new Error(`${error}`);
+        }
+    };
+
     const getRatings = async (placeId: string): Promise<IRatingList> => {
         try {
             const { data } = await findAPI.get<IRatingList>(`/ratings/all/${placeId}`);
@@ -52,6 +62,7 @@ export const PlacesProvider = ({ children }: any) => {
     return (
         <PlacesContext.Provider value={{
             ...state,
+            getFavorites,
             getRatings,
             loadPlaceByEmail,
             registerPlace,
