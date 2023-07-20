@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import findAPI from '../../api/findapi';
 import { PlacesContext, PlacesReducer } from '.';
-import { IPlace } from '../../interfaces';
+import { IPlace, IRatingList } from '../../interfaces';
 
 export interface PlacesState {
     place: IPlace | null;
@@ -16,6 +16,16 @@ const PLACES_INITIAL_STATE: PlacesState = {
 export const PlacesProvider = ({ children }: any) => {
 
     const [state, dispatch] = useReducer(PlacesReducer, PLACES_INITIAL_STATE);
+
+    const getRatings = async (placeId: string): Promise<IRatingList> => {
+        try {
+            const { data } = await findAPI.get<IRatingList>(`/ratings/all/${placeId}`);
+            return data;
+        } catch (error: any) {
+            console.log(error.response.data.message);
+            throw new Error(`${error}`);
+        }
+    };
 
     const loadPlaceByEmail = async (email: string): Promise<IPlace> => {
         try {
@@ -42,6 +52,7 @@ export const PlacesProvider = ({ children }: any) => {
     return (
         <PlacesContext.Provider value={{
             ...state,
+            getRatings,
             loadPlaceByEmail,
             registerPlace,
             removeError
