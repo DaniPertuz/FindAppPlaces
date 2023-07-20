@@ -1,9 +1,11 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MainScreen, ProfileScreen, SubscriptionScreen } from '../screens';
 import { Text, View } from 'react-native';
-import styles from '../themes/AppTheme';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { MainScreen, ProfileScreen, SubscriptionScreen } from '../screens';
 import { useIcons } from '../hooks';
+
+import styles from '../themes/AppTheme';
 
 const Tab = createBottomTabNavigator();
 
