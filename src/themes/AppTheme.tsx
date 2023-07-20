@@ -143,6 +143,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    flexDirectionRowJustifyCenter: {
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
     flexDirectionRowTinyMarginTop: {
         flexDirection: 'row',
         marginTop: 5
