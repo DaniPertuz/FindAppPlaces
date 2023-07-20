@@ -120,6 +120,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 5
     },
+    flexOneAlignJustifyCenter: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center'
+    },
     forgotPasswordContainer: {
         alignItems: 'flex-end',
         marginBottom: 30,
