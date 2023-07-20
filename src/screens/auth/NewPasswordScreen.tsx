@@ -5,7 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import Background from '../../components/Background';
 import NewPasswordFormInputs from '../../components/NewPasswordFormInputs';
-import { RootStackParams } from '../../navigation';
+import { RootStackParams } from '../../navigation/MainNavigator';
 import { useIcons } from '../../hooks/useIcons';
 import { useForm } from '../../hooks/useForm';
 
