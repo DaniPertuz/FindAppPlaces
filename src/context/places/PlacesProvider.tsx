@@ -17,6 +17,15 @@ export const PlacesProvider = ({ children }: any) => {
 
     const [state, dispatch] = useReducer(PlacesReducer, PLACES_INITIAL_STATE);
 
+    const loadPlaceByEmail = async (email: string): Promise<IPlace> => {
+        try {
+            const resp = await findAPI.get<IPlace>('/places/email', { params: { email } });
+            return resp.data;
+        } catch (error) {
+            throw new Error(`${error}`);
+        }
+    };
+
     const registerPlace = async (place: IPlace) => {
         try {
             const { data } = await findAPI.post<IPlace>('/places', place);
@@ -33,6 +42,7 @@ export const PlacesProvider = ({ children }: any) => {
     return (
         <PlacesContext.Provider value={{
             ...state,
+            loadPlaceByEmail,
             registerPlace,
             removeError
         }}
