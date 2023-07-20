@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { UsersContext } from '../context/users';
 import { useIcons } from '../hooks';
 import { roles } from '../interfaces';
-import { RootStackParams } from '../navigation';
+import { RootStackParams } from '../navigation/MainNavigator';
 
 import styles from '../themes/AppTheme';
 
