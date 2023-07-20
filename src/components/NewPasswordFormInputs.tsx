@@ -67,6 +67,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
 
         if (validation === null && email.length !== 0) {
             setNullPlace(true);
+            return;
         }
 
         if (validation && validation.role !== roles.PLACE) {
