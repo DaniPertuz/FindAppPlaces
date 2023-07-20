@@ -79,6 +79,8 @@ import Sports from '../assets/sports.svg';
 import Star from '../assets/star.svg';
 import Tech from '../assets/tech.svg';
 import Timer from '../assets/timer.svg';
+import Trophy from '../assets/trophy.svg';
+import TrophyFocused from '../assets/trophy-focused.svg';
 import User from '../assets/user.svg';
 import UserCircle from '../assets/user-circle.svg';
 import UserCircleFocused from '../assets/user-circle-focused.svg';
@@ -249,6 +251,10 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <Tech height={height} width={width} />;
         case 'Timer':
             return <Timer height={height} width={width} />;
+        case 'Trophy':
+            return <Trophy height={height} width={width} />;
+        case 'TrophyFocused':
+            return <TrophyFocused height={height} width={width} />;
         case 'User':
             return <User height={height} width={width} />;
         case 'UserCircle':
