@@ -1,15 +1,61 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MainScreen, ProfileScreen, SubscriptionScreen } from '../screens';
+import { Text, View } from 'react-native';
+import styles from '../themes/AppTheme';
+import { useIcons } from '../hooks';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
     return (
-        <Tab.Navigator>
-            <Tab.Screen name="Home" component={MainScreen} />
-            <Tab.Screen name="Subscriptions" component={SubscriptionScreen} />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
+        <Tab.Navigator
+            tabBarOptions={{
+                labelStyle: styles.bottomTabNavigatorLabStyle,
+                style: styles.bottomTabNavigatorMinHeight
+            }}
+            screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused }) => {
+                    switch (route.name) {
+                        case 'Home':
+                            return <View style={styles.bottomTabNavigatorItem}>
+                                {(focused)
+                                    ? useIcons('HouseFocused', 22, 22)
+                                    : useIcons('House', 22, 22)
+                                }
+                                <View style={styles.mediumMarginStart}>
+                                    <Text style={{ ...styles.bottomTabNavigatorItemFont, color: (focused) ? '#207CFD' : '#5A5A5A' }}>Inicio</Text>
+                                </View>
+                            </View>;
+
+                        case 'Subscriptions':
+                            return <View style={styles.bottomTabNavigatorItem}>
+                                {(focused)
+                                    ? useIcons('TrophyFocused', 22, 22)
+                                    : useIcons('Trophy', 22, 22)
+                                }
+                                <View style={styles.mediumMarginStart}>
+                                    <Text style={{ ...styles.bottomTabNavigatorItemFont, color: (focused) ? '#207CFD' : '#5A5A5A' }}>Suscripción</Text>
+                                </View>
+                            </View>;
+
+                        case 'Profile':
+                            return <View style={styles.bottomTabNavigatorItem}>
+                                {(focused)
+                                    ? useIcons('UserCircleFocused', 22, 22)
+                                    : useIcons('UserCircle', 22, 22)
+                                }
+                                <View style={styles.mediumMarginStart}>
+                                    <Text style={{ ...styles.bottomTabNavigatorItemFont, color: (focused) ? '#207CFD' : '#5A5A5A' }}>Perfil</Text>
+                                </View>
+                            </View>;
+                    }
+                }
+            })}
+        >
+            <Tab.Screen name="Home" options={{ title: '' }} component={MainScreen} />
+            <Tab.Screen name="Subscriptions" options={{ title: '' }} component={SubscriptionScreen} />
+            <Tab.Screen name="Profile" options={{ title: '' }} component={ProfileScreen} />
         </Tab.Navigator>
     );
 };
