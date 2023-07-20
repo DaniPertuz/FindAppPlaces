@@ -133,8 +133,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    extraSmallMarginTop: {
+        marginTop: 8
+    },
     flexDirectionRow: {
         flexDirection: 'row'
+    },
+    flexDirectionRowJustifySpaceBetween: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     flexDirectionRowTinyMarginTop: {
         flexDirection: 'row',
@@ -157,6 +164,13 @@ const styles = StyleSheet.create({
     },
     footnote: {
         color: '#081023',
+        fontSize: 12,
+        fontWeight: '400',
+        lineHeight: 16,
+        letterSpacing: -0.24
+    },
+    footnoteLink: {
+        color: '#207CFD',
         fontSize: 12,
         fontWeight: '400',
         lineHeight: 16,
@@ -206,6 +220,15 @@ const styles = StyleSheet.create({
     justifyContentCenter: {
         justifyContent: 'center'
     },
+    largeItem: {
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF',
+        borderRadius: 8,
+        marginHorizontal: 8,
+        minWidth: 90,
+        paddingHorizontal: 10,
+        paddingVertical: 8
+    },
     largeMarginTop: {
         marginTop: 32
     },
@@ -254,6 +277,9 @@ const styles = StyleSheet.create({
     },
     mediumMarginBottom: {
         marginBottom: 20
+    },
+    mediumMarginTop: {
+        marginTop: 20
     },
     mediumMarginStart: {
         marginStart: 10
@@ -310,6 +336,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(104, 110, 222, 0.1)',
         paddingBottom: 40
     },
+    smallMediumMarginTop: {
+        marginTop: 12
+    },
+    subheadline: {
+        color: '#081023',
+        fontSize: 14,
+        fontWeight: '700',
+        lineHeight: 18
+    },
     subtitle: {
         color: '#FFFFFF',
         fontSize: 20,
@@ -337,6 +372,9 @@ const styles = StyleSheet.create({
     },
     tinyMarginStart: {
         marginStart: 3
+    },
+    tinyMarginTop: {
+        marginTop: 6
     },
     titleMarginTopContainer: {
         marginTop: 36
