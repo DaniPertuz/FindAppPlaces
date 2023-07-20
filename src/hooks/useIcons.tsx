@@ -8,6 +8,7 @@ import ArrowUpRight from '../assets/ArrowUpRight.svg';
 import Back from '../assets/back.svg';
 import Bank from '../assets/bank.svg';
 import Bar from '../assets/bar.svg';
+import BasicLevel from '../assets/basic-level.svg';
 import Bookmark from '../assets/bookmark.svg';
 import BookmarkFavorite from '../assets/bookmark-favorite.svg';
 import Cafe from '../assets/cafeteria.svg';
@@ -55,6 +56,7 @@ import Mall from '../assets/mall.svg';
 import Map from '../assets/map.svg';
 import Market from '../assets/market.svg';
 import Mask from '../assets/mask.svg';
+import MediumLevel from '../assets/medium-level.svg';
 import Movies from '../assets/movies.svg';
 import MusicStore from '../assets/music-store.svg';
 import NumberOne from '../assets/NumberOne.svg';
@@ -111,6 +113,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <Bank height={height} width={width} />;
         case 'Bar':
             return <Bar height={height} width={width} />;
+        case 'BasicLevel':
+            return <BasicLevel height={height} width={width} />;
         case 'Bookmark':
             return <Bookmark height={height} width={width} />;
         case 'BookmarkFavorite':
@@ -205,6 +209,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <PetStore height={height} width={width} />;
         case 'Mask':
             return <Mask height={height} width={width} />;
+        case 'MediumLevel':
+            return <MediumLevel height={height} width={width} />;
         case 'Mercado':
             return <Market height={height} width={width} />;
         case 'Música':
