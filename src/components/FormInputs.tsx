@@ -3,7 +3,7 @@ import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import { RootStackParams } from '../navigation';
+import { RootStackParams } from '../navigation/MainNavigator';
 import LoginButton from './LoginButton';
 import { useIcons } from '../hooks';
 
@@ -101,10 +101,10 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                         onPress={handlePasswordVisibility}
                     >
                         {(passwordVisibility === false)
-                            ? <View style={styles.hideButtonContainer}>
+                            ? <View style={styles.alignItemsCenter}>
                                 {useIcons('Eye', 20, 20)}
                             </View>
-                            : <View style={styles.hideButtonContainer}>
+                            : <View style={styles.alignItemsCenter}>
                                 {useIcons('EyeClosed', 20, 20)}
                             </View>
                         }
@@ -115,9 +115,7 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                         <View style={styles.warningIconMargins}>
                             {useIcons('Warning', 15, 15)}
                         </View>
-                        <Text style={styles.warningText}>
-                            Ingresa tu contraseña
-                        </Text>
+                        <Text style={styles.warningText}>Ingresa tu contraseña</Text>
                     </View>
                 }
             </View>
@@ -126,26 +124,20 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                     activeOpacity={1.0}
                     onPress={() => navigator.navigate('NewPasswordScreen')}
                 >
-                    <Text style={styles.captionLink}>
-                        ¿Olvidaste tu contraseña?
-                    </Text>
+                    <Text style={styles.captionLink}>¿Olvidaste tu contraseña?</Text>
                 </TouchableOpacity>
             </View>
             <LoginButton email={email} password={password} handleFieldLength={handleFieldLength} />
             <View style={styles.createAccountButtonsContainer}>
                 <View style={styles.tinyMarginEnd}>
-                    <Text style={styles.plainMediumText}>
-                        ¿No tienes una empresa registrada?
-                    </Text>
+                    <Text style={styles.plainMediumText}>¿No tienes una empresa registrada?</Text>
                 </View>
                 <TouchableOpacity
                     activeOpacity={0.9}
                     style={styles.justifyContentCenter}
                     onPress={() => navigator.replace('RegisterScreen')}
                 >
-                    <Text style={styles.plainMediumTextLink}>
-                        Crear cuenta
-                    </Text>
+                    <Text style={styles.plainMediumTextLink}>Crear cuenta</Text>
                 </TouchableOpacity>
             </View>
         </View>
