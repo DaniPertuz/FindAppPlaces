@@ -37,6 +37,13 @@ const styles = StyleSheet.create({
         letterSpacing: -0.28,
         lineHeight: 20
     },
+    bodyText: {
+        color: '#1F273A',
+        fontSize: 16,
+        fontWeight: '500',
+        letterSpacing: -0.32,
+        lineHeight: 22
+    },
     bottomTabNavigatorItem: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
@@ -116,6 +123,13 @@ const styles = StyleSheet.create({
         lineHeight: 15,
         letterSpacing: -0.26
     },
+    captionTwo: {
+        color: '#858585',
+        fontSize: 12,
+        fontWeight: '500',
+        lineHeight: 20,
+        letterSpacing: -0.24
+    },
     companiesNameMargins: {
         marginEnd: 5,
         marginTop: -75
@@ -151,10 +165,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 5
     },
+    flexOne: {
+        flex: 1
+    },
     flexOneAlignJustifyCenter: {
         alignItems: 'center',
         flex: 1,
         justifyContent: 'center'
+    },
+    flexThree: {
+        flex: 3
+    },
+    flexTwo: {
+        flex: 2
     },
     forgotPasswordContainer: {
         alignItems: 'flex-end',
@@ -221,8 +244,16 @@ const styles = StyleSheet.create({
         marginTop: 5,
         paddingHorizontal: 16
     },
+    itemIcon: {
+        borderRadius: 8,
+        height: 42,
+        width: 42
+    },
     justifyContentCenter: {
         justifyContent: 'center'
+    },
+    justifyContentFlexStart: {
+        justifyContent: 'flex-start'
     },
     largeItem: {
         alignItems: 'center',
@@ -325,9 +356,31 @@ const styles = StyleSheet.create({
         letterSpacing: -0.24,
         lineHeight: 15
     },
+    rateItemContainer: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 8,
+        marginBottom: 24,
+        paddingHorizontal: 10,
+        paddingVertical: 8
+    },
     registerFormContainer: {
         paddingHorizontal: 30,
         marginTop: 10
+    },
+    reviewsModal: {
+        backgroundColor: 'rgba(250, 250, 250, 1)',
+        borderTopEndRadius: 20,
+        borderTopStartRadius: 20,
+        height: '95%',
+        top: '13%',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 3
     },
     rowHeaderStyle: {
         height: 40
