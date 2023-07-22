@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, ScrollView, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { AuthContext, PlacesContext } from '../../context';
+import { useIcons } from '../../hooks';
+import { IPlace, IRatingList } from '../../interfaces';
+import BigButtons from '../../components/BigButtons';
 
 import styles from '../../themes/AppTheme';
-import { IPlace, IRatingList } from '../../interfaces';
-import { useIcons } from '../../hooks';
-import BigButtons from '../../components/BigButtons';
 
 const MainScreen = () => {
 
@@ -108,6 +108,14 @@ const MainScreen = () => {
             </View>
             <View style={styles.mediumMarginTop}>
                 <BigButtons category={place?.category!} favorites={favorites} rate={Number(place?.rate.$numberDecimal!)} ratings={ratings} />
+            </View>
+            <View style={{ marginTop: 25 }}>
+                <Text style={styles.subheadline}>Estadísticas</Text>
+            </View>
+            <View style={{ paddingVertical: 25 }}>
+                <ScrollView showsVerticalScrollIndicator={false} contentInset={{ bottom: 250 }}>
+                    
+                </ScrollView>
             </View>
         </View>
     );
