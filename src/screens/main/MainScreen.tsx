@@ -1,15 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Image, ScrollView, Text, View } from 'react-native';
+import { Image, ScrollView, Text, View, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { AuthContext, PlacesContext } from '../../context';
 import { useIcons } from '../../hooks';
 import { IPlace, IRatingList } from '../../interfaces';
+import { RootStackParams } from '../../navigation/MainNavigator';
 import BigButtons from '../../components/BigButtons';
 
 import styles from '../../themes/AppTheme';
 
 const MainScreen = () => {
+
+    const navigator = useNavigation<StackNavigationProp<RootStackParams>>();
 
     const { user } = useContext(AuthContext);
     const { getFavorites, getRatings, loadPlaceByEmail } = useContext(PlacesContext);
@@ -99,12 +104,15 @@ const MainScreen = () => {
                         <Text style={styles.footnote}>Nivel {place?.premium}</Text>
                     </LinearGradient>
                 </View>
-                <View>
+                <TouchableOpacity
+                    activeOpacity={1.0}
+                    onPress={() => navigator.navigate('Profile')}
+                >
                     <Image
                         source={(user?.photo === '' ? require('../../assets/fa_blue.png') : { uri: user?.photo })}
                         style={{ borderRadius: 32, height: 62, width: 62 }}
                     />
-                </View>
+                </TouchableOpacity>
             </View>
             <View style={styles.mediumMarginTop}>
                 <BigButtons category={place?.category!} favorites={favorites} rate={Number(place?.rate.$numberDecimal!)} ratings={ratings} />
@@ -114,7 +122,7 @@ const MainScreen = () => {
             </View>
             <View style={{ paddingVertical: 25 }}>
                 <ScrollView showsVerticalScrollIndicator={false} contentInset={{ bottom: 250 }}>
-                    
+
                 </ScrollView>
             </View>
         </View>
