@@ -2,7 +2,8 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { MainScreen, ProfileScreen, SubscriptionScreen } from '../screens';
+import { ProfileNavigator } from './';
+import { MainScreen, SubscriptionScreen } from '../screens';
 import { useIcons } from '../hooks';
 
 import styles from '../themes/AppTheme';
@@ -57,7 +58,7 @@ const BottomTabNavigator = () => {
         >
             <Tab.Screen name="Home" options={{ title: '' }} component={MainScreen} />
             <Tab.Screen name="Subscriptions" options={{ title: '' }} component={SubscriptionScreen} />
-            <Tab.Screen name="Profile" options={{ title: '' }} component={ProfileScreen} />
+            <Tab.Screen name="Profile" options={{ title: '' }} component={ProfileNavigator} />
         </Tab.Navigator>
     );
 };
