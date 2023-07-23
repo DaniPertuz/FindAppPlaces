@@ -55,6 +55,24 @@ export const PlacesProvider = ({ children }: any) => {
         }
     };
 
+    const updatePlace = async (id: string, data: IPlace): Promise<IPlace> => {
+        try {
+            const resp = await findAPI.put<IPlace>(`/places/${id}`, data);
+            return resp.data;
+        } catch (error) {
+            throw new Error(`${error}`);
+        }
+    };
+
+    const updatePlacePhoto = async (id: string, photoURL: string): Promise<IPlace> => {
+        try {
+            const resp = await findAPI.put<IPlace>(`/places/photo/${id}`, { params: { photoURL } });
+            return resp.data;
+        } catch (error) {
+            throw new Error(`${error}`);
+        }
+    };
+
     const removeError = (): void => {
         dispatch({ type: 'removeError' });
     };
@@ -66,6 +84,8 @@ export const PlacesProvider = ({ children }: any) => {
             getRatings,
             loadPlaceByEmail,
             registerPlace,
+            updatePlacePhoto,
+            updatePlace,
             removeError
         }}
         >

@@ -8,6 +8,8 @@ type PlaceContextProps = {
     getRatings:       (placeId: string) => Promise<IRatingList>;
     loadPlaceByEmail: (email: string) => Promise<IPlace>
     registerPlace:    (place: IPlace) => Promise<void>;
+    updatePlace:      (id: string, data: IPlace) => Promise<IPlace>;
+    updatePlacePhoto: (id: string, photoURL: string) => Promise<IPlace>;
     removeError:      () => void;
 }
 
