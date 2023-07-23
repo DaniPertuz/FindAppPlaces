@@ -123,7 +123,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
 
     return (
         <View>
-            <View style={{ marginTop: 20 }}>
+            <View style={styles.mediumMarginTop}>
                 <Text style={styles.footnote}>Email</Text>
                 <View style={[
                     styles.inputFieldContainer,
@@ -151,7 +151,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                     </View>
                 }
             </View>
-            <View style={{ marginTop: 20 }}>
+            <View style={styles.mediumMarginTop}>
                 <Text style={styles.footnote}>Contraseña</Text>
                 <View style={[
                     styles.inputFieldContainer,
@@ -195,7 +195,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                     <Text style={styles.warningText}>Ingresa tu contraseña</Text>
                 </View>
             }
-            <View style={{ marginTop: 20 }}>
+            <View style={styles.mediumMarginTop}>
                 <Text style={styles.footnote}>Repetir contraseña</Text>
                 <View style={[
                     styles.inputFieldContainer,

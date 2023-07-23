@@ -3,7 +3,7 @@ import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import { RootStackParams } from '../navigation';
+import { RootStackParams } from '../navigation/MainNavigator';
 import { useIcons } from '../hooks';
 import RegisterLoginButton from './RegisterLoginButton';
 
@@ -46,11 +46,9 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
 
     return (
         <View>
-            <View style={{ marginTop: 20 }}>
+            <View style={styles.mediumMarginTop}>
                 <View style={styles.tinyMarginBottom}>
-                    <Text style={styles.footnote}>
-                        Nombre de la Empresa
-                    </Text>
+                    <Text style={styles.footnote}>Nombre de la Empresa</Text>
                 </View>
                 <View style={[
                     styles.inputFieldContainer,
@@ -78,11 +76,9 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                     </View>
                 }
             </View>
-            <View style={{ marginTop: 20 }}>
+            <View style={styles.mediumMarginTop}>
                 <View style={styles.tinyMarginBottom}>
-                    <Text style={styles.footnote}>
-                        Correo corporativo
-                    </Text>
+                    <Text style={styles.footnote}>Correo corporativo</Text>
                 </View>
                 <View style={[
                     styles.inputFieldContainer,
@@ -110,11 +106,9 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                     </View>
                 }
             </View>
-            <View style={{ marginTop: 20 }}>
+            <View style={styles.mediumMarginTop}>
                 <View style={styles.tinyMarginBottom}>
-                    <Text style={styles.footnote}>
-                        Contraseña
-                    </Text>
+                    <Text style={styles.footnote}>Contraseña</Text>
                 </View>
                 <View style={[styles.inputFieldContainer, (fieldLength.password === true) && styles.warningBorder]}>
                     <View style={{ flex: 0.35 }}>
@@ -139,10 +133,10 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                         onPress={handlePasswordVisibility}
                     >
                         {(passwordVisibility === false)
-                            ? <View style={styles.hideButtonContainer}>
+                            ? <View style={styles.alignItemsCenter}>
                                 {useIcons('Eye', 20, 20)}
                             </View>
-                            : <View style={styles.hideButtonContainer}>
+                            : <View style={styles.alignItemsCenter}>
                                 {useIcons('EyeClosed', 20, 20)}
                             </View>
                         }
@@ -153,9 +147,7 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                         <View style={styles.warningIconMargins}>
                             {useIcons('Warning', 15, 15)}
                         </View>
-                        <Text style={styles.warningText}>
-                            Ingresa tu contraseña
-                        </Text>
+                        <Text style={styles.warningText}>Ingresa tu contraseña</Text>
                     </View>
                 }
             </View>
@@ -164,18 +156,14 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
             </View>
             <View style={styles.createAccountButtonsContainer}>
                 <View style={styles.tinyMarginEnd}>
-                    <Text style={styles.plainMediumText}>
-                        ¿Ya tienes una empresa registrada?
-                    </Text>
+                    <Text style={styles.plainMediumText}>¿Ya tienes una empresa registrada?</Text>
                 </View>
                 <TouchableOpacity
                     activeOpacity={0.9}
                     style={styles.justifyContentCenter}
                     onPress={() => navigator.replace('LoginScreen')}
                 >
-                    <Text style={styles.plainMediumTextLink}>
-                        Inicia Sesión
-                    </Text>
+                    <Text style={styles.plainMediumTextLink}>Inicia Sesión</Text>
                 </TouchableOpacity>
             </View>
         </View>

@@ -72,7 +72,7 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                     <Text style={styles.warningText}>Ingresa tu correo</Text>
                 </View>
             }
-            <View style={{ marginTop: 20 }}>
+            <View style={styles.mediumMarginTop}>
                 <View style={styles.tinyMarginBottom}>
                     <Text style={styles.footnote}>
                         Contraseña
