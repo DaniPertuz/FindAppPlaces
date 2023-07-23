@@ -4,6 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { Navigation } from './src/navigation';
 import { AuthProvider, PlacesProvider, UsersProvider } from './src/context';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['EventEmitter.removeListener']);
 
 const AppState = ({ children }: { children: JSX.Element | JSX.Element[]; }) => {
   return (
