@@ -1,8 +1,15 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    alignItemsBaseline: {
+        alignItems: 'baseline'
+    },
     alignItemsCenter: {
         alignItems: 'center'
+    },
+    alignJustifyCenter: {
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     backButtonMargins: {
         marginBottom: 22,
@@ -33,6 +40,13 @@ const styles = StyleSheet.create({
     bodySmall: {
         color: '#2F2F2F',
         fontSize: 16,
+        fontWeight: '500',
+        letterSpacing: -0.28,
+        lineHeight: 20
+    },
+    bodySmallGray: {
+        color: '#858585',
+        fontSize: 14,
         fontWeight: '500',
         letterSpacing: -0.28,
         lineHeight: 20
@@ -123,6 +137,13 @@ const styles = StyleSheet.create({
         lineHeight: 15,
         letterSpacing: -0.26
     },
+    captionWarning: {
+        color: '#D13232',
+        fontSize: 13,
+        fontWeight: '500',
+        lineHeight: 15,
+        letterSpacing: -0.26
+    },
     captionTwo: {
         color: '#858585',
         fontSize: 12,
@@ -147,19 +168,67 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    editProfileButton: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 30,
+        marginStart: 6,
+        padding: 5
+    },
+    editProfileGalleryButton: {
+        borderColor: 'rgba(133, 133, 133, 0.25)',
+        borderRadius: 30,
+        borderWidth: 1,
+        padding: 10
+    },
+    editProfileIconMargins: {
+        marginEnd: 6,
+        marginTop: 2
+    },
+    editProfileModal: {
+        backgroundColor: 'rgba(250, 250, 250, 0.98)',
+        height: '45%',
+        top: '180%',
+        borderTopEndRadius: 10,
+        borderTopStartRadius: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 3
+    },
+    editProfileModalBackButtonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        marginBottom: 10
+    },
+    editProfilePhotoButton: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 30,
+        marginStart: -40,
+        marginTop: 65,
+        maxHeight: 40,
+        padding: 5
+    },
     extraSmallMarginTop: {
         marginTop: 8
     },
     flexDirectionRow: {
         flexDirection: 'row'
     },
-    flexDirectionRowJustifySpaceBetween: {
+    flexDirectionRowJustifyAround: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-around'
     },
     flexDirectionRowJustifyCenter: {
         flexDirection: 'row',
         justifyContent: 'center'
+    },
+    flexDirectionRowJustifySpaceBetween: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     flexDirectionRowTinyMarginTop: {
         flexDirection: 'row',
@@ -202,6 +271,13 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         lineHeight: 16,
         letterSpacing: -0.24
+    },
+    h3: {
+        color: '#081023',
+        fontSize: 24,
+        fontWeight: '500',
+        letterSpacing: -0.48,
+        lineHeight: 28
     },
     h4: {
         color: '#2F2F2F',
@@ -324,6 +400,10 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         marginTop: 20
+    },
+    modalBackButtonMargins: {
+        marginEnd: 10,
+        marginTop: 10
     },
     newPasswordInputTextSize: {
         flex: 2
