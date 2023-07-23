@@ -1,10 +1,11 @@
 import React from 'react';
 
-import ArrowElbowUpLeft from '../assets/ArrowElbowUpLeft.svg'
+import ArrowElbowUpLeft from '../assets/ArrowElbowUpLeft.svg';
 import ArrowElbowUpRight from '../assets/ArrowElbowUpRight.svg';
 import ArrowUp from '../assets/ArrowUp.svg';
 import ArrowUpLeft from '../assets/ArrowUpLeft.svg';
 import ArrowUpRight from '../assets/ArrowUpRight.svg';
+import Baby from '../assets/baby.svg';
 import Back from '../assets/back.svg';
 import Bank from '../assets/bank.svg';
 import Bar from '../assets/bar.svg';
@@ -53,6 +54,7 @@ import Location from '../assets/location.svg';
 import Lock from '../assets/lock.svg';
 import Logistics from '../assets/logistics.svg';
 import Mall from '../assets/mall.svg';
+import MallFocused from '../assets/mall-focused.svg';
 import Map from '../assets/map.svg';
 import Market from '../assets/market.svg';
 import Mask from '../assets/mask.svg';
@@ -76,6 +78,7 @@ import Restaurant from '../assets/forkknife.svg';
 import School from '../assets/school.svg';
 import Search from '../assets/search.svg';
 import Sewing from '../assets/sewing.svg';
+import SexShop from '../assets/sex-shop.svg';
 import Shoe from '../assets/shoe.svg';
 import Sports from '../assets/sports.svg';
 import Star from '../assets/star.svg';
@@ -107,6 +110,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <ArrowUpLeft height={height} width={width} />;
         case 'ArrowUpRight':
             return <ArrowUpRight height={height} width={width} />;
+        case 'Baby':
+            return <Baby height={height} width={width} />;
         case 'Back':
             return <Back height={height} width={width} />;
         case 'Banco':
@@ -201,6 +206,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <Lock height={height} width={width} />;
         case 'Logística':
             return <Logistics height={height} width={width} />;
+        case 'Mall':
+            return <MallFocused height={height} width={width} />;
         case 'Map':
             return <Map height={height} width={width} />;
         case 'Marroquinería':
@@ -251,6 +258,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <Sewing height={height} width={width} />;
         case 'Search':
             return <Search height={height} width={width} />;
+        case 'Sex shop':
+            return <SexShop height={height} width={width} />;
         case 'Star':
             return <Star height={height} width={width} />;
         case 'Tecnología':
