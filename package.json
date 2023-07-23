@@ -32,6 +32,7 @@
     "react-native-reanimated-table": "^0.0.2",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^2.18.1",
+    "react-native-snackbar": "^2.6.2",
     "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "^13.10.0",
     "sha1": "^1.1.1"
