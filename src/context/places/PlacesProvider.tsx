@@ -66,7 +66,7 @@ export const PlacesProvider = ({ children }: any) => {
 
     const updatePlacePhoto = async (id: string, photoURL: string): Promise<IPlace> => {
         try {
-            const resp = await findAPI.put<IPlace>(`/places/photo/${id}`, { params: { photoURL } });
+            const resp = await findAPI.put<IPlace>(`/places/photo/${id}`, { photo: photoURL });
             return resp.data;
         } catch (error) {
             throw new Error(`${error}`);
