@@ -44,39 +44,45 @@ const BusinessDaysSchedule = ({ everyday, sendSchedule }: Props) => {
             ['Domingo', (everyday === false) ? 'Cerrado' : openingHour, (everyday === false) ? 'Cerrado' : closingHour],
         ]);
     };
-    
+
     useEffect(() => {
         sendSchedule(schedule);
     }, [schedule]);
 
     return (
         <>
-            <View style={{ display: (schedule.length !== 0) ? 'none' : 'flex', flexDirection: 'row', alignContent: 'center', justifyContent: 'flex-start' }}>
-                <CheckBox
-                    style={{ justifyContent: 'center', marginTop: 25, marginEnd: 5 }}
-                    checkBoxColor='#FFFFFF'
-                    isChecked={customized}
-                    onClick={() => setCustomized(!customized)}
-                />
-                <Text style={styles.label}>Personalizado</Text>
+            <View style={{ display: (schedule.length !== 0) ? 'none' : 'flex' }}>
+                <View style={{ ...styles.flexDirectionRow, ...styles.tinyMarginTop }}>
+                    <CheckBox
+                        style={{ justifyContent: 'center' }}
+                        checkBoxColor='#081023'
+                        isChecked={customized}
+                        onClick={() => setCustomized(!customized)}
+                    />
+                    <View style={styles.tinyMarginTop}>
+                        <Text style={styles.caption}>Personalizado</Text>
+                    </View>
+                </View>
             </View>
             <View style={styles.hoursDropdownContainer}>
                 {(customized === false)
                     ?
                     <>
                         {(schedule.length === 0) &&
-                            <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.flexDirectionRow}>
                                 <Dropdown data={hoursData.map(({ hour }) => {
                                     return { hour };
                                 })}
                                     labelField={'hour'}
                                     valueField={'hour'}
                                     placeholder='Abre'
-                                    placeholderStyle={styles.white}
+                                    placeholderStyle={styles.caption}
+                                    mode='modal'
+                                    containerStyle={{ marginVertical: 100 }}
                                     showsVerticalScrollIndicator={false}
-                                    selectedTextStyle={styles.white}
+                                    selectedTextStyle={styles.caption}
                                     style={styles.hoursDropdown}
-                                    iconStyle={{ tintColor: '#FFFFFF' }}
+                                    iconStyle={{ tintColor: '#081023' }}
                                     onChange={(item) => { setOpeningHour(item.hour); }}
                                     value={openingHour}
                                 />
@@ -86,30 +92,32 @@ const BusinessDaysSchedule = ({ everyday, sendSchedule }: Props) => {
                                     labelField={'hour'}
                                     valueField={'hour'}
                                     placeholder='Cierra'
-                                    placeholderStyle={styles.white}
+                                    placeholderStyle={styles.caption}
+                                    mode='modal'
+                                    containerStyle={{ marginVertical: 100 }}
                                     showsVerticalScrollIndicator={false}
-                                    selectedTextStyle={styles.white}
+                                    selectedTextStyle={styles.caption}
                                     style={styles.hoursDropdown}
-                                    iconStyle={{ tintColor: '#FFFFFF' }}
+                                    iconStyle={{ tintColor: '#081023' }}
                                     onChange={(item) => { setClosingHour(item.hour); }}
                                     value={closingHour}
                                 />
                                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 20 }}>
                                     <TouchableOpacity
-                                        activeOpacity={0.8}
-                                        style={styles.buttonTransparent}
+                                        activeOpacity={1.0}
+                                        style={styles.alignJustifyCenter}
                                         onPress={() => { setScheduleArr(); }}
                                     >
-                                        <Text style={styles.linkWhite}>Guardar</Text>
+                                        <Text style={styles.captionLink}>Guardar</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
                         }
                         {(schedule.length !== 0) &&
-                            <View style={{ flex: 1 }}>
-                                <Table borderStyle={styles.tableStyle}>
-                                    <Row data={headers} style={styles.rowHeaderStyle} textStyle={styles.rowTextStyle} />
-                                    <Rows data={tableData} textStyle={styles.rowTextStyle} />
+                            <View style={{ flex: 1, marginTop: 10 }}>
+                                <Table borderStyle={{ borderWidth: 2, borderColor: '#081023' }}>
+                                    <Row data={headers} style={{ height: 40 }} textStyle={{ ...styles.caption, ...styles.tinyMarginStart }} />
+                                    <Rows data={tableData} textStyle={{ ...styles.caption, margin: 6 }} />
                                 </Table>
                             </View>
                         }

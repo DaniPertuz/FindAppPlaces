@@ -61,7 +61,7 @@ const CustomizedSchedule = ({ everyday }: Props) => {
             {(schedule.length === 0) &&
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.hoursDropdownContainer}>
-                        <Text style={{ ...styles.label, flex: 1 }}>
+                        <Text style={{ ...styles.caption, flex: 1 }}>
                             Lun
                         </Text>
                         <Dropdown data={hoursData.map(({ hour }) => {
@@ -70,11 +70,13 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             labelField={'hour'}
                             valueField={'hour'}
                             placeholder='Abre'
-                            placeholderStyle={styles.white}
+                            placeholderStyle={styles.caption}
+                            mode='modal'
+                            containerStyle={{ marginVertical: 100 }}
                             showsVerticalScrollIndicator={false}
-                            selectedTextStyle={styles.white}
+                            selectedTextStyle={styles.caption}
                             style={styles.hoursDropdown}
-                            iconStyle={{ tintColor: '#FFFFFF' }}
+                            iconStyle={{ tintColor: '#081023' }}
                             onChange={(item) => { setMondayOpeningHour(item.hour); }}
                             value={mondayOpeningHour}
                         />
@@ -84,17 +86,19 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             labelField={'hour'}
                             valueField={'hour'}
                             placeholder='Cierra'
-                            placeholderStyle={styles.white}
+                            placeholderStyle={styles.caption}
+                            mode='modal'
+                            containerStyle={{ marginVertical: 100 }}
                             showsVerticalScrollIndicator={false}
-                            selectedTextStyle={styles.white}
+                            selectedTextStyle={styles.caption}
                             style={styles.hoursDropdown}
-                            iconStyle={{ tintColor: '#FFFFFF' }}
+                            iconStyle={{ tintColor: '#081023' }}
                             onChange={(item) => { setMondayClosingHour(item.hour); }}
                             value={mondayClosingHour}
                         />
                     </View>
                     <View style={styles.hoursDropdownContainer}>
-                        <Text style={{ ...styles.label, flex: 1 }}>
+                        <Text style={{ ...styles.caption, flex: 1 }}>
                             Mar
                         </Text>
                         <Dropdown data={hoursData.map(({ hour }) => {
@@ -103,11 +107,13 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             labelField={'hour'}
                             valueField={'hour'}
                             placeholder='Abre'
-                            placeholderStyle={styles.white}
+                            placeholderStyle={styles.caption}
+                            mode='modal'
+                            containerStyle={{ marginVertical: 100 }}
                             showsVerticalScrollIndicator={false}
-                            selectedTextStyle={styles.white}
+                            selectedTextStyle={styles.caption}
                             style={styles.hoursDropdown}
-                            iconStyle={{ tintColor: '#FFFFFF' }}
+                            iconStyle={{ tintColor: '#081023' }}
                             onChange={(item) => { setTuesdayOpeningHour(item.hour); }}
                             value={tuesdayOpeningHour}
                         />
@@ -117,17 +123,19 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             labelField={'hour'}
                             valueField={'hour'}
                             placeholder='Cierra'
-                            placeholderStyle={styles.white}
+                            placeholderStyle={styles.caption}
+                            mode='modal'
+                            containerStyle={{ marginVertical: 100 }}
                             showsVerticalScrollIndicator={false}
-                            selectedTextStyle={styles.white}
+                            selectedTextStyle={styles.caption}
                             style={styles.hoursDropdown}
-                            iconStyle={{ tintColor: '#FFFFFF' }}
+                            iconStyle={{ tintColor: '#081023' }}
                             onChange={(item) => { setTuesdayClosingHour(item.hour); }}
                             value={tuesdayClosingHour}
                         />
                     </View>
                     <View style={styles.hoursDropdownContainer}>
-                        <Text style={{ ...styles.label, flex: 1 }}>
+                        <Text style={{ ...styles.caption, flex: 1 }}>
                             Mié
                         </Text>
                         <Dropdown data={hoursData.map(({ hour }) => {
@@ -136,11 +144,13 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             labelField={'hour'}
                             valueField={'hour'}
                             placeholder='Abre'
-                            placeholderStyle={styles.white}
+                            placeholderStyle={styles.caption}
+                            mode='modal'
+                            containerStyle={{ marginVertical: 100 }}
                             showsVerticalScrollIndicator={false}
-                            selectedTextStyle={styles.white}
+                            selectedTextStyle={styles.caption}
                             style={styles.hoursDropdown}
-                            iconStyle={{ tintColor: '#FFFFFF' }}
+                            iconStyle={{ tintColor: '#081023' }}
                             onChange={(item) => { setWednesdayOpeningHour(item.hour); }}
                             value={wednesdayOpeningHour}
                         />
@@ -150,17 +160,19 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             labelField={'hour'}
                             valueField={'hour'}
                             placeholder='Cierra'
-                            placeholderStyle={styles.white}
+                            placeholderStyle={styles.caption}
+                            mode='modal'
+                            containerStyle={{ marginVertical: 100 }}
                             showsVerticalScrollIndicator={false}
-                            selectedTextStyle={styles.white}
+                            selectedTextStyle={styles.caption}
                             style={styles.hoursDropdown}
-                            iconStyle={{ tintColor: '#FFFFFF' }}
+                            iconStyle={{ tintColor: '#081023' }}
                             onChange={(item) => { setWednesdayClosingHour(item.hour); }}
                             value={wednesdayClosingHour}
                         />
                     </View>
                     <View style={styles.hoursDropdownContainer}>
-                        <Text style={{ ...styles.label, flex: 1 }}>
+                        <Text style={{ ...styles.caption, flex: 1 }}>
                             Jue
                         </Text>
                         <Dropdown data={hoursData.map(({ hour }) => {
@@ -169,11 +181,13 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             labelField={'hour'}
                             valueField={'hour'}
                             placeholder='Abre'
-                            placeholderStyle={styles.white}
+                            placeholderStyle={styles.caption}
+                            mode='modal'
+                            containerStyle={{ marginVertical: 100 }}
                             showsVerticalScrollIndicator={false}
-                            selectedTextStyle={styles.white}
+                            selectedTextStyle={styles.caption}
                             style={styles.hoursDropdown}
-                            iconStyle={{ tintColor: '#FFFFFF' }}
+                            iconStyle={{ tintColor: '#081023' }}
                             onChange={(item) => { setThursdayOpeningHour(item.hour); }}
                             value={thursdayOpeningHour}
                         />
@@ -183,17 +197,19 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             labelField={'hour'}
                             valueField={'hour'}
                             placeholder='Cierra'
-                            placeholderStyle={styles.white}
+                            placeholderStyle={styles.caption}
+                            mode='modal'
+                            containerStyle={{ marginVertical: 100 }}
                             showsVerticalScrollIndicator={false}
-                            selectedTextStyle={styles.white}
+                            selectedTextStyle={styles.caption}
                             style={styles.hoursDropdown}
-                            iconStyle={{ tintColor: '#FFFFFF' }}
+                            iconStyle={{ tintColor: '#081023' }}
                             onChange={(item) => { setThursdayClosingHour(item.hour); }}
                             value={thursdayClosingHour}
                         />
                     </View>
                     <View style={styles.hoursDropdownContainer}>
-                        <Text style={{ ...styles.label, flex: 1 }}>
+                        <Text style={{ ...styles.caption, flex: 1 }}>
                             Vie
                         </Text>
                         <Dropdown data={hoursData.map(({ hour }) => {
@@ -202,11 +218,13 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             labelField={'hour'}
                             valueField={'hour'}
                             placeholder='Abre'
-                            placeholderStyle={styles.white}
+                            placeholderStyle={styles.caption}
+                            mode='modal'
+                            containerStyle={{ marginVertical: 100 }}
                             showsVerticalScrollIndicator={false}
-                            selectedTextStyle={styles.white}
+                            selectedTextStyle={styles.caption}
                             style={styles.hoursDropdown}
-                            iconStyle={{ tintColor: '#FFFFFF' }}
+                            iconStyle={{ tintColor: '#081023' }}
                             onChange={(item) => { setFridayOpeningHour(item.hour); }}
                             value={fridayOpeningHour}
                         />
@@ -216,11 +234,13 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             labelField={'hour'}
                             valueField={'hour'}
                             placeholder='Cierra'
-                            placeholderStyle={styles.white}
+                            placeholderStyle={styles.caption}
+                            mode='modal'
+                            containerStyle={{ marginVertical: 100 }}
                             showsVerticalScrollIndicator={false}
-                            selectedTextStyle={styles.white}
+                            selectedTextStyle={styles.caption}
                             style={styles.hoursDropdown}
-                            iconStyle={{ tintColor: '#FFFFFF' }}
+                            iconStyle={{ tintColor: '#081023' }}
                             onChange={(item) => { setFridayClosingHour(item.hour); }}
                             value={fridayClosingHour}
                         />
@@ -228,7 +248,7 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                     {(everyday === true) &&
                         <>
                             <View style={styles.hoursDropdownContainer}>
-                                <Text style={{ ...styles.label, flex: 1 }}>
+                                <Text style={{ ...styles.caption, flex: 1 }}>
                                     Sáb
                                 </Text>
                                 <Dropdown data={hoursData.map(({ hour }) => {
@@ -237,11 +257,13 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                                     labelField={'hour'}
                                     valueField={'hour'}
                                     placeholder='Abre'
-                                    placeholderStyle={styles.white}
+                                    placeholderStyle={styles.caption}
+                                    mode='modal'
+                                    containerStyle={{ marginVertical: 100 }}
                                     showsVerticalScrollIndicator={false}
-                                    selectedTextStyle={styles.white}
+                                    selectedTextStyle={styles.caption}
                                     style={styles.hoursDropdown}
-                                    iconStyle={{ tintColor: '#FFFFFF' }}
+                                    iconStyle={{ tintColor: '#081023' }}
                                     onChange={(item) => { setSaturdayOpeningHour(item.hour); }}
                                     value={saturdayOpeningHour}
                                 />
@@ -251,17 +273,19 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                                     labelField={'hour'}
                                     valueField={'hour'}
                                     placeholder='Cierra'
-                                    placeholderStyle={styles.white}
+                                    placeholderStyle={styles.caption}
+                                    mode='modal'
+                                    containerStyle={{ marginVertical: 100 }}
                                     showsVerticalScrollIndicator={false}
-                                    selectedTextStyle={styles.white}
+                                    selectedTextStyle={styles.caption}
                                     style={styles.hoursDropdown}
-                                    iconStyle={{ tintColor: '#FFFFFF' }}
+                                    iconStyle={{ tintColor: '#081023' }}
                                     onChange={(item) => { setSaturdayClosingHour(item.hour); }}
                                     value={saturdayClosingHour}
                                 />
                             </View>
                             <View style={styles.hoursDropdownContainer}>
-                                <Text style={{ ...styles.label, flex: 1 }}>
+                                <Text style={{ ...styles.caption, flex: 1 }}>
                                     Dom
                                 </Text>
                                 <Dropdown data={hoursData.map(({ hour }) => {
@@ -270,11 +294,13 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                                     labelField={'hour'}
                                     valueField={'hour'}
                                     placeholder='Abre'
-                                    placeholderStyle={styles.white}
+                                    placeholderStyle={styles.caption}
+                                    mode='modal'
+                                    containerStyle={{ marginVertical: 100 }}
                                     showsVerticalScrollIndicator={false}
-                                    selectedTextStyle={styles.white}
+                                    selectedTextStyle={styles.caption}
                                     style={styles.hoursDropdown}
-                                    iconStyle={{ tintColor: '#FFFFFF' }}
+                                    iconStyle={{ tintColor: '#081023' }}
                                     onChange={(item) => { setSundayOpeningHour(item.hour); }}
                                     value={sundayOpeningHour}
                                 />
@@ -284,11 +310,13 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                                     labelField={'hour'}
                                     valueField={'hour'}
                                     placeholder='Cierra'
-                                    placeholderStyle={styles.white}
+                                    placeholderStyle={styles.caption}
+                                    mode='modal'
+                                    containerStyle={{ marginVertical: 100 }}
                                     showsVerticalScrollIndicator={false}
-                                    selectedTextStyle={styles.white}
+                                    selectedTextStyle={styles.caption}
                                     style={styles.hoursDropdown}
-                                    iconStyle={{ tintColor: '#FFFFFF' }}
+                                    iconStyle={{ tintColor: '#081023' }}
                                     onChange={(item) => { setSundayClosingHour(item.hour); }}
                                     value={sundayClosingHour}
                                 />
@@ -301,16 +329,16 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             style={styles.buttonTransparent}
                             onPress={setScheduleArr}
                         >
-                            <Text style={styles.linkWhite}>Guardar</Text>
+                            <Text style={styles.captionLink}>Guardar</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
             }
             {(schedule.length !== 0) &&
-                <View style={{ flex: 1 }}>
-                    <Table borderStyle={{ borderWidth: 2, borderColor: '#FFFFFF' }}>
-                        <Row data={['Día', 'Abre', 'Cierra']} style={{ height: 40 }} textStyle={{ color: '#FFFFFF', margin: 6 }} />
-                        <Rows data={tableData} textStyle={{ color: '#FFFFFF', margin: 6 }} />
+                <View style={{ flex: 1, marginTop: 10 }}>
+                    <Table borderStyle={{ borderWidth: 2, borderColor: '#081023' }}>
+                        <Row data={['Día', 'Abre', 'Cierra']} style={{ height: 40 }} textStyle={{ ...styles.caption, ...styles.tinyMarginStart }} />
+                        <Rows data={tableData} textStyle={{...styles.caption, margin: 6 }} />
                     </Table>
                 </View>
             }
