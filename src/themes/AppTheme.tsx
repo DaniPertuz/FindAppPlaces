@@ -1,6 +1,26 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    addImagesButton: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#FAFAFA',
+        borderColor: '#858585',
+        borderRadius: 100,
+        borderWidth: 1,
+        marginHorizontal: 15,
+        marginVertical: 40,
+        padding: 10
+    },
+    addImagesNoImagesButton: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#FAFAFA',
+        borderColor: '#858585',
+        borderRadius: 100,
+        borderWidth: 1,
+        padding: 10
+    },
     alignItemsBaseline: {
         alignItems: 'baseline'
     },
@@ -321,6 +341,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         paddingVertical: 20
     },
+    imageFromGallery: {
+        height: 100,
+        marginEnd: 15,
+        width: 100
+    },
     inputField: {
         color: '#081023',
         fontSize: 12,
@@ -483,6 +508,12 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         marginTop: 20
+    },
+    minusButton: {
+        alignSelf: 'flex-end',
+        marginBottom: -10,
+        marginEnd: 5,
+        zIndex: 999
     },
     modalBackButtonMargins: {
         marginEnd: 10,
