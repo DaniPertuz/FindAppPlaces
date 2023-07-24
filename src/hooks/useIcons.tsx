@@ -13,6 +13,8 @@ import BasicLevel from '../assets/basic-level.svg';
 import Bookmark from '../assets/bookmark.svg';
 import BookmarkFavorite from '../assets/bookmark-favorite.svg';
 import Cafe from '../assets/cafeteria.svg';
+import Camera from '../assets/camera.svg';
+import CameraPlus from '../assets/camera-plus.svg';
 import Car from '../assets/Car.svg';
 import Carpentry from '../assets/carpentry.svg';
 import Church from '../assets/church.svg';
@@ -21,7 +23,6 @@ import Close from '../assets/close.svg';
 import Clothes from '../assets/clothes.svg';
 import Cocktail from '../assets/cocktail.svg';
 import Cookie from '../assets/cookie.svg';
-import Camera from '../assets/camera.svg';
 import Down from '../assets/down.svg';
 import Edit from '../assets/edit.svg';
 import Envelope from '../assets/envelope.svg';
@@ -59,6 +60,7 @@ import Map from '../assets/map.svg';
 import Market from '../assets/market.svg';
 import Mask from '../assets/mask.svg';
 import MediumLevel from '../assets/medium-level.svg';
+import Minus from '../assets/minus-circle.svg';
 import Movies from '../assets/movies.svg';
 import MusicStore from '../assets/music-store.svg';
 import NumberOne from '../assets/NumberOne.svg';
@@ -128,6 +130,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <Cafe height={height} width={width} />;
         case 'Camera':
             return <Camera height={height} width={width} />;
+        case 'CameraPlus':
+            return <CameraPlus height={height} width={width} />;
         case 'Car':
             return <Car height={height} width={width} />;
         case 'Carpintería':
@@ -220,6 +224,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <MediumLevel height={height} width={width} />;
         case 'Mercado':
             return <Market height={height} width={width} />;
+        case 'Minus':
+            return <Minus height={height} width={width} />;
         case 'Música':
             return <MusicStore height={height} width={width} />;
         case 'NumberOne':
