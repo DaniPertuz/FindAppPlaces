@@ -49,3 +49,55 @@ export const hoursData = [
     { hour: '11 PM' },
     { hour: '11:30 PM' }
 ];
+
+export const categories = [
+    { category: 'Parque de diversiones' },
+    { category: 'Tienda para bebés' },
+    { category: 'Banco' },
+    { category: 'Bar' },
+    { category: 'Cafetería' },
+    { category: 'Carpintería' },
+    { category: 'Iglesia' },
+    { category: 'Ropa' },
+    { category: 'Cocteles' },
+    { category: 'Fábrica' },
+    { category: 'Ropa femenina' },
+    { category: 'Fotografía' },
+    { category: 'Jardinería' },
+    { category: 'Gasolinera' },
+    { category: 'Piñatería' },
+    { category: 'Marroquinería' },
+    { category: 'Heladería' },
+    { category: 'Ferretería' },
+    { category: 'Joyería' },
+    { category: 'Comida Rápida' },
+    { category: 'Librería' },
+    { category: 'Financiamiento' },
+    { category: 'Logística' },
+    { category: 'Centro comercial' },
+    { category: 'Mercado' },
+    { category: 'Películas' },
+    { category: 'Música' },
+    { category: 'Odontología' },
+    { category: 'Oficina' },
+    { category: 'Mascotas' },
+    { category: 'Farmacia' },
+    { category: 'Pizzería' },
+    { category: 'Ropa de alquiler' },
+    { category: 'Restaurante' },
+    { category: 'Sex shop' },
+    { category: 'Zapatería' },
+    { category: 'Tecnología' },
+    { category: 'Timer' },
+    { category: 'Veterinaria' },
+    { category: 'Videojuegos' },
+    { category: 'Otro' }
+];
+
+export const scheduleData = [
+    { days: 'Lunes a Viernes' },
+    { days: 'Lunes a Domingo' },
+    { days: 'Personalizado' }
+];
+
+export const headers: string[] = ['Día', 'Abre', 'Cierra'];
