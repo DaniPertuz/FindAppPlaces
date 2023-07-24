@@ -44,6 +44,13 @@ const styles = StyleSheet.create({
         letterSpacing: -0.28,
         lineHeight: 20
     },
+    bodySmallBlack: {
+        color: '#081023',
+        fontSize: 14,
+        fontWeight: '500',
+        letterSpacing: -0.28,
+        lineHeight: 20
+    },
     bodySmallGray: {
         color: '#858585',
         fontSize: 14,
@@ -150,6 +157,17 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         lineHeight: 20,
         letterSpacing: -0.24
+    },
+    captionTwoBlack: {
+        color: '#1F273A',
+        fontSize: 12,
+        fontWeight: '500',
+        lineHeight: 20,
+        letterSpacing: -0.24
+    },
+    categoriesDropdown: {
+        flex: 1,
+        height: 45
     },
     companiesNameMargins: {
         marginEnd: 5,
@@ -293,9 +311,9 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     hoursDropdown: {
-        borderColor: '#FFFFFF',
+        borderColor: '#081023',
         borderRadius: 8,
-        borderWidth: 2,
+        borderWidth: 1,
         flex: 2,
         height: 25,
         marginHorizontal: 5,
@@ -310,6 +328,30 @@ const styles = StyleSheet.create({
         lineHeight: 16,
         padding: 16
     },
+    inputFieldBlack: {
+        color: '#1F273A',
+        fontSize: 12,
+        fontWeight: '500',
+        lineHeight: 16,
+        letterSpacing: -0.24,
+        padding: 16
+    },
+    inputFieldBlackDescription: {
+        color: '#1F273A',
+        fontSize: 12,
+        fontWeight: '500',
+        height: 82,
+        lineHeight: 16,
+        letterSpacing: -0.24
+    },
+    inputFieldGray: {
+        color: '#9A9A9A',
+        fontSize: 12,
+        fontWeight: '400',
+        lineHeight: 16,
+        letterSpacing: -0.24,
+        paddingHorizontal: 16
+    },
     inputFieldContainer: {
         alignItems: 'center',
         backgroundColor: 'rgba(104, 110, 222, 0.1)',
@@ -318,6 +360,47 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         flexDirection: 'row',
         marginTop: 5,
+        paddingHorizontal: 16
+    },
+    inputFieldDescriptionContainerWhite: {
+        alignItems: 'center',
+        backgroundColor: 'rgba(250, 250, 250, 1)',
+        borderColor: '#081023',
+        borderRadius: 8,
+        borderWidth: 1,
+        flexDirection: 'row',
+        marginTop: 5,
+        paddingHorizontal: 16,
+        paddingVertical: 10
+    },
+    inputFieldContainerGray: {
+        alignItems: 'center',
+        backgroundColor: '#DEDEDE',
+        borderColor: '#081023',
+        borderRadius: 8,
+        borderWidth: 1,
+        flexDirection: 'row',
+        marginTop: 5,
+        padding: 16
+    },
+    inputFieldContainerWhite: {
+        alignItems: 'center',
+        backgroundColor: 'rgba(250, 250, 250, 1)',
+        borderColor: '#081023',
+        borderRadius: 8,
+        borderWidth: 1,
+        flexDirection: 'row',
+        marginTop: 5,
+        paddingHorizontal: 16
+    },
+    inputFieldContainerWhiteOther: {
+        alignItems: 'center',
+        backgroundColor: 'rgba(250, 250, 250, 1)',
+        borderColor: '#081023',
+        borderRadius: 8,
+        borderWidth: 1,
+        flexDirection: 'row',
+        marginTop: 20,
         paddingHorizontal: 16
     },
     itemIcon: {
@@ -475,6 +558,9 @@ const styles = StyleSheet.create({
     },
     smallMediumMarginTop: {
         marginTop: 12
+    },
+    smallMediumMarginBottom: {
+        marginBottom: 10
     },
     subheadline: {
         color: '#081023',
