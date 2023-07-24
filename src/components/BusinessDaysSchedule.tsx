@@ -4,10 +4,11 @@ import CheckBox from 'react-native-check-box';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Row, Rows, Table } from 'react-native-reanimated-table';
 
-import { hoursData } from '../utils';
+import CustomizedSchedule from './CustomizedSchedule';
+
+import { headers, hoursData } from '../utils';
 
 import styles from '../themes/AppTheme';
-import CustomizedSchedule from './CustomizedSchedule';
 
 interface Props {
     everyday: boolean;
@@ -21,8 +22,6 @@ const BusinessDaysSchedule = ({ everyday, sendSchedule }: Props) => {
     const [tableData, setTableData] = useState<[string[], string[], string[], string[], string[], string[], string[]]>([[''], [''], [''], [''], [''], [''], ['']]);
     const [openingHour, setOpeningHour] = useState('');
     const [closingHour, setClosingHour] = useState('');
-
-    const headers: string[] = ['Día', 'Abre', 'Cierra'];
 
     const setScheduleArr = () => {
         setSchedule([
