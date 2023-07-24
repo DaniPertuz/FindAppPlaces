@@ -58,7 +58,6 @@ const ProfileScreen = () => {
             setLoading(false);
             const photoURL = await updatePhoto(response, userDB?._id!);
             updateUser(userDB?._id!, userDB?.name!, photoURL);
-            console.log(place)
             updatePlacePhoto(place?._id!, photoURL);
             setLoading(true);
             Snackbar.show({
@@ -142,7 +141,7 @@ const ProfileScreen = () => {
                         <View style={{ ...styles.flexDirectionRowJustifyCenter, ...styles.tinyMarginTop }}>
                             <Text numberOfLines={1} style={styles.bodySmallGray}>{userDB?.email}</Text>
                         </View>
-                        <View style={{ marginTop: 20 }}>
+                        <View style={styles.mediumMarginTop}>
                             <Text style={styles.captionTwo}>Descripción</Text>
                             <Text numberOfLines={5} style={styles.bodySmall}>{place?.description} Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Text>
                         </View>
@@ -155,7 +154,7 @@ const ProfileScreen = () => {
                                 <Text style={styles.bodySmall}>{place?.name}</Text>
                             </View>
                         </View>
-                        <View style={{ marginTop: 20 }}>
+                        <View style={styles.mediumMarginTop}>
                             <Text style={styles.captionTwo}>Email</Text>
                             <View style={{ ...styles.flexDirectionRow, marginTop: 4 }}>
                                 <View style={styles.editProfileIconMargins}>
@@ -164,7 +163,7 @@ const ProfileScreen = () => {
                                 <Text style={styles.bodySmall}>{place?.category}</Text>
                             </View>
                         </View>
-                        <View style={{ marginTop: 20 }}>
+                        <View style={styles.mediumMarginTop}>
                             <Text style={styles.captionTwo}>Email</Text>
                             <View style={{ ...styles.flexDirectionRow, marginTop: 4 }}>
                                 <View style={styles.editProfileIconMargins}>
@@ -173,7 +172,7 @@ const ProfileScreen = () => {
                                 <Text style={styles.bodySmall}>{place?.email}</Text>
                             </View>
                         </View>
-                        <View style={{ marginTop: 20 }}>
+                        <View style={styles.mediumMarginTop}>
                             <View style={styles.alignItemsBaseline}>
                                 <TouchableOpacity
                                     activeOpacity={1.0}
