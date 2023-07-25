@@ -64,10 +64,10 @@ export interface IPlace {
     state:       string;
     country:     string;
     schedule:    string[];
-    photo:       string;
+    photo?:      string;
     premium?:    number;
-    pics?:       string[];
-    rate:        NumericRate;
+    pics?:       (string | undefined)[];
+    rate?:       NumericRate;
     status:      boolean;
 }
 export interface NumericRate {
