@@ -73,6 +73,7 @@ import OfficeChair from '../assets/office-chair.svg';
 import Other from '../assets/others.svg';
 import PetStore from '../assets/animal.svg';
 import Pharmacy from '../assets/pharmacy-black.svg';
+import Phone from '../assets/phone.svg';
 import PhoneOutgoing from '../assets/phone-outgoing.svg';
 import PhotoStore from '../assets/photo-store.svg';
 import Pizza from '../assets/pizza.svg';
@@ -246,6 +247,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <Circus height={height} width={width} />;
         case 'Películas':
             return <Movies height={height} width={width} />;
+        case 'Phone':
+            return <Phone height={height} width={width} />;
         case 'PhoneOutgoing':
             return <PhoneOutgoing height={height} width={width} />;
         case 'Piñatería':
