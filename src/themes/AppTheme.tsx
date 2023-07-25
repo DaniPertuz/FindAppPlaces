@@ -359,7 +359,8 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         lineHeight: 16,
         letterSpacing: -0.24,
-        padding: 16
+        paddingStart: 16,
+        paddingVertical: 16
     },
     inputFieldBlackDescription: {
         color: '#1F273A',
