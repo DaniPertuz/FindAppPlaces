@@ -33,13 +33,13 @@ const CustomizedSchedule = ({ everyday }: Props) => {
 
     const setScheduleArr = () => {
         setSchedule([
-            `Lunes ${mondayOpeningHour} - ${mondayClosingHour}`,
-            `Martes ${tuesdayOpeningHour} - ${tuesdayClosingHour}`,
-            `Miércoles ${wednesdayOpeningHour} - ${wednesdayClosingHour}`,
-            `Jueves ${thursdayOpeningHour} - ${thursdayClosingHour}`,
-            `Viernes ${fridayOpeningHour} - ${fridayClosingHour}`,
-            `Sábado ${saturdayOpeningHour} - ${saturdayClosingHour}`,
-            `Domingo ${sundayOpeningHour} - ${sundayClosingHour}`
+            `Lunes ${mondayOpeningHour} ${mondayClosingHour}`,
+            `Martes ${tuesdayOpeningHour} ${tuesdayClosingHour}`,
+            `Miércoles ${wednesdayOpeningHour} ${wednesdayClosingHour}`,
+            `Jueves ${thursdayOpeningHour} ${thursdayClosingHour}`,
+            `Viernes ${fridayOpeningHour} ${fridayClosingHour}`,
+            `Sábado ${saturdayOpeningHour} ${saturdayClosingHour}`,
+            `Domingo ${sundayOpeningHour} ${sundayClosingHour}`
         ]);
         setTableData([
             ['Lunes', mondayOpeningHour, mondayClosingHour],

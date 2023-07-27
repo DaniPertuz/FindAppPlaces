@@ -25,13 +25,13 @@ const BusinessDaysSchedule = ({ everyday, sendSchedule }: Props) => {
 
     const setScheduleArr = () => {
         setSchedule([
-            `Lunes ${openingHour} - ${closingHour}`,
-            `Martes ${openingHour} - ${closingHour}`,
-            `Miércoles ${openingHour} - ${closingHour}`,
-            `Jueves ${openingHour} - ${closingHour}`,
-            `Viernes ${openingHour} - ${closingHour}`,
-            (everyday === false) ? `Sábado Cerrado` : `Sábado ${openingHour} - ${closingHour}`,
-            (everyday === false) ? `Domingo Cerrado` : `Domingo ${openingHour} - ${closingHour}`
+            `Lunes ${openingHour} ${closingHour}`,
+            `Martes ${openingHour} ${closingHour}`,
+            `Miércoles ${openingHour} ${closingHour}`,
+            `Jueves ${openingHour} ${closingHour}`,
+            `Viernes ${openingHour} ${closingHour}`,
+            (everyday === false) ? `Sábado Cerrado` : `Sábado ${openingHour} ${closingHour}`,
+            (everyday === false) ? `Domingo Cerrado` : `Domingo ${openingHour} ${closingHour}`
         ]);
         setTableData([
             ['Lunes', openingHour, closingHour],
