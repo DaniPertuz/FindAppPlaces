@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import findAPI from '../../api/findapi';
+import { ImagePickerResponse } from 'react-native-image-picker';
 import { PlacesContext, PlacesReducer } from '.';
 import { IPlace, IRatingList } from '../../interfaces';
 
@@ -73,6 +74,37 @@ export const PlacesProvider = ({ children }: any) => {
         }
     };
 
+    const uploadPics = async (data: ImagePickerResponse) => {
+        let pics: string[] = [];
+        const headers = {
+            'Content-Type': 'multipart/form-data'
+        };
+
+        for (let i = 0; i < data.assets!.length; i++) {
+            const element = data.assets![i];
+            const { uri, type, fileName } = element;
+
+            const fileToUpload = {
+                uri,
+                type,
+                name: fileName
+            };
+            const uploadData = new FormData();
+            uploadData.append('file', fileToUpload);
+            uploadData.append('upload_preset', 'findapp');
+
+            const upload = await fetch('https://api.cloudinary.com/v1_1/dpertuzo/upload', {
+                method: 'POST',
+                headers,
+                body: uploadData
+            });
+            const { secure_url } = await upload.json();
+            pics.push(secure_url);
+        }
+
+        return pics;
+    };
+
     const removeError = (): void => {
         dispatch({ type: 'removeError' });
     };
@@ -86,6 +118,7 @@ export const PlacesProvider = ({ children }: any) => {
             registerPlace,
             updatePlacePhoto,
             updatePlace,
+            uploadPics,
             removeError
         }}
         >
