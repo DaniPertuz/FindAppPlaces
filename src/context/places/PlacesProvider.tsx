@@ -49,10 +49,50 @@ export const PlacesProvider = ({ children }: any) => {
 
     const registerPlace = async (place: IPlace) => {
         try {
-            const { data } = await findAPI.post<IPlace>('/places', place);
-            dispatch({ type: 'addPlace', payload: { place: data } });
+            const {
+                name,
+                description,
+                category,
+                address,
+                email,
+                coords,
+                phone,
+                whatsapp,
+                instagram,
+                city,
+                state,
+                country,
+                schedule,
+                photo,
+                premium,
+                pics,
+                rate,
+                status
+            } = place;
+
+            await findAPI.post<IPlace>('/places', {
+                name,
+                description,
+                category,
+                address,
+                email,
+                coords,
+                phone,
+                whatsapp,
+                instagram,
+                city,
+                state,
+                country,
+                schedule,
+                photo,
+                premium,
+                pics,
+                rate,
+                status
+            });
         } catch (error: any) {
-            dispatch({ type: 'addError', payload: error.response.data.errors.map(({ msg }: any) => (msg)).join('\n') });
+            console.log(error.response);
+            throw new Error(`${error}`);
         }
     };
 
