@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Keyboard, Text, TouchableOpacity } from 'react-native';
 
-import { AuthContext } from '../context/auth';
+import { AuthContext, PlacesContext } from '../context';
 import { roles } from '../interfaces';
 
 import styles from '../themes/AppTheme';
@@ -16,6 +16,7 @@ interface Props {
 const RegisterLoginButton = ({ name = '', email = '', password = '', handleFieldLength }: Props) => {
 
     const { signUp } = useContext(AuthContext);
+    const { registerPlace } = useContext(PlacesContext);
 
     const onLogin = () => {
         Keyboard.dismiss();
@@ -58,6 +59,24 @@ const RegisterLoginButton = ({ name = '', email = '', password = '', handleField
               role: roles.PLACE,
               status: true
             });
+
+            registerPlace({
+              name,
+              description: '',
+              category: '',
+              address: '',
+              email,
+              coords: { latitude: 0, longitude: 0 },
+              phone: 3000000,
+              city: '',
+              state: '',
+              country: '',
+              schedule: [],
+              rate: {
+                $numberDecimal: '0'
+              },
+              status: true
+            })
           }
     };
 
