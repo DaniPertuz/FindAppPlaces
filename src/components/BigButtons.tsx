@@ -51,7 +51,7 @@ const BigButtons = ({ category, favorites, rate, ratings }: Props) => {
                         {useIcons('Star', 33, 33)}
                     </View>
                     <View style={styles.smallMediumMarginTop}>
-                        <Text style={styles.bodySmall}>{rate.toFixed(1)}</Text>
+                        <Text style={styles.bodySmall}>{(isNaN(rate) ? 0.0 : rate.toFixed(1))}</Text>
                     </View>
                     <View style={styles.tinyMarginTop}>
                         <Text style={styles.footnoteLink}>{ratings.total} usuarios</Text>
