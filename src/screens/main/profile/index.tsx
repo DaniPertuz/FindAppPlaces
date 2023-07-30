@@ -143,7 +143,7 @@ const ProfileScreen = () => {
                         </View>
                         <View style={styles.mediumMarginTop}>
                             <Text style={styles.captionTwo}>Descripción</Text>
-                            <Text numberOfLines={5} style={styles.bodySmall}>{place?.description} Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Text>
+                            <Text numberOfLines={5} style={styles.bodySmall}>{(place?.description === '' ? 'Sin descripción' : place?.description)}</Text>
                         </View>
                         <View style={styles.mediumMarginTop}>
                             <Text style={styles.captionTwo}>Nombre de la empresa</Text>
@@ -155,16 +155,23 @@ const ProfileScreen = () => {
                             </View>
                         </View>
                         <View style={styles.mediumMarginTop}>
-                            <Text style={styles.captionTwo}>Email</Text>
+                            <Text style={styles.captionTwo}>Categoría</Text>
                             <View style={{ ...styles.flexDirectionRow, marginTop: 4 }}>
-                                <View style={styles.editProfileIconMargins}>
-                                    {useIcons(`${place?.category}`, 18, 18)}
-                                </View>
-                                <Text style={styles.bodySmall}>{place?.category}</Text>
+                                {(place?.category === '')
+                                    ?
+                                    <Text style={styles.bodySmall}>Sin categoría</Text>
+                                    :
+                                    <>
+                                        <View style={styles.editProfileIconMargins}>
+                                            {useIcons(`${place?.category}`, 18, 18)}
+                                        </View>
+                                        <Text style={styles.bodySmall}>{place?.category}</Text>
+                                    </>
+                                }
                             </View>
                         </View>
                         <View style={styles.mediumMarginTop}>
-                            <Text style={styles.captionTwo}>Email</Text>
+                            <Text style={styles.captionTwo}>Correo corporativo</Text>
                             <View style={{ ...styles.flexDirectionRow, marginTop: 4 }}>
                                 <View style={styles.editProfileIconMargins}>
                                     {useIcons('Envelope', 18, 18)}
