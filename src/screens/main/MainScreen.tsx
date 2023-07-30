@@ -115,7 +115,7 @@ const MainScreen = () => {
                 </TouchableOpacity>
             </View>
             <View style={styles.mediumMarginTop}>
-                <BigButtons category={place?.category!} favorites={favorites} rate={Number(place?.rate.$numberDecimal!)} ratings={ratings} />
+                <BigButtons category={place?.category!} favorites={favorites} rate={Number(place?.rate?.$numberDecimal!)} ratings={ratings} />
             </View>
             <View style={{ marginTop: 25 }}>
                 <Text style={styles.subheadline}>Estadísticas</Text>
