@@ -17,6 +17,7 @@ import Camera from '../assets/camera.svg';
 import CameraPlus from '../assets/camera-plus.svg';
 import Car from '../assets/Car.svg';
 import Carpentry from '../assets/carpentry.svg';
+import Check from '../assets/check.svg';
 import Church from '../assets/church.svg';
 import Circus from '../assets/circus.svg';
 import Close from '../assets/close.svg';
@@ -61,6 +62,7 @@ import Market from '../assets/market.svg';
 import Mask from '../assets/mask.svg';
 import MediumLevel from '../assets/medium-level.svg';
 import Minus from '../assets/minus-circle.svg';
+import Money from '../assets/money.svg';
 import Movies from '../assets/movies.svg';
 import MusicStore from '../assets/music-store.svg';
 import NumberOne from '../assets/NumberOne.svg';
@@ -139,6 +141,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <Carpentry height={height} width={width} />;
         case 'Centro comercial':
             return <Mall height={height} width={width} />;
+        case 'Check':
+            return <Check height={height} width={width} />;
         case 'Close':
             return <Close height={height} width={width} />;
         case 'Cocteles':
@@ -227,6 +231,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <Market height={height} width={width} />;
         case 'Minus':
             return <Minus height={height} width={width} />;
+        case 'Money':
+            return <Money height={height} width={width} />;
         case 'Música':
             return <MusicStore height={height} width={width} />;
         case 'NumberOne':
