@@ -256,6 +256,10 @@ const styles = StyleSheet.create({
     flexDirectionRow: {
         flexDirection: 'row'
     },
+    flexDirectionRowAlignCenter: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
     flexDirectionRowJustifyAround: {
         flexDirection: 'row',
         justifyContent: 'space-around'
@@ -303,8 +307,22 @@ const styles = StyleSheet.create({
         lineHeight: 16,
         letterSpacing: -0.24
     },
+    footnoteGray: {
+        color: '#858585',
+        fontSize: 12,
+        fontWeight: '400',
+        lineHeight: 16,
+        letterSpacing: -0.24
+    },
     footnoteLink: {
         color: '#207CFD',
+        fontSize: 12,
+        fontWeight: '400',
+        lineHeight: 16,
+        letterSpacing: -0.24
+    },
+    footnoteWhite: {
+        color: '#FAFAFA',
         fontSize: 12,
         fontWeight: '400',
         lineHeight: 16,
@@ -490,6 +508,10 @@ const styles = StyleSheet.create({
         minHeight: 720,
         paddingHorizontal: 22
     },
+    mainContainer: {
+        marginHorizontal: 20,
+        marginTop: 63
+    },
     mainLogo: {
         height: 107,
         marginVertical: 40,
@@ -588,6 +610,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(104, 110, 222, 0.1)',
         paddingBottom: 40
     },
+    smallMediumMarginStart: {
+        marginStart: 12
+    },
     smallMediumMarginTop: {
         marginTop: 12
     },
@@ -599,6 +624,26 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '700',
         lineHeight: 18
+    },
+    subscribeButton: {
+        alignItems: 'center',
+        alignSelf: 'flex-start',
+        backgroundColor: '#207CFD',
+        borderRadius: 8,
+        justifyContent: 'center',
+        marginTop: 12,
+        paddingHorizontal: 14,
+        paddingVertical: 10
+    },
+    subscriptionItemContainer: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 8,
+        marginBottom: 20,
+        padding: 15
+    },
+    subscriptionOptionsContainer: {
+        marginTop: 20,
+        paddingBottom: 120
     },
     subtitle: {
         color: '#FFFFFF',
