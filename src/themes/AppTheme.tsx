@@ -470,6 +470,14 @@ const styles = StyleSheet.create({
     largeMarginTop: {
         marginTop: 32
     },
+    linearGradient: {
+        alignItems: 'center',
+        borderRadius: 999,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        paddingVertical: 3
+    },
     link: {
         color: '#5856D6',
         fontSize: 18,
