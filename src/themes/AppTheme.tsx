@@ -634,6 +634,7 @@ const styles = StyleSheet.create({
     productItemContainer: {
         backgroundColor: '#FAFAFA',
         borderRadius: 8,
+        marginBottom: 20,
         paddingHorizontal: 10,
         paddingVertical: 8
     },
