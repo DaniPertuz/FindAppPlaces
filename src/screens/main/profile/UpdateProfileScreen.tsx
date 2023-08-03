@@ -15,7 +15,7 @@ const UpdateProfileScreen = ({ route, navigation }: Props) => {
     const { place } = route.params;
 
     return (
-        <View style={{ marginHorizontal: 25, marginTop: 50 }}>
+        <View style={styles.mainContainer}>
             <View style={{ ...styles.flexDirectionRow, ...styles.smallMediumMarginBottom }}>
                 <View style={styles.flexOneAlignJustifyCenter}>
                     <TouchableOpacity

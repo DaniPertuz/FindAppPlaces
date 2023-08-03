@@ -21,7 +21,7 @@ const MainScreen = () => {
             <View style={styles.flexDirectionRowJustifySpaceBetween}>
                 <View>
                     <Text style={styles.subheadline}>Bienvenid@</Text>
-                    <View style={{ marginVertical: 3 }}>
+                    <View style={styles.tinyMarginVertical}>
                         <Text numberOfLines={1} style={styles.bodySmall}>{place?.name}</Text>
                     </View>
                     <PremiumLevel place={place!} />
@@ -32,17 +32,17 @@ const MainScreen = () => {
                 >
                     <Image
                         source={(place?.photo === '' ? require('../../assets/fa_blue.png') : { uri: place?.photo })}
-                        style={{ borderRadius: 32, height: 62, width: 62 }}
+                        style={styles.placePhoto}
                     />
                 </TouchableOpacity>
             </View>
             <View style={styles.mediumMarginTop}>
                 <BigButtons category={place?.category!} favorites={favorites} rate={Number(place?.rate?.$numberDecimal!)} ratings={ratings} />
             </View>
-            <View style={{ marginTop: 25 }}>
+            <View style={styles.mediumMarginTop}>
                 <Text style={styles.subheadline}>Estadísticas</Text>
             </View>
-            <View style={{ paddingVertical: 25 }}>
+            <View style={styles.mediumPaddingVertical}>
                 <ScrollView showsVerticalScrollIndicator={false} contentInset={{ bottom: 250 }}>
 
                 </ScrollView>
