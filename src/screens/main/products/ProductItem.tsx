@@ -23,10 +23,10 @@ const ProductItem = ({ product }: Props) => {
                     <Image source={(product.img === '') ? require('../../../assets/fa_blue.png') : { uri: product.img }} style={{ borderRadius: 8, height: 42, width: 42 }} />
                 </View>
                 <View style={styles.productDetailsNameContainer}>
-                    <Text numberOfLines={1} style={styles.subheadline}>{product.name}</Text>
+                    <Text numberOfLines={2} style={styles.subheadline}>{product.name}</Text>
                 </View>
                 <View style={styles.productDetailsButtonContainer}>
-                    <TouchableOpacity activeOpacity={1.0} style={styles.productDetailsButton} onPress={() => navigation.navigate('ProductDetails', { product })}>
+                    <TouchableOpacity activeOpacity={1.0} style={styles.productDetailsButton} onPress={() => navigation.navigate('ProductDetails', { product, newItem: false })}>
                         <Text style={styles.bodySmallWhite}>Detalles</Text>
                     </TouchableOpacity>
                 </View>

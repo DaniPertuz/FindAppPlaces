@@ -12,7 +12,7 @@ interface Props extends StackScreenProps<RootStackParams, 'ProductDetails'> { };
 
 const ProductDetails = ({ navigation, route }: Props) => {
 
-    const { product } = route.params;
+    const { product, newItem } = route.params;
 
     return (
         <View style={styles.mainContainer}>
@@ -26,11 +26,11 @@ const ProductDetails = ({ navigation, route }: Props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 200, ...styles.alignJustifyCenter }}>
-                    <Text style={styles.captionTwoBlack}>{product.name}</Text>
+                    <Text numberOfLines={1} style={styles.captionTwoBlack}>{product.name}</Text>
                 </View>
             </View>
             <View style={{ marginHorizontal: 15 }}>
-                <ProductItemInputs product={product} />
+                <ProductItemInputs product={product} newItem={newItem} />
             </View>
         </View>
     );
