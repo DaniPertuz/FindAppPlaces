@@ -80,7 +80,7 @@ export interface IProduct {
     description: string;
     category:    string;
     price:       number;
-    place:       IPlace;
+    place:       string;
     rate?:       NumericRate;
     img?:        string;
     status?:     boolean;
