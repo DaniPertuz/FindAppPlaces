@@ -24,6 +24,7 @@ import Close from '../assets/close.svg';
 import Clothes from '../assets/clothes.svg';
 import Cocktail from '../assets/cocktail.svg';
 import Cookie from '../assets/cookie.svg';
+import Currency from '../assets/currency.svg';
 import Down from '../assets/down.svg';
 import Edit from '../assets/edit.svg';
 import Envelope from '../assets/envelope.svg';
@@ -151,6 +152,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <JunkFood height={height} width={width} />;
         case 'Comida vegetariana':
             return <Vegetarian height={height} width={width} />;
+        case 'Currency':
+            return <Currency height={height} width={width} />;
         case 'Deportes':
             return <Sports height={height} width={width} />;
         case 'Down':
@@ -305,7 +308,7 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <Whatsapp height={height} width={width} />;
         case 'Zapatería':
             return <Shoe height={height} width={width} />;
-        case 'Otro':
+        default:
             return <Other height={height} width={width} />;
     }
 };
