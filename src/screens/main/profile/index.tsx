@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Image, Modal, Text, TouchableOpacity, View } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { launchCamera, launchImageLibrary, ImagePickerResponse } from 'react-native-image-picker';
 import Snackbar from 'react-native-snackbar';
 
 import { AuthContext, PlacesContext, UsersContext } from '../../../context';
@@ -24,7 +24,7 @@ const ProfileScreen = () => {
     const [imageModalVisible, setImageModalVisible] = useState(false);
     const [loading, setLoading] = useState(true);
     const [place, setPlace] = useState<IPlace>();
-    const [response, setResponse] = useState<any>(null);
+    // const [response, setResponse] = useState<any>(null);
     const [userDB, setUserDB] = useState<IUser>();
 
     const navigator = useNavigation<StackNavigationProp<RootStackParams>>();
@@ -45,7 +45,7 @@ const ProfileScreen = () => {
         launchImageLibrary({
             mediaType: 'photo',
             quality: 0.8
-        }, (resp) => {
+        }, (resp: ImagePickerResponse) => {
             if (resp.didCancel) return;
             if (!resp.assets![0].uri) return;
 
@@ -111,9 +111,7 @@ const ProfileScreen = () => {
                             <Image
                                 source={(!userDB || userDB?.photo === '')
                                     ? require('../../../assets/fa_blue.png')
-                                    : (response?.assets && response.assets[0].uri !== '')
-                                        ? { uri: response.assets[0].uri }
-                                        : { uri: userDB?.photo }}
+                                    : { uri: userDB?.photo }}
                                 style={{ borderRadius: 50, height: 97, width: 97 }}
                             />
                             <TouchableOpacity
@@ -184,6 +182,17 @@ const ProfileScreen = () => {
                                 <TouchableOpacity
                                     activeOpacity={1.0}
                                     style={styles.alignItemsBaseline}
+                                    onPress={() => navigator.navigate('ProductsScreen')}
+                                >
+                                    <Text style={styles.captionLink}>Productos</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={styles.mediumMarginTop}>
+                            <View style={styles.alignItemsBaseline}>
+                                <TouchableOpacity
+                                    activeOpacity={1.0}
+                                    style={styles.alignItemsBaseline}
                                     onPress={logOut}
                                 >
                                     <Text style={styles.captionWarning}>Cerrar sesión</Text>
@@ -235,7 +244,7 @@ const ProfileScreen = () => {
                             </View>
                         </TouchableOpacity>
                     </Modal>
-                    <Modal
+                    {/* <Modal
                         animationType="slide"
                         transparent={true}
                         visible={imageModalVisible}
@@ -264,7 +273,7 @@ const ProfileScreen = () => {
                                 source={response === null ? require('../../../assets/fa_blue.png') : { uri: response.assets[0].uri }} style={{ height: 25, width: 25 }}
                             />
                         </View>
-                    </Modal>
+                    </Modal> */}
                 </>
             }
         </>
