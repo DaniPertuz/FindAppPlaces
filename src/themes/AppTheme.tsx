@@ -288,6 +288,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center'
     },
+    flexDirectionRowJustifyFlexEnd: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
+    },
     flexDirectionRowJustifySpaceBetween: {
         flexDirection: 'row',
         justifyContent: 'space-between'
@@ -540,7 +544,7 @@ const styles = StyleSheet.create({
     },
     mainContainer: {
         marginHorizontal: 20,
-        marginTop: 63
+        marginTop: 50
     },
     mainLogo: {
         height: 107,
@@ -623,8 +627,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     productDetailsNameContainer: {
-        flex: 4,
-        justifyContent: 'center'
+        flex: 3,
+        justifyContent: 'center',
+        paddingEnd: 10
     },
     productItemContainer: {
         backgroundColor: '#FAFAFA',
