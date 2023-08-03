@@ -2,6 +2,7 @@ import React from 'react';
 import findAPI from '../../api/findapi';
 import { ProductsContext } from './';
 import { IProduct } from '../../interfaces';
+import { ImagePickerResponse } from 'react-native-image-picker';
 
 export const ProductsProvider = ({ children }: any) => {
 
@@ -15,9 +16,9 @@ export const ProductsProvider = ({ children }: any) => {
         }
     };
 
-    const getProduct = async (id: string): Promise<IProduct[]> => {
+    const getProduct = async (id: string): Promise<IProduct> => {
         try {
-            const { data } = await findAPI.get<IProduct[]>(`/products/${id}`);
+            const { data } = await findAPI.get<IProduct>(`/products/${id}`);
             return data;
         } catch (error: any) {
             console.log(error.response.data.message);
