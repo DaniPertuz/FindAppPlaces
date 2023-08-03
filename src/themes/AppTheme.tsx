@@ -78,6 +78,13 @@ const styles = StyleSheet.create({
         letterSpacing: -0.28,
         lineHeight: 20
     },
+    bodySmallWhite: {
+        color: '#FAFAFA',
+        fontSize: 12,
+        fontWeight: '500',
+        letterSpacing: -0.28,
+        lineHeight: 20
+    },
     bodyText: {
         color: '#1F273A',
         fontSize: 16,
@@ -111,6 +118,12 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         padding: 10,
         width: '100%'
+    },
+    buttonAddProduct: {
+        alignItems: 'center',
+        backgroundColor: '#207CFD',
+        borderRadius: 8,
+        padding: 10
     },
     buttonContainer: {
         alignItems: "center",
@@ -147,6 +160,13 @@ const styles = StyleSheet.create({
         color: 'rgba(250, 250, 250, 0.98)',
         fontSize: 16,
         fontWeight: '500',
+        lineHeight: 22,
+        letterSpacing: -0.32
+    },
+    buttonAddProductText: {
+        color: 'rgba(250, 250, 250, 0.98)',
+        fontSize: 12,
+        fontWeight: '700',
         lineHeight: 22,
         letterSpacing: -0.32
     },
@@ -360,6 +380,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20
     },
     imageFromGallery: {
+        borderRadius: 8,
         height: 100,
         marginEnd: 15,
         width: 100
@@ -375,10 +396,11 @@ const styles = StyleSheet.create({
         color: '#1F273A',
         fontSize: 12,
         fontWeight: '500',
-        lineHeight: 16,
+        lineHeight: 12,
         letterSpacing: -0.24,
-        paddingStart: 16,
-        paddingVertical: 16
+        marginStart: 16,
+        marginVertical: 12,
+        width: '90%'
     },
     inputFieldBlackDescription: {
         color: '#1F273A',
@@ -534,6 +556,9 @@ const styles = StyleSheet.create({
     mediumMarginStart: {
         marginStart: 10
     },
+    mediumPaddingVertical: {
+        paddingVertical: 25
+    },
     mediumTitle: {
         color: '#FFFFFF',
         fontSize: 30,
@@ -567,6 +592,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 5
     },
+    placePhoto: {
+        borderRadius: 32,
+        height: 62,
+        width: 62
+    },
     plainMediumText: {
         color: '#081023',
         fontSize: 13,
@@ -580,6 +610,27 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         letterSpacing: -0.24,
         lineHeight: 15
+    },
+    productDetailsButton: {
+        backgroundColor: '#207CFD',
+        borderRadius: 4,
+        justifyContent: 'center',
+        padding: 5
+    },
+    productDetailsButtonContainer: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center'
+    },
+    productDetailsNameContainer: {
+        flex: 4,
+        justifyContent: 'center'
+    },
+    productItemContainer: {
+        backgroundColor: '#FAFAFA',
+        borderRadius: 8,
+        paddingHorizontal: 10,
+        paddingVertical: 8
     },
     rateItemContainer: {
         backgroundColor: '#FFFFFF',
@@ -684,12 +735,21 @@ const styles = StyleSheet.create({
     tinyMarginTop: {
         marginTop: 6
     },
+    tinyMarginVertical: {
+        marginVertical: 3
+    },
     titleMarginTopContainer: {
         marginTop: 36
     },
     warningBorder: {
         borderColor: '#D13232',
         borderWidth: 1
+    },
+    warningButton: {
+        alignItems: 'center',
+        backgroundColor: '#D13232',
+        borderRadius: 8,
+        padding: 10
     },
     warningIconMargins: {
         marginEnd: 5,
