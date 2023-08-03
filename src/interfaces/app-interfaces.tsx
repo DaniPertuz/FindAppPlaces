@@ -75,16 +75,15 @@ export interface NumericRate {
 }
 
 export interface IProduct {
-    _id:         string;
+    _id?:        string;
     name:        string;
     description: string;
-    category:    string[];
-    observation: string;
+    category:    string;
     price:       number;
     place:       IPlace;
-    rate:        NumericRate;
+    rate?:       NumericRate;
     img?:        string;
-    status:      boolean;
+    status?:     boolean;
 }
 
 export interface IFavorites {
