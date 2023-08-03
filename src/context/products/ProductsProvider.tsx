@@ -34,11 +34,22 @@ export const ProductsProvider = ({ children }: any) => {
         }
     };
 
+    const updateProduct = async (id: string): Promise<IProduct> => {
+        try {
+            const { data } = await findAPI.put<IProduct>(`/products/${id}`);
+            return data;
+        } catch (error: any) {
+            console.log(error.response.data.message);
+            throw new Error(`${error}`);
+        }
+    }
+
     return (
         <ProductsContext.Provider value={{
             getProductsByPlace,
             getProduct,
-            addProduct
+            addProduct,
+            updateProduct
         }}
         >
             {children}
