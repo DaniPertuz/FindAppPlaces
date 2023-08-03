@@ -182,7 +182,7 @@ const ProductItemInputs = ({ product, newItem }: Props) => {
                                 style={styles.button}
                                 onPress={(newItem === true) ? onAdd : onUpdate}
                             >
-                                <Text style={styles.buttonText}>Guardar</Text>
+                                <Text style={styles.buttonText}>{(newItem === true) ? 'Guardar' : 'Actualizar'}</Text>
                             </TouchableOpacity>
                         </View>
                         {((product.name !== '') || (product.description !== '') || (product.img !== '')) &&
