@@ -44,12 +44,23 @@ export const ProductsProvider = ({ children }: any) => {
         }
     }
 
+    const deleteProduct = async (id: string): Promise<IProduct> => {
+        try {
+            const { data } = await findAPI.delete<IProduct>(`/products/${id}`);
+            return data;
+        } catch (error: any) {
+            console.log(error.response.data.message);
+            throw new Error(`${error}`);
+        }
+    }
+
     return (
         <ProductsContext.Provider value={{
             getProductsByPlace,
             getProduct,
             addProduct,
-            updateProduct
+            updateProduct,
+            deleteProduct
         }}
         >
             {children}
