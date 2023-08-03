@@ -28,7 +28,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
     const navigator = useNavigation<StackNavigationProp<RootStackParams>>();
 
     const { user } = useContext(AuthContext);
-    const { updatePhoto, updateUser, updateUserPassword } = useContext(UsersContext);
+    const { updateUserPassword } = useContext(UsersContext);
     const { updatePlace, uploadPics } = useContext(PlacesContext);
 
     const [response, setResponse] = useState<any>(null);
@@ -125,7 +125,6 @@ const UpdateProfileInputs = ({ place }: Props) => {
             const uri = resp.assets![0].uri;
 
             setPlaceImage(uri);
-            // setAllImages([...allImages, uri]);
             setResponse(resp);
         });
     };
@@ -144,7 +143,6 @@ const UpdateProfileInputs = ({ place }: Props) => {
             setPlaceImageOne(uri);
             setDisplayCameraOne(false);
             setResponse(resp);
-            // setAllImages([...allImages, uri]);
         });
     };
 
@@ -162,7 +160,6 @@ const UpdateProfileInputs = ({ place }: Props) => {
             setPlaceImageTwo(uri);
             setDisplayCameraTwo(false);
             setResponse(resp);
-            // setAllImages([...allImages, uri]);
         });
     };
 
@@ -221,32 +218,34 @@ const UpdateProfileInputs = ({ place }: Props) => {
             return;
         }
 
-        const data: IPlace = {
-            name,
-            description,
-            category,
-            address,
-            email: place.email,
-            coords: coordinates!,
-            phone: Number(phone),
-            whatsapp: (whatsapp === undefined) ? '' : whatsapp,
-            instagram: (instagram === undefined) ? '' : instagram,
-            city,
-            state: cityState,
-            country,
-            schedule: (placeSchedule.length === 0) ? place.schedule : placeSchedule,
-            pics: (place.premium === 3) ? [...allImages, ...pics!] : pics,
-            status: true
-        };
+        if (password!.length === 0 && confirmPassword!.length === 0) {
+            const data: IPlace = {
+                name,
+                description,
+                category: (other !== '') ? other[0].toUpperCase() + other.slice(1) : category,
+                address,
+                email: place.email,
+                coords: coordinates!,
+                phone: Number(phone),
+                whatsapp: (whatsapp === undefined) ? '' : whatsapp,
+                instagram: (instagram === undefined) ? '' : instagram,
+                city,
+                state: cityState,
+                country,
+                schedule: (placeSchedule.length === 0) ? place.schedule : placeSchedule,
+                pics: (place.premium === 3) ? [...allImages, ...pics!] : pics,
+                status: true
+            };
 
-        const update = await updatePlace(place._id!, data);
+            const update = await updatePlace(place._id!, data);
 
-        if (update !== null) {
-            setLoading(false);
-        }
+            if (update !== null) {
+                setLoading(false);
+            }
 
-        if (loading === false) {
-            navigator.goBack();
+            if (loading === false) {
+                navigator.goBack();
+            }
         }
     };
 
