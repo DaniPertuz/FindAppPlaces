@@ -656,40 +656,44 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                 />
                             </View>
                         </View>
-                        <View style={styles.mediumMarginTop}>
-                            <Text style={styles.captionTwoBlack}>Whatsapp</Text>
-                            <View style={styles.inputFieldContainerWhite}>
-                                {useIcons('Whatsapp', 20, 20)}
-                                <TextInput
-                                    placeholder='Whatsapp'
-                                    placeholderTextColor='#9A9A9A'
-                                    keyboardType='default'
-                                    style={styles.inputFieldBlack}
-                                    selectionColor='#9A9A9A'
-                                    autoCapitalize='none'
-                                    autoCorrect={false}
-                                    onChangeText={(value) => onChange(value, 'whatsapp')}
-                                    value={whatsapp}
-                                />
-                            </View>
-                        </View>
-                        <View style={styles.mediumMarginTop}>
-                            <Text style={styles.captionTwoBlack}>Instagram</Text>
-                            <View style={styles.inputFieldContainerWhite}>
-                                {useIcons('Instagram', 20, 20)}
-                                <TextInput
-                                    placeholder='Instagram'
-                                    placeholderTextColor='#9A9A9A'
-                                    keyboardType='default'
-                                    style={styles.inputFieldBlack}
-                                    selectionColor='#9A9A9A'
-                                    autoCapitalize='none'
-                                    autoCorrect={false}
-                                    onChangeText={(value) => onChange(value, 'instagram')}
-                                    value={instagram}
-                                />
-                            </View>
-                        </View>
+                        {(place.premium !== 1) &&
+                            <>
+                                <View style={styles.mediumMarginTop}>
+                                    <Text style={styles.captionTwoBlack}>Whatsapp</Text>
+                                    <View style={styles.inputFieldContainerWhite}>
+                                        {useIcons('Whatsapp', 20, 20)}
+                                        <TextInput
+                                            placeholder='Whatsapp'
+                                            placeholderTextColor='#9A9A9A'
+                                            keyboardType='default'
+                                            style={styles.inputFieldBlack}
+                                            selectionColor='#9A9A9A'
+                                            autoCapitalize='none'
+                                            autoCorrect={false}
+                                            onChangeText={(value) => onChange(value, 'whatsapp')}
+                                            value={whatsapp}
+                                        />
+                                    </View>
+                                </View>
+                                <View style={styles.mediumMarginTop}>
+                                    <Text style={styles.captionTwoBlack}>Instagram</Text>
+                                    <View style={styles.inputFieldContainerWhite}>
+                                        {useIcons('Instagram', 20, 20)}
+                                        <TextInput
+                                            placeholder='Instagram'
+                                            placeholderTextColor='#9A9A9A'
+                                            keyboardType='default'
+                                            style={styles.inputFieldBlack}
+                                            selectionColor='#9A9A9A'
+                                            autoCapitalize='none'
+                                            autoCorrect={false}
+                                            onChangeText={(value) => onChange(value, 'instagram')}
+                                            value={instagram}
+                                        />
+                                    </View>
+                                </View>
+                            </>
+                        }
                         <View style={styles.mediumMarginTop}>
                             <Text style={styles.captionTwoBlack}>Contraseña</Text>
                             <View style={[
