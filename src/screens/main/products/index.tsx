@@ -37,7 +37,7 @@ const ProductsScreen = ({ navigation }: Props) => {
         return () => {
             mounted = false;
         };
-    }, [place]);
+    }, [place, products]);
 
     return (
         <View style={styles.mainContainer}>
@@ -54,7 +54,7 @@ const ProductsScreen = ({ navigation }: Props) => {
                     <Text style={styles.captionTwoBlack}>Mis productos</Text>
                 </View>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+            <View style={styles.flexDirectionRowJustifyFlexEnd}>
                 <TouchableOpacity
                     activeOpacity={1.0}
                     style={styles.buttonAddProduct}
@@ -64,9 +64,10 @@ const ProductsScreen = ({ navigation }: Props) => {
                             description: '',
                             category: '',
                             price: 0,
-                            place: place!,
+                            place: place?._id!,
                             img: ''
-                        }
+                        },
+                        newItem: true
                     })}
                 >
                     <Text style={styles.buttonAddProductText}>Agregar</Text>
