@@ -7,6 +7,7 @@ import { IProduct } from '../../../interfaces';
 import { RootStackParams } from '../../../navigation/MainNavigator';
 
 import styles from '../../../themes/AppTheme';
+import { useIcons } from '../../../hooks';
 
 interface Props {
     product: IProduct;
@@ -24,6 +25,12 @@ const ProductItem = ({ product }: Props) => {
                 </View>
                 <View style={styles.productDetailsNameContainer}>
                     <Text numberOfLines={2} style={styles.subheadline}>{product.name}</Text>
+                    <View style={styles.flexDirectionRowTinyMarginTop}>
+                        {useIcons('Star', 15, 15)}
+                        <View style={styles.tinyMarginStart}>
+                            <Text style={styles.caption}>{Number(product.rate?.$numberDecimal).toFixed(1)}</Text>
+                        </View>
+                    </View>
                 </View>
                 <View style={styles.productDetailsButtonContainer}>
                     <TouchableOpacity activeOpacity={1.0} style={styles.productDetailsButton} onPress={() => navigation.navigate('ProductDetails', { product, newItem: false })}>
