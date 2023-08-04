@@ -209,6 +209,12 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 45
     },
+    chartContainer: {
+        backgroundColor: 'rgba(250, 250, 250, 0.98)',
+        borderRadius: 5,
+        marginBottom: 20,
+        paddingVertical: 15
+    },
     companiesNameMargins: {
         marginEnd: 5,
         marginTop: -75
@@ -279,6 +285,10 @@ const styles = StyleSheet.create({
     flexDirectionRowAlignCenter: {
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    flexDirectionRowAlignSelfCenter: {
+        flexDirection: 'row',
+        alignSelf: 'center'
     },
     flexDirectionRowJustifyAround: {
         flexDirection: 'row',
@@ -496,6 +506,16 @@ const styles = StyleSheet.create({
     largeMarginTop: {
         marginTop: 32
     },
+    legendItemContainer: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingHorizontal: 15
+    },
+    legendItemColor: {
+        borderRadius: 25,
+        height: 25,
+        width: 25
+    },
     linearGradient: {
         alignItems: 'center',
         borderRadius: 999,
@@ -559,6 +579,9 @@ const styles = StyleSheet.create({
     },
     mediumMarginStart: {
         marginStart: 10
+    },
+    mediumPaddingHorizontal: {
+        paddingHorizontal: 15
     },
     mediumPaddingVertical: {
         paddingVertical: 25
