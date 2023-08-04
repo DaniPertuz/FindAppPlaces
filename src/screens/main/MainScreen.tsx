@@ -7,6 +7,9 @@ import { usePlace } from '../../hooks';
 import { RootStackParams } from '../../navigation/MainNavigator';
 import BigButtons from '../../components/BigButtons';
 import PremiumLevel from '../../components/PremiumLevel';
+import KeywordsChart from '../../components/KeywordsChart';
+import SearchChart from '../../components/SearchChart';
+import UsersChart from '../../components/UsersChart';
 
 import styles from '../../themes/AppTheme';
 
@@ -43,8 +46,10 @@ const MainScreen = () => {
                 <Text style={styles.subheadline}>Estadísticas</Text>
             </View>
             <View style={styles.mediumPaddingVertical}>
-                <ScrollView showsVerticalScrollIndicator={false} contentInset={{ bottom: 250 }}>
-
+                <ScrollView showsVerticalScrollIndicator={false} contentInset={{ bottom: 450 }}>
+                    <SearchChart />
+                    <UsersChart />
+                    <KeywordsChart />
                 </ScrollView>
             </View>
         </View>
