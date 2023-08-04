@@ -101,3 +101,36 @@ export const scheduleData = [
 ];
 
 export const headers: string[] = ['Día', 'Abre', 'Cierra'];
+
+export const colors: string[] = [
+    '#F1C40F',
+    '#FF5733',
+    '#00A86B',
+    '#6A2CCD',
+    '#D1CA2F',
+    '#F39C12',
+    '#3498DB',
+    '#E74C3C',
+    '#2ECC71',
+    '#9B59B6',
+    '#1ABC9C',
+    '#E67E22',
+    '#2980B9',
+    '#C0392B',
+    '#27AE60',
+    '#8E44AD',
+    '#8899CB',
+    '#2C3E50',
+    '#16A085',
+    '#8E44AD',
+    '#F1C40F',
+    '#3498DB',
+    '#FF000A',
+    '#00CF0B',
+    '#1200FF',
+    '#0223FF',
+    '#0089EF',
+    '#0450FA',
+    '#2CD31B',
+    '#455A29'
+];
