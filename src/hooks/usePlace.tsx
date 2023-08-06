@@ -3,10 +3,10 @@ import { IFavorites, IHistory, IPlace, IRatingList } from '../interfaces';
 import { AuthContext, PlacesContext } from '../context';
 
 export const usePlace = () => {
-    const [history, setHistory] = useState<IHistory>({ total: 0, services: []});
     const [place, setPlace] = useState<IPlace>();
-    const [ratings, setRatings] = useState<IRatingList>({ total: 0, rates: [] });
+    const [history, setHistory] = useState<IHistory>({ total: 0, services: []});
     const [favorites, setFavorites] = useState<IFavorites>({ total: 0, favorites: [] });
+    const [ratings, setRatings] = useState<IRatingList>({ total: 0, rates: [] });
 
     const { user } = useContext(AuthContext);
     const { getFavorites, getHistory, getRatings, loadPlaceByEmail } = useContext(PlacesContext);
