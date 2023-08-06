@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import findAPI from '../../api/findapi';
 import { ImagePickerResponse } from 'react-native-image-picker';
 import { PlacesContext, PlacesReducer } from '.';
-import { IPlace, IRatingList } from '../../interfaces';
+import { IFavorites, IHistory, IPlace, IRatingList } from '../../interfaces';
 
 export interface PlacesState {
     place: IPlace | null;
@@ -18,9 +18,19 @@ export const PlacesProvider = ({ children }: any) => {
 
     const [state, dispatch] = useReducer(PlacesReducer, PLACES_INITIAL_STATE);
 
-    const getFavorites = async (placeId: string): Promise<number> => {
+    const getFavorites = async (placeId: string): Promise<IFavorites> => {
         try {
-            const { data } = await findAPI.get<number>(`/favorites/place/${placeId}`);
+            const { data } = await findAPI.get<IFavorites>(`/favorites/place/${placeId}`);
+            return data;
+        } catch (error: any) {
+            console.log(error.response.data.message);
+            throw new Error(`${error}`);
+        }
+    };
+
+    const getHistory = async (placeId: string): Promise<IHistory> => {
+        try {
+            const { data } = await findAPI.get<IHistory>(`/favorites/place/${placeId}`);
             return data;
         } catch (error: any) {
             console.log(error.response.data.message);
@@ -153,6 +163,7 @@ export const PlacesProvider = ({ children }: any) => {
         <PlacesContext.Provider value={{
             ...state,
             getFavorites,
+            getHistory,
             getRatings,
             loadPlaceByEmail,
             registerPlace,

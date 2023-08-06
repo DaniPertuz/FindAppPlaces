@@ -1,11 +1,12 @@
 import { createContext } from 'react';
 import { ImagePickerResponse } from 'react-native-image-picker';
-import { IPlace, IRatingList } from '../../interfaces';
+import { IFavorites, IHistory, IPlace, IRatingList } from '../../interfaces';
 
 type PlaceContextProps = {
     place:            IPlace | null;
     errors:           string;
-    getFavorites:     (placeId: string) => Promise<number>
+    getFavorites:     (placeId: string) => Promise<IFavorites>;
+    getHistory:       (placeId: string) => Promise<IHistory>;
     getRatings:       (placeId: string) => Promise<IRatingList>;
     loadPlaceByEmail: (email: string) => Promise<IPlace>
     registerPlace:    (place: IPlace) => Promise<void>;
