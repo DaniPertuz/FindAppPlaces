@@ -28,7 +28,7 @@ const KeywordsChart = ({ services }: Props) => {
     return (
         <View style={styles.chartContainer}>
             <View style={styles.mediumPaddingHorizontal}>
-                <Text style={styles.subheadline}>Usuarios frecuentes</Text>
+                <Text style={styles.subheadline}>Palabras clave</Text>
             </View>
             {(data.length === 0)
                 ?
