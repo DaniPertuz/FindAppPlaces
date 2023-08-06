@@ -67,6 +67,9 @@ const KeywordsChart = ({ services }: Props) => {
                                     <View style={styles.mediumMarginStart}>
                                         <Text style={styles.footnoteGray}>{d.name}</Text>
                                     </View>
+                                    <View style={styles.mediumMarginStart}>
+                                        <Text style={styles.footnoteGray}>{(d.amount / services.length) * 100} %</Text>
+                                    </View>
                                 </View>
                             ))}
                         </View>
