@@ -30,7 +30,7 @@ export const PlacesProvider = ({ children }: any) => {
 
     const getHistory = async (placeId: string): Promise<IHistory> => {
         try {
-            const { data } = await findAPI.get<IHistory>(`/favorites/place/${placeId}`);
+            const { data } = await findAPI.get<IHistory>(`/services/place/${placeId}`);
             return data;
         } catch (error: any) {
             console.log(error.response.data.message);
