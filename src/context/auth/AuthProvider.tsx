@@ -75,6 +75,15 @@ export const AuthProvider = ({ children }: any) => {
     const signIn = async ({ email, password }: LoginData): Promise<void> => {
         try {
             const response = await findAPI.get<IUser>('/users/email', { params: { email }})
+
+            if (response.data === null) {
+                dispatch({
+                    type: 'addError',
+                    payload: 'Este usuario no es válido'
+                });
+                return;
+            }
+
             if (response.data.role !== roles.PLACE) {
                 dispatch({
                     type: 'addError',
