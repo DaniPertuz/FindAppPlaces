@@ -707,6 +707,13 @@ const styles = StyleSheet.create({
     smallMediumMarginBottom: {
         marginBottom: 10
     },
+    statisticsZeroMessage: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 220,
+        width: 320,
+        padding: 15
+    },
     subheadline: {
         color: '#081023',
         fontSize: 14,
