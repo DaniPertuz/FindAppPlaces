@@ -3,15 +3,20 @@ import { Text, View } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
 import styles from '../themes/AppTheme';
 
-const UsersChart = () => {
+interface Props {
+    favorites: number;
+    history: number
+}
+
+const UsersChart = ({ favorites, history }: Props) => {
 
     const data = [
         {
-            amount: 3,
+            amount: history,
             color: '#207CFD'
         },
         {
-            amount: 5,
+            amount: favorites,
             color: '#58D7FE'
         }
     ];
@@ -43,7 +48,7 @@ const UsersChart = () => {
                     <View style={styles.legendItemContainer}>
                         <View style={{ backgroundColor: '#207CFD', ...styles.legendItemColor }} />
                         <View style={styles.mediumMarginStart}>
-                            <Text style={styles.footnoteGray}>3</Text>
+                            <Text style={styles.footnoteGray}>{history}</Text>
                         </View>
                         <View style={styles.mediumMarginStart}>
                             <Text style={styles.footnoteGray}>Historial</Text>
@@ -52,7 +57,7 @@ const UsersChart = () => {
                     <View style={styles.legendItemContainer}>
                         <View style={{ backgroundColor: '#58D7FE', ...styles.legendItemColor }} />
                         <View style={styles.mediumMarginStart}>
-                            <Text style={styles.footnoteGray}>5</Text>
+                            <Text style={styles.footnoteGray}>{favorites}</Text>
                         </View>
                         <View style={styles.mediumMarginStart}>
                             <Text style={styles.footnoteGray}>Favoritos</Text>
