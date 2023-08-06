@@ -1,41 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { Text, View } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
+
+import { IService } from '../interfaces';
 import { colors } from '../utils';
+
 import styles from '../themes/AppTheme';
 
-const KeywordsChart = () => {
+interface Props {
+    services: IService[];
+}
 
-    const data = [
+const KeywordsChart = ({ services }: Props) => {
+
+    const unique = services.filter((a, i) => services.findIndex((s) => a.search === s.search) === i);
+
+    const data = unique.map((item, index) => (
         {
-            name: 'Comida Rápida',
-            amount: 10,
-            color: colors[0],
-            legendFontColor: "#7F7F7F",
-            legendFontSize: 12
-        },
-        {
-            name: 'Pizza',
-            amount: 4,
-            color: colors[1],
-            legendFontColor: "#7F7F7F",
-            legendFontSize: 12
-        },
-        {
-            name: 'Restaurante',
-            amount: 6,
-            color: colors[2],
-            legendFontColor: "#7F7F7F",
-            legendFontSize: 12
-        },
-        {
-            name: 'Restaurante',
-            amount: 6,
-            color: colors[3],
-            legendFontColor: "#7F7F7F",
+            name: item.search,
+            amount: services.filter(service => service.search === item.search).length,
+            color: colors[index],
+            legendFontColor: "#858585",
             legendFontSize: 12
         }
-    ];
+    )).filter((value, index, array) => array.indexOf(value) === index);
 
     return (
         <View style={styles.chartContainer}>
