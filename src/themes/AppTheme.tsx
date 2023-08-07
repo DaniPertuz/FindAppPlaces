@@ -232,6 +232,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    dropdownMonths: {
+        borderColor: '#207CFD',
+        borderRadius: 12,
+        borderWidth: 1,
+        paddingHorizontal: 10,
+        width: 110
+    },
     editProfileButton: {
         backgroundColor: '#FFFFFF',
         borderRadius: 30,
