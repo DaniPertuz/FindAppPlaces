@@ -102,7 +102,7 @@ export interface IHistory {
 }
 
 export interface IService {
-    date:      string;
+    createdAt: string;
     place:     IPlace;
     search:    string;
     user:      string;
