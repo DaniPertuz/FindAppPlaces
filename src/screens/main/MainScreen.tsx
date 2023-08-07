@@ -52,7 +52,7 @@ const MainScreen = () => {
                     </View>
                     <View style={styles.mediumPaddingVertical}>
                         <ScrollView showsVerticalScrollIndicator={false} contentInset={{ bottom: 450 }}>
-                            <SearchChart />
+                            <SearchChart services={history.services} />
                             <UsersChart favorites={favorites.total} history={history.total} />
                             <KeywordsChart services={history.services} />
                         </ScrollView>
