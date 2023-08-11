@@ -31,16 +31,16 @@ const BottomTabNavigator = () => {
                                 </View>
                             </View>;
 
-                        case 'Subscriptions':
-                            return <View style={styles.bottomTabNavigatorItem}>
-                                {(focused)
-                                    ? useIcons('TrophyFocused', 22, 22)
-                                    : useIcons('Trophy', 22, 22)
-                                }
-                                <View style={styles.mediumMarginStart}>
-                                    <Text style={{ ...styles.bottomTabNavigatorItemFont, color: (focused) ? '#207CFD' : '#5A5A5A' }}>Suscripción</Text>
-                                </View>
-                            </View>;
+                        // case 'Subscriptions':
+                        //     return <View style={styles.bottomTabNavigatorItem}>
+                        //         {(focused)
+                        //             ? useIcons('TrophyFocused', 22, 22)
+                        //             : useIcons('Trophy', 22, 22)
+                        //         }
+                        //         <View style={styles.mediumMarginStart}>
+                        //             <Text style={{ ...styles.bottomTabNavigatorItemFont, color: (focused) ? '#207CFD' : '#5A5A5A' }}>Suscripción</Text>
+                        //         </View>
+                        //     </View>;
 
                         case 'Profile':
                             return <View style={styles.bottomTabNavigatorItem}>
@@ -57,7 +57,7 @@ const BottomTabNavigator = () => {
             })}
         >
             <Tab.Screen name="Home" options={{ title: '' }} component={MainScreen} />
-            <Tab.Screen name="Subscriptions" options={{ title: '' }} component={SubscriptionScreen} />
+            {/* <Tab.Screen name="Subscriptions" options={{ title: '' }} component={SubscriptionScreen} /> */}
             <Tab.Screen name="Profile" options={{ title: '' }} component={ProfileNavigator} />
         </Tab.Navigator>
     );

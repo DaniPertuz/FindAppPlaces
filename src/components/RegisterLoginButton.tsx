@@ -72,6 +72,7 @@ const RegisterLoginButton = ({ name = '', email = '', password = '', handleField
               state: '',
               country: '',
               schedule: [],
+              premium: 3,
               rate: {
                 $numberDecimal: '0'
               },
