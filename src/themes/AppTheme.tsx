@@ -417,7 +417,7 @@ const styles = StyleSheet.create({
         color: '#1F273A',
         fontSize: 12,
         fontWeight: '500',
-        lineHeight: 12,
+        lineHeight: 14,
         letterSpacing: -0.24,
         marginStart: 16,
         marginVertical: 12,
