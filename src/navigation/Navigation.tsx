@@ -1,5 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import SplashScreen from 'react-native-splash-screen';
 
 import { MainNavigator } from './';
 import { AuthContext } from '../context';
@@ -10,6 +11,10 @@ const Stack = createStackNavigator();
 const Navigation = () => {
 
     const { status, user } = useContext(AuthContext);
+
+    useEffect(() => {
+        SplashScreen.hide();
+    }, []);
 
     if (status === 'checking') return <LoadingScreen />;
 
