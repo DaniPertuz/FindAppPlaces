@@ -64,6 +64,7 @@ export const AuthProvider = ({ children }: any) => {
             });
 
             await AsyncStorage.setItem('token', tokenLogin.token);
+            await AsyncStorage.setItem('user', JSON.stringify(tokenLogin.user));
         } catch (error: any) {
             dispatch({
                 type: 'addError',
@@ -103,6 +104,7 @@ export const AuthProvider = ({ children }: any) => {
             });
 
             await AsyncStorage.setItem('token', data.token);
+            await AsyncStorage.setItem('user', JSON.stringify(data.user));
         } catch (error: any) {
             dispatch({
                 type: 'addError',
@@ -151,6 +153,7 @@ export const AuthProvider = ({ children }: any) => {
 
     const logOut = async (): Promise<void> => {
         await AsyncStorage.removeItem('token');
+        await AsyncStorage.removeItem('user');
         dispatch({ type: 'logout' });
     };
 
