@@ -70,7 +70,12 @@ const UpdateProfileInputs = ({ place }: Props) => {
 
     const getCoords = async () => {
         const { lat, lng } = await useCoords(address);
-        setCoordinates({ latitude: lat, longitude: lng });
+        if (lat && lng) {
+            Snackbar.show({ text: 'Dirección encontrada', duration: Snackbar.LENGTH_SHORT, });
+            setCoordinates({ latitude: lat, longitude: lng });
+        } else {
+            Snackbar.show({ text: 'Dirección no encontrada\nIngresa nuevamente', duration: Snackbar.LENGTH_SHORT, });
+        }
     };
 
     const splitAddress = (address: string) => {
@@ -204,8 +209,8 @@ const UpdateProfileInputs = ({ place }: Props) => {
             }
 
             updateUserPassword(user?.email!, password!);
-            navigator.goBack;
-            Snackbar.show({ text: 'Contraseña actualizada', duration: Snackbar.LENGTH_SHORT, });
+            navigator.goBack();
+            Snackbar.show({ text: 'Contraseña actualizada', duration: Snackbar.LENGTH_SHORT });
         }
 
         if (password!.length === 0 && confirmPassword!.length !== 0) {
@@ -257,13 +262,6 @@ const UpdateProfileInputs = ({ place }: Props) => {
         setAllImages(place.pics!);
         setPlaceImages(place.pics!);
     }, [place.pics]);
-
-    useEffect(() => {
-        if (address !== '') {
-            getCoords();
-            splitAddress(address);
-        }
-    }, [address]);
 
     return (
         <>
@@ -323,6 +321,13 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                     selectionColor='#9A9A9A'
                                     autoCapitalize='none'
                                     autoCorrect={false}
+                                    numberOfLines={1}
+                                    onBlur={() => {
+                                        setLoading(true);
+                                        getCoords();
+                                        splitAddress(address);
+                                        setLoading(false);
+                                    }}
                                     onChangeText={(value) => onChange(value, 'address')}
                                     value={address}
                                 />
