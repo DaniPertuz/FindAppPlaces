@@ -108,7 +108,7 @@ export const AuthProvider = ({ children }: any) => {
         } catch (error: any) {
             dispatch({
                 type: 'addError',
-                payload: error.response!.data.msg || 'Información errada'
+                payload: 'Información errada'
             });
         }
     };
@@ -146,7 +146,7 @@ export const AuthProvider = ({ children }: any) => {
         } catch (err: any) {
             dispatch({
                 type: 'addError',
-                payload: err || 'Información errada'
+                payload: 'Información errada'
             });
         }
     };
