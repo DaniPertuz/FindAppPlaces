@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Keyboard, Text, TouchableOpacity } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { ActivityIndicator, Keyboard, Text, TouchableOpacity } from 'react-native';
 import { AuthContext } from '../context/auth';
 import styles from '../themes/AppTheme';
 
@@ -11,7 +11,12 @@ interface Props {
 
 const LoginButton = ({ email = '', password = '', handleFieldLength }: Props) => {
 
-    const { signIn } = useContext(AuthContext);
+    const { signIn, errorMessage } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (errorMessage.length > 0) setLoading(false);
+    }, [errorMessage]);
 
     const onLogin = () => {
         Keyboard.dismiss();
@@ -38,11 +43,14 @@ const LoginButton = ({ email = '', password = '', handleFieldLength }: Props) =>
 
     return (
         <TouchableOpacity
-            activeOpacity={0.8}
+            activeOpacity={0.9}
             style={styles.button}
+            disabled={loading}
             onPress={onLogin}
         >
-            <Text style={styles.buttonText}>Iniciar Sesión</Text>
+            <Text style={styles.buttonText}>
+                {loading ? <ActivityIndicator size={22} color='#FFFFFF' /> : 'Iniciar Sesión'}
+            </Text>
         </TouchableOpacity>
     );
 };
