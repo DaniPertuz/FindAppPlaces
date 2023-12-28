@@ -216,8 +216,9 @@ const styles = StyleSheet.create({
         paddingVertical: 15
     },
     companiesNameMargins: {
-        marginEnd: 5,
-        marginTop: -75
+        position: 'absolute',
+        bottom: '31%',
+        left: '41%'
     },
     createAccountButtonsContainer: {
         flexDirection: 'row',
@@ -369,6 +370,10 @@ const styles = StyleSheet.create({
         lineHeight: 16,
         letterSpacing: -0.24
     },
+    forgotPasswordContainerWarning: {
+        marginBottom: 30,
+        marginTop: 2
+    },
     h3: {
         color: '#081023',
         fontSize: 24,
@@ -446,6 +451,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderWidth: 1,
         flexDirection: 'row',
+        justifyContent: 'center',
         marginTop: 5,
         paddingHorizontal: 16
     },
@@ -564,8 +570,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         borderRadius: 16,
         marginHorizontal: 20,
-        marginVertical: 30,
-        height: '90%',
+        marginVertical: 25,
+        minHeight: '90%',
         paddingHorizontal: 22
     },
     mainContainer: {
@@ -574,7 +580,8 @@ const styles = StyleSheet.create({
     },
     mainLogo: {
         height: 107,
-        marginVertical: 40,
+        marginBottom: 33,
+        marginTop: 40,
         width: 239
     },
     mediumMarginBottom: {
