@@ -6,6 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParams } from '../navigation/MainNavigator';
 import LoginButton from './LoginButton';
 import { useIcons } from '../hooks';
+import useFieldValidation from '../hooks/useFieldValidation';
 
 import styles from '../themes/AppTheme';
 
@@ -18,47 +19,40 @@ interface Props {
 const FormInputs = ({ email, password, onChange }: Props) => {
 
     const [passwordVisibility, setPasswordVisibility] = useState(true);
-    const [eyeIcon] = useState('../assets/eye-closed.png');
-    const [fieldLength, setFieldLength] = useState({
-        email: false,
-        password: false
-    });
+    const [eyeIcon, setEyeIcon] = useState('EyeClosed');
     const navigator = useNavigation<StackNavigationProp<RootStackParams>>();
+    const { fieldLength, validateFields } = useFieldValidation();
 
     const handlePasswordVisibility = () => {
-        if (eyeIcon === '../assets/eye-closed.png') {
-            setPasswordVisibility(!passwordVisibility);
-        } else if (eyeIcon === '../assets/eye.png') {
-            setPasswordVisibility(!passwordVisibility);
-        }
+        setPasswordVisibility(!passwordVisibility);
+        setEyeIcon((prevIcon) =>
+            prevIcon === 'EyeClosed' ? 'Eye' : 'EyeClosed'
+        );
     };
 
-    const handleFieldLength = (email: boolean, password: boolean) => {
-        setFieldLength({
-            email,
-            password
+    const handleFieldLength = (emailEmpty: boolean, passwordEmpty: boolean) => {
+        validateFields({
+            email: emailEmpty,
+            password: passwordEmpty
         });
     };
 
     return (
         <View>
             <View style={styles.tinyMarginBottom}>
-                <Text style={styles.footnote}>
-                    Correo corporativo
-                </Text>
+                <Text style={styles.footnote}>Correo corporativo</Text>
             </View>
-            <View style={[
-                styles.inputFieldContainer,
-                (fieldLength.email === true) && styles.warningBorder
-            ]}>
-                {useIcons('Envelope', 20, 20)}
+            <View style={[styles.inputFieldContainer, (fieldLength.email) && styles.warningBorder]}>
+                <View style={{ ...styles.flexOne, ...styles.alignItemsCenter }}>
+                    {useIcons('Envelope', 20, 20)}
+                </View>
                 <TextInput
                     placeholder='Ingresa tu usuario o correo'
                     placeholderTextColor='#9A9A9A'
                     keyboardType='email-address'
                     style={[
                         styles.inputField,
-                        { flex: 3, marginEnd: 10 }
+                        { flex: 9, marginStart: 10 }
                     ]}
                     selectionColor='#9A9A9A'
                     autoCapitalize='none'
@@ -67,7 +61,7 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                     value={email}
                 />
             </View>
-            {(fieldLength.email === true) &&
+            {(fieldLength.email) &&
                 <View style={styles.flexDirectionRowTinyMarginTop}>
                     <View style={styles.warningIconMargins}>
                         {useIcons('Warning', 15, 15)}
@@ -77,12 +71,10 @@ const FormInputs = ({ email, password, onChange }: Props) => {
             }
             <View style={styles.mediumMarginTop}>
                 <View style={styles.tinyMarginBottom}>
-                    <Text style={styles.footnote}>
-                        Contraseña
-                    </Text>
+                    <Text style={styles.footnote}>Contraseña</Text>
                 </View>
                 <View style={[styles.inputFieldContainer, (fieldLength.password === true) && styles.warningBorder]}>
-                    <View style={{ flex: 0.35 }}>
+                    <View style={{ ...styles.flexOne, ...styles.alignItemsCenter }}>
                         {useIcons('Lock', 20, 20)}
                     </View>
                     <TextInput
@@ -91,7 +83,7 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                         secureTextEntry={passwordVisibility}
                         style={[
                             styles.inputField,
-                            { flex: 3, marginEnd: 10 }
+                            { flex: 9, marginHorizontal: 10 }
                         ]}
                         selectionColor='#9A9A9A'
                         autoCapitalize='none'
@@ -103,32 +95,29 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                         activeOpacity={1.0}
                         onPress={handlePasswordVisibility}
                     >
-                        {(passwordVisibility === false)
-                            ? <View style={styles.alignItemsCenter}>
-                                {useIcons('Eye', 20, 20)}
-                            </View>
-                            : <View style={styles.alignItemsCenter}>
-                                {useIcons('EyeClosed', 20, 20)}
-                            </View>
-                        }
+                        {useIcons(eyeIcon, 20, 20)}
                     </TouchableOpacity>
                 </View>
-                {(fieldLength.password === true) &&
-                    <View style={styles.flexDirectionRowTinyMarginTop}>
-                        <View style={styles.warningIconMargins}>
-                            {useIcons('Warning', 15, 15)}
-                        </View>
-                        <Text style={styles.warningText}>Ingresa tu contraseña</Text>
+                <View style={styles.flexDirectionRowJustifySpaceBetween}>
+                    <View style={styles.forgotPasswordContainerWarning}>
+                        {(fieldLength.password) &&
+                            <View style={styles.flexDirectionRowTinyMarginTop}>
+                                <View style={styles.warningIconMargins}>
+                                    {useIcons('Warning', 15, 15)}
+                                </View>
+                                <Text style={styles.warningText}>Ingresa tu contraseña</Text>
+                            </View>
+                        }
                     </View>
-                }
-            </View>
-            <View style={styles.forgotPasswordContainer}>
-                <TouchableOpacity
-                    activeOpacity={1.0}
-                    onPress={() => navigator.navigate('NewPasswordScreen')}
-                >
-                    <Text style={styles.captionLink}>¿Olvidaste tu contraseña?</Text>
-                </TouchableOpacity>
+                    <View style={styles.forgotPasswordContainer}>
+                        <TouchableOpacity
+                            activeOpacity={1.0}
+                            onPress={() => navigator.navigate('NewPasswordScreen')}
+                        >
+                            <Text style={styles.captionLink}>¿Olvidaste tu contraseña?</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
             <LoginButton email={email} password={password} handleFieldLength={handleFieldLength} />
             <View style={styles.createAccountButtonsContainer}>
@@ -136,7 +125,7 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                     <Text style={styles.plainMediumText}>¿No tienes una empresa registrada?</Text>
                 </View>
                 <TouchableOpacity
-                    activeOpacity={0.9}
+                    activeOpacity={1.0}
                     style={styles.justifyContentCenter}
                     onPress={() => navigator.replace('RegisterScreen')}
                 >
