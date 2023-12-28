@@ -437,7 +437,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                                     </TouchableOpacity>
                                                     <Image source={{ uri: allImages[0] }} style={styles.imageFromGallery} />
                                                 </View>
-                                                {(displayCamera === true) &&
+                                                {(displayCamera) &&
                                                     <View>
                                                         <TouchableOpacity
                                                             activeOpacity={1.0}
@@ -504,7 +504,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                                                 </>
                                                             }
                                                         </View>
-                                                        {(displayCameraOne === true && (allImages[0] === '' || placeImageOne === '')) &&
+                                                        {(displayCameraOne && (allImages[0] === '' || placeImageOne === '')) &&
                                                             <View>
                                                                 <TouchableOpacity
                                                                     activeOpacity={1.0}
@@ -541,7 +541,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                                                 </>
                                                             }
                                                         </View>
-                                                        {(displayCameraTwo === true) &&
+                                                        {(displayCameraTwo) &&
                                                             <View>
                                                                 <TouchableOpacity
                                                                     activeOpacity={1.0}
@@ -703,7 +703,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                             <Text style={styles.captionTwoBlack}>Contraseña</Text>
                             <View style={[
                                 styles.inputFieldContainerWhite,
-                                (fieldLength.password === true) && styles.warningBorder
+                                (fieldLength.password) && styles.warningBorder
                             ]}>
                                 <View style={styles.tinyButtonSize}>
                                     {useIcons('Lock', 20, 20)}
@@ -734,7 +734,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                     </View>
                                 </TouchableOpacity>
                             </View>
-                            {(fieldLength.password === true) &&
+                            {(fieldLength.password) &&
                                 <View style={styles.flexDirectionRowTinyMarginTop}>
                                     <View style={styles.warningIconMargins}>
                                         {useIcons('Warning', 15, 15)}
@@ -746,7 +746,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                 <Text style={styles.footnote}>Repetir contraseña</Text>
                                 <View style={[
                                     styles.inputFieldContainerWhite,
-                                    (fieldLength.confirmPassword === true) && styles.warningBorder
+                                    (fieldLength.confirmPassword) && styles.warningBorder
                                 ]}>
                                     <View style={styles.tinyButtonSize}>
                                         {useIcons('Lock', 20, 20)}
@@ -778,7 +778,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                            {(fieldLength.confirmPassword === true) &&
+                            {(fieldLength.confirmPassword) &&
                                 <View style={styles.flexDirectionRowTinyMarginTop}>
                                     <View style={styles.warningIconMargins}>
                                         {useIcons('Warning', 15, 15)}
@@ -786,7 +786,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                     <Text style={styles.warningText}>Ingresa tu contraseña</Text>
                                 </View>
                             }
-                            {(display === true) &&
+                            {(display) &&
                                 <View style={styles.flexDirectionRowTinyMarginTop}>
                                     <View style={styles.warningIconMargins}>
                                         {useIcons('Warning', 15, 15)}

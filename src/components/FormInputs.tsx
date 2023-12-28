@@ -73,7 +73,7 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                 <View style={styles.tinyMarginBottom}>
                     <Text style={styles.footnote}>Contraseña</Text>
                 </View>
-                <View style={[styles.inputFieldContainer, (fieldLength.password === true) && styles.warningBorder]}>
+                <View style={[styles.inputFieldContainer, (fieldLength.password) && styles.warningBorder]}>
                     <View style={{ ...styles.flexOne, ...styles.alignItemsCenter }}>
                         {useIcons('Lock', 20, 20)}
                     </View>

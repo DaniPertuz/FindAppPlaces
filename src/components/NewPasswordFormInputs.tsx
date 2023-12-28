@@ -125,10 +125,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
         <View>
             <View style={styles.mediumMarginTop}>
                 <Text style={styles.footnote}>Email</Text>
-                <View style={[
-                    styles.inputFieldContainer,
-                    (fieldLength.email === true) && styles.warningBorder
-                ]}>
+                <View style={[styles.inputFieldContainer, (fieldLength.email) && styles.warningBorder]}>
                     {useIcons('Envelope', 20, 20)}
                     <TextInput
                         placeholder='Ingresa tu correo'
@@ -142,7 +139,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                         value={email}
                     />
                 </View>
-                {(fieldLength.email === true) &&
+                {(fieldLength.email) &&
                     <View style={styles.flexDirectionRowTinyMarginTop}>
                         <View style={styles.warningIconMargins}>
                             {useIcons('Warning', 15, 15)}
@@ -153,10 +150,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
             </View>
             <View style={styles.mediumMarginTop}>
                 <Text style={styles.footnote}>Contraseña</Text>
-                <View style={[
-                    styles.inputFieldContainer,
-                    (fieldLength.password === true) && styles.warningBorder
-                ]}>
+                <View style={[styles.inputFieldContainer, (fieldLength.password) && styles.warningBorder]}>
                     <View style={styles.tinyButtonSize}>
                         {useIcons('Lock', 20, 20)}
                     </View>
@@ -187,7 +181,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                     </TouchableOpacity>
                 </View>
             </View>
-            {(fieldLength.password === true) &&
+            {(fieldLength.password) &&
                 <View style={styles.flexDirectionRowTinyMarginTop}>
                     <View style={styles.warningIconMargins}>
                         {useIcons('Warning', 15, 15)}
@@ -197,10 +191,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
             }
             <View style={styles.mediumMarginTop}>
                 <Text style={styles.footnote}>Repetir contraseña</Text>
-                <View style={[
-                    styles.inputFieldContainer,
-                    (fieldLength.confirmPassword === true) && styles.warningBorder
-                ]}>
+                <View style={[styles.inputFieldContainer, (fieldLength.confirmPassword) && styles.warningBorder]}>
                     <View style={styles.tinyButtonSize}>
                         {useIcons('Lock', 20, 20)}
                     </View>
@@ -231,7 +222,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                     </TouchableOpacity>
                 </View>
             </View>
-            {(fieldLength.confirmPassword === true) &&
+            {(fieldLength.confirmPassword) &&
                 <View style={styles.flexDirectionRowTinyMarginTop}>
                     <View style={styles.warningIconMargins}>
                         {useIcons('Warning', 15, 15)}
@@ -239,7 +230,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                     <Text style={styles.warningText}>Ingresa tu contraseña</Text>
                 </View>
             }
-            {(display === true) &&
+            {(display) &&
                 <View style={styles.flexDirectionRowTinyMarginTop}>
                     <View style={styles.warningIconMargins}>
                         {useIcons('Warning', 15, 15)}
@@ -249,7 +240,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                     </Text>
                 </View>
             }
-            {(authorized === true) &&
+            {(authorized) &&
                 <View style={styles.flexDirectionRowTinyMarginTop}>
                     <View style={styles.warningIconMargins}>
                         {useIcons('Warning', 15, 15)}
@@ -259,7 +250,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                     </Text>
                 </View>
             }
-            {(nullPlace === true) &&
+            {(nullPlace) &&
                 <View style={styles.flexDirectionRowTinyMarginTop}>
                     <View style={styles.warningIconMargins}>
                         {useIcons('Warning', 15, 15)}

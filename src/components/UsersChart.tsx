@@ -29,7 +29,7 @@ const UsersChart = ({ favorites, history }: Props) => {
                 <Text style={styles.subheadline}>Usuarios frecuentes</Text>
             </View>
             <View style={{ ...styles.mediumMarginTop, ...styles.alignItemsCenter }}>
-                {(zeros[0] === true && zeros[1] === true)
+                {(zeros[0] && zeros[1])
                     ?
                     <View style={styles.statisticsZeroMessage}>
                         <Text style={styles.caption}>Esperando usuarios visitantes</Text>

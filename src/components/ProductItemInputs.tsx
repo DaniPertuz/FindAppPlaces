@@ -23,9 +23,9 @@ const ProductItemInputs = ({ product, newItem }: Props) => {
     const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
 
     const { name, description, price, onChange } = useForm({
-        name: (newItem === true) ? '' : product.name,
-        description: (newItem === true) ? '' : product.description,
-        price: (newItem === true) ? '' : product.price
+        name: (newItem) ? '' : product.name,
+        description: (newItem) ? '' : product.description,
+        price: (newItem) ? '' : product.price
     });
     const { place } = usePlace();
 
@@ -163,7 +163,7 @@ const ProductItemInputs = ({ product, newItem }: Props) => {
                                 <Image source={{ uri: productImage }} style={styles.imageFromGallery} />
                             </View>
                         }
-                        {(displayCamera === true || productImage === '') &&
+                        {(displayCamera || productImage === '') &&
                             <View>
                                 <TouchableOpacity
                                     activeOpacity={1.0}
@@ -180,9 +180,9 @@ const ProductItemInputs = ({ product, newItem }: Props) => {
                             <TouchableOpacity
                                 activeOpacity={1.0}
                                 style={styles.button}
-                                onPress={(newItem === true) ? onAdd : onUpdate}
+                                onPress={(newItem) ? onAdd : onUpdate}
                             >
-                                <Text style={styles.buttonText}>{(newItem === true) ? 'Guardar' : 'Actualizar'}</Text>
+                                <Text style={styles.buttonText}>{(newItem) ? 'Guardar' : 'Actualizar'}</Text>
                             </TouchableOpacity>
                         </View>
                         {((product.name !== '') || (product.description !== '') || (product.img !== '')) &&

@@ -245,7 +245,7 @@ const CustomizedSchedule = ({ everyday }: Props) => {
                             value={fridayClosingHour}
                         />
                     </View>
-                    {(everyday === true) &&
+                    {(everyday) &&
                         <>
                             <View style={styles.hoursDropdownContainer}>
                                 <Text style={{ ...styles.caption, flex: 1 }}>

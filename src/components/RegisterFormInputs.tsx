@@ -50,10 +50,7 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                 <View style={styles.tinyMarginBottom}>
                     <Text style={styles.footnote}>Nombre de la Empresa</Text>
                 </View>
-                <View style={[
-                    styles.inputFieldContainer,
-                    (fieldLength.email === true) && styles.warningBorder
-                ]}>
+                <View style={[styles.inputFieldContainer, (fieldLength.email) && styles.warningBorder]}>
                     {useIcons('Users', 20, 20)}
                     <TextInput
                         placeholder='Ingresa tu nombre'
@@ -67,7 +64,7 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                         value={name}
                     />
                 </View>
-                {(fieldLength.email === true) &&
+                {(fieldLength.email) &&
                     <View style={styles.flexDirectionRowTinyMarginTop}>
                         <View style={styles.warningIconMargins}>
                             {useIcons('Warning', 15, 15)}
@@ -80,10 +77,7 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                 <View style={styles.tinyMarginBottom}>
                     <Text style={styles.footnote}>Correo corporativo</Text>
                 </View>
-                <View style={[
-                    styles.inputFieldContainer,
-                    (fieldLength.email === true) && styles.warningBorder
-                ]}>
+                <View style={[styles.inputFieldContainer, (fieldLength.email) && styles.warningBorder]}>
                     {useIcons('Envelope', 20, 20)}
                     <TextInput
                         placeholder='Ingresa tu usuario o correo'
@@ -97,7 +91,7 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                         value={email}
                     />
                 </View>
-                {(fieldLength.email === true) &&
+                {(fieldLength.email) &&
                     <View style={styles.flexDirectionRowTinyMarginTop}>
                         <View style={styles.warningIconMargins}>
                             {useIcons('Warning', 15, 15)}
@@ -110,7 +104,7 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                 <View style={styles.tinyMarginBottom}>
                     <Text style={styles.footnote}>Contraseña</Text>
                 </View>
-                <View style={[styles.inputFieldContainer, (fieldLength.password === true) && styles.warningBorder]}>
+                <View style={[styles.inputFieldContainer, (fieldLength.password) && styles.warningBorder]}>
                     <View style={{ flex: 0.35 }}>
                         {useIcons('Lock', 20, 20)}
                     </View>
@@ -142,7 +136,7 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                         }
                     </TouchableOpacity>
                 </View>
-                {(fieldLength.password === true) &&
+                {(fieldLength.password) &&
                     <View style={styles.flexDirectionRowTinyMarginTop}>
                         <View style={styles.warningIconMargins}>
                             {useIcons('Warning', 15, 15)}
