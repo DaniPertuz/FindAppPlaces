@@ -9,8 +9,7 @@ interface Props {
     handleFieldLength: (email: boolean, password: boolean) => void;
 }
 
-const LoginButton = ({ email = '', password = '', handleFieldLength }: Props) => {
-
+const LoginButton = ({ email, password, handleFieldLength }: Props) => {
     const { signIn, errorMessage } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
 
@@ -18,25 +17,11 @@ const LoginButton = ({ email = '', password = '', handleFieldLength }: Props) =>
         if (errorMessage.length > 0) setLoading(false);
     }, [errorMessage]);
 
-    const onLogin = () => {
-        Keyboard.dismiss();
-
-        if (email.length === 0 && password.length !== 0) {
-            handleFieldLength(true, false);
-            return;
-        }
-
-        if (email.length !== 0 && password.length === 0) {
-            handleFieldLength(false, true);
-            return;
-        }
-
-        if (email.length === 0 && password.length === 0) {
-            handleFieldLength(true, true);
-            return;
-        }
+    const onLogin = async () => {
+        handleFieldLength(email.length === 0, password.length === 0);
 
         if (email.length !== 0 && password.length !== 0) {
+            setLoading(true);
             signIn({ email, password });
         }
     };
