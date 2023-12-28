@@ -56,7 +56,10 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                     placeholder='Ingresa tu usuario o correo'
                     placeholderTextColor='#9A9A9A'
                     keyboardType='email-address'
-                    style={styles.inputField}
+                    style={[
+                        styles.inputField,
+                        { flex: 3, marginEnd: 10 }
+                    ]}
                     selectionColor='#9A9A9A'
                     autoCapitalize='none'
                     autoCorrect={false}
