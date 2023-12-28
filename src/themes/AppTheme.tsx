@@ -545,7 +545,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#081023',
         borderBottomEndRadius: 16,
         borderBottomStartRadius: 16,
-        height: 230,
+        height: '35%',
         position: 'absolute',
         width: '100%'
     },
@@ -563,10 +563,9 @@ const styles = StyleSheet.create({
     loginFormContainer: {
         backgroundColor: '#FFFFFF',
         borderRadius: 16,
-        marginBottom: 35,
         marginHorizontal: 20,
-        marginTop: 30,
-        minHeight: '90%',
+        marginVertical: 30,
+        height: '90%',
         paddingHorizontal: 22
     },
     mainContainer: {
