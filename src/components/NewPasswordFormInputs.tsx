@@ -9,15 +9,17 @@ import { roles } from '../interfaces';
 import { RootStackParams } from '../navigation/MainNavigator';
 
 import styles from '../themes/AppTheme';
+import useFieldValidation from '../hooks/useFieldValidation';
 
 interface Props {
     email: string;
     password: string;
     confirmPassword: string;
     onChange: (value: string, field: 'email' | 'password' | 'confirmPassword') => void;
+    handleResize: (value: string) => void;
 }
 
-const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: Props) => {
+const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, handleResize }: Props) => {
 
     const navigator = useNavigation<StackNavigationProp<RootStackParams>>();
 
@@ -28,110 +30,91 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
     const [nullPlace, setNullPlace] = useState(false);
     const [passwordVisibility, setPasswordVisibility] = useState(true);
     const [passwordConfirmVisibility, setPasswordConfirmVisibility] = useState(true);
-    const [fieldLength, setFieldLength] = useState({
-        email: false,
-        password: false,
-        confirmPassword: false
-    });
-    const [eyeIcon] = useState('../../assets/eye-closed.png');
-    const [eyeIconConfirm] = useState('../../assets/eye-closed.png');
-
-    const handleFieldLength = (email: boolean, password: boolean, confirmPassword: boolean) => {
-        setFieldLength({
-            email,
-            password,
-            confirmPassword
-        });
-    };
+    const [eyeIcon, setEyeIcon] = useState('EyeClosed');
+    const [eyeIconConfirm, setEyeIconConfirm] = useState('EyeClosed');
+    const { fieldLength, validateFields } = useFieldValidation();
 
     const handlePasswordVisibility = () => {
-        if (eyeIcon === '../../assets/eye-closed.png') {
-            setPasswordVisibility(!passwordVisibility);
-        } else if (eyeIcon === '../../assets/eye.png') {
-            setPasswordVisibility(!passwordVisibility);
-        }
+        setPasswordVisibility(!passwordVisibility);
+        setEyeIcon((prevIcon) =>
+            prevIcon === 'EyeClosed' ? 'Eye' : 'EyeClosed'
+        );
     };
 
     const handleConfirmPasswordVisibility = () => {
-        if (eyeIconConfirm === '../../assets/eye-closed.png') {
-            setPasswordConfirmVisibility(!passwordConfirmVisibility);
-        } else if (eyeIconConfirm === '../../assets/eye.png') {
-            setPasswordConfirmVisibility(!passwordConfirmVisibility);
-        }
+        setPasswordConfirmVisibility(!passwordConfirmVisibility);
+        setEyeIconConfirm((prevIcon) =>
+            prevIcon === 'EyeClosed' ? 'Eye' : 'EyeClosed'
+        );
     };
 
     const onUpdate = async () => {
         Keyboard.dismiss();
-
+    
         const validation = await loadUserByEmail(email);
-
-        if (validation === null && email.length !== 0) {
-            setNullPlace(true);
-            return;
+    
+        validateFields({
+            email: email.length === 0,
+            password: password.length === 0,
+            confirmPassword: confirmPassword.length === 0
+        });
+    
+        if (email.length === 0 && password.length !== 0 && confirmPassword.length !== 0) {
+            handleResize('40%');
+        } else if (email.length !== 0 && password.length === 0 && confirmPassword.length !== 0) {
+            handleResize('45%');
+        } else if (email.length !== 0 && password.length === 0 && confirmPassword.length === 0) {
+            setNullPlace(false);
+            handleResize('38%');
+        } else if (email.length !== 0 && password.length !== 0 && confirmPassword.length === 0) {
+            handleResize('35%');
+        } else if (email.length !== 0 && password.length === 0 && confirmPassword.length === 0) {
+            handleResize('40%');
+        } else if (email.length === 0 && password.length === 0 && confirmPassword.length === 0) {
+            handleResize('32%');
         }
-
-        if (validation && validation.role !== roles.PLACE) {
-            setAuthorized(true);
-            return;
+    
+        if (validation && (password.length === 0 && confirmPassword.length === 0)) {
+            setDisplay(false);
+            setNullPlace(false);
+            handleResize('38%');
         }
-
+    
         if (email.length !== 0 && password.length !== 0 && confirmPassword.length !== 0) {
-            if (password !== confirmPassword) {
+            if (!validation || password !== confirmPassword) {
                 setDisplay(true);
+                setNullPlace(!validation);
+                handleResize('38%');
                 return;
             }
-
+    
+            if (validation.role !== roles.PLACE) {
+                setAuthorized(true);
+                return;
+            }
+    
+            setDisplay(false);
+            setNullPlace(false);
+            handleResize('44%');
             updateUserPassword(email, password);
             navigator.replace('LoginScreen');
         }
-
-        if (email.length === 0 && password.length !== 0 && confirmPassword.length !== 0) {
-            handleFieldLength(true, false, false);
-            return;
-        }
-
-        if (email.length === 0 && password.length === 0 && confirmPassword.length !== 0) {
-            handleFieldLength(true, true, false);
-            return;
-        }
-
-        if (email.length !== 0 && password.length === 0 && confirmPassword.length !== 0) {
-            handleFieldLength(false, true, false);
-            return;
-        }
-
-        if (email.length !== 0 && password.length !== 0 && confirmPassword.length === 0) {
-            handleFieldLength(false, false, true);
-            return;
-        }
-
-        if (email.length !== 0 && password.length === 0 && confirmPassword.length === 0) {
-            handleFieldLength(false, true, true);
-            return;
-        }
-
-        if (email.length !== 0 && password.length !== 0 && confirmPassword.length !== 0) {
-            handleFieldLength(false, false, false);
-            return;
-        }
-
-        if (email.length === 0 && password.length === 0 && confirmPassword.length === 0) {
-            handleFieldLength(true, true, true);
-            return;
-        }
     };
+    
 
     return (
         <View>
             <View style={styles.mediumMarginTop}>
                 <Text style={styles.footnote}>Email</Text>
                 <View style={[styles.inputFieldContainer, (fieldLength.email) && styles.warningBorder]}>
-                    {useIcons('Envelope', 20, 20)}
+                    <View style={{ ...styles.flexOne, ...styles.alignItemsCenter }}>
+                        {useIcons('Envelope', 20, 20)}
+                    </View>
                     <TextInput
                         placeholder='Ingresa tu correo'
                         placeholderTextColor='#9A9A9A'
                         keyboardType='email-address'
-                        style={styles.inputField}
+                        style={[styles.inputField, { flex: 9 }]}
                         selectionColor='#9A9A9A'
                         autoCapitalize='none'
                         autoCorrect={false}
@@ -158,10 +141,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                         placeholder='Ingresa tu contraseña'
                         placeholderTextColor='#9A9A9A'
                         secureTextEntry={passwordVisibility}
-                        style={[
-                            styles.inputField,
-                            styles.newPasswordInputTextSize
-                        ]}
+                        style={[styles.inputField, styles.newPasswordInputTextSize]}
                         selectionColor='#9A9A9A'
                         autoCapitalize='none'
                         autoCorrect={false}
@@ -173,10 +153,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                         onPress={handlePasswordVisibility}
                     >
                         <View style={styles.alignItemsCenter}>
-                            {(passwordVisibility === false)
-                                ? useIcons('Eye', 20, 20)
-                                : useIcons('EyeClosed', 20, 20)
-                            }
+                            {useIcons(eyeIcon, 20, 20)}
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -199,10 +176,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                         placeholder='Ingresa tu contraseña'
                         placeholderTextColor='#9A9A9A'
                         secureTextEntry={passwordConfirmVisibility}
-                        style={[
-                            styles.inputField,
-                            styles.newPasswordInputTextSize
-                        ]}
+                        style={[styles.inputField, styles.newPasswordInputTextSize]}
                         selectionColor='#9A9A9A'
                         autoCapitalize='none'
                         autoCorrect={false}
@@ -214,10 +188,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: P
                         onPress={handleConfirmPasswordVisibility}
                     >
                         <View style={styles.alignItemsCenter}>
-                            {(passwordConfirmVisibility === false)
-                                ? useIcons('Eye', 20, 20)
-                                : useIcons('EyeClosed', 20, 20)
-                            }
+                            {useIcons(eyeIconConfirm, 20, 20)}
                         </View>
                     </TouchableOpacity>
                 </View>

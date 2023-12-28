@@ -52,8 +52,8 @@ const UpdateProfileInputs = ({ place }: Props) => {
     const [passwordVisibility, setPasswordVisibility] = useState(true);
     const [passwordConfirmVisibility, setPasswordConfirmVisibility] = useState(true);
     const [fieldLength, setFieldLength] = useState({ password: false, confirmPassword: false });
-    const [eyeIcon] = useState('../../assets/eye-closed.png');
-    const [eyeIconConfirm] = useState('../../assets/eye-closed.png');
+    const [eyeIcon, setEyeIcon] = useState('EyeClosed');
+    const [eyeIconConfirm, setEyeIconConfirm] = useState('EyeClosed');
 
     const { description, name, category, address, phone, whatsapp, instagram, password, confirmPassword, other, onChange } = useForm({
         description: place.description,
@@ -103,19 +103,17 @@ const UpdateProfileInputs = ({ place }: Props) => {
     };
 
     const handlePasswordVisibility = () => {
-        if (eyeIcon === '../../assets/eye-closed.png') {
-            setPasswordVisibility(!passwordVisibility);
-        } else if (eyeIcon === '../../assets/eye.png') {
-            setPasswordVisibility(!passwordVisibility);
-        }
+        setPasswordVisibility(!passwordVisibility);
+        setEyeIcon((prevIcon) =>
+            prevIcon === 'EyeClosed' ? 'Eye' : 'EyeClosed'
+        );
     };
 
     const handleConfirmPasswordVisibility = () => {
-        if (eyeIconConfirm === '../../assets/eye-closed.png') {
-            setPasswordConfirmVisibility(!passwordConfirmVisibility);
-        } else if (eyeIconConfirm === '../../assets/eye.png') {
-            setPasswordConfirmVisibility(!passwordConfirmVisibility);
-        }
+        setPasswordConfirmVisibility(!passwordConfirmVisibility);
+        setEyeIconConfirm((prevIcon) =>
+            prevIcon === 'EyeClosed' ? 'Eye' : 'EyeClosed'
+        );
     };
 
     const addGalleryImage = () => {
@@ -414,7 +412,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                         <View style={styles.mediumMarginTop}>
                             <Text style={styles.captionTwoBlack}>Imágenes</Text>
                             <View style={styles.mediumMarginTop}>
-                                {(place === null)
+                                {(!place)
                                     ?
                                     <TouchableOpacity
                                         activeOpacity={1.0}
@@ -727,10 +725,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                     onPress={handlePasswordVisibility}
                                 >
                                     <View style={styles.alignItemsCenter}>
-                                        {(passwordVisibility === false)
-                                            ? useIcons('Eye', 20, 20)
-                                            : useIcons('EyeClosed', 20, 20)
-                                        }
+                                        {useIcons(eyeIcon, 20, 20)}
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -770,10 +765,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                         onPress={handleConfirmPasswordVisibility}
                                     >
                                         <View style={styles.alignItemsCenter}>
-                                            {(passwordConfirmVisibility === false)
-                                                ? useIcons('Eye', 20, 20)
-                                                : useIcons('EyeClosed', 20, 20)
-                                            }
+                                            {useIcons(eyeIconConfirm, 20, 20)}
                                         </View>
                                     </TouchableOpacity>
                                 </View>
