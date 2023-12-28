@@ -248,7 +248,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                 setLoading(false);
             }
 
-            if (loading === false) {
+            if (!loading) {
                 navigator.goBack();
             }
         }
@@ -265,9 +265,9 @@ const UpdateProfileInputs = ({ place }: Props) => {
 
     return (
         <>
-            {(loading === true) && <LoadingScreen />}
-
-            {(loading === false) &&
+            {(loading)
+                ? <LoadingScreen />
+                :
                 <ScrollView contentContainerStyle={{ paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
                     <View style={styles.mediumMarginTop}>
                         <Text style={styles.captionTwoBlack}>Descripción</Text>

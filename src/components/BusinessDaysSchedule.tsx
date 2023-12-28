@@ -30,8 +30,8 @@ const BusinessDaysSchedule = ({ everyday, sendSchedule }: Props) => {
             `Miércoles ${openingHour} ${closingHour}`,
             `Jueves ${openingHour} ${closingHour}`,
             `Viernes ${openingHour} ${closingHour}`,
-            (everyday === false) ? `Sábado Cerrado` : `Sábado ${openingHour} ${closingHour}`,
-            (everyday === false) ? `Domingo Cerrado` : `Domingo ${openingHour} ${closingHour}`
+            (!everyday) ? `Sábado Cerrado` : `Sábado ${openingHour} ${closingHour}`,
+            (!everyday) ? `Domingo Cerrado` : `Domingo ${openingHour} ${closingHour}`
         ]);
         setTableData([
             ['Lunes', openingHour, closingHour],
@@ -39,8 +39,8 @@ const BusinessDaysSchedule = ({ everyday, sendSchedule }: Props) => {
             ['Miércoles', openingHour, closingHour],
             ['Jueves', openingHour, closingHour],
             ['Viernes', openingHour, closingHour],
-            ['Sábado', (everyday === false) ? 'Cerrado' : openingHour, (everyday === false) ? 'Cerrado' : closingHour],
-            ['Domingo', (everyday === false) ? 'Cerrado' : openingHour, (everyday === false) ? 'Cerrado' : closingHour],
+            ['Sábado', (!everyday) ? 'Cerrado' : openingHour, (!everyday) ? 'Cerrado' : closingHour],
+            ['Domingo', (!everyday) ? 'Cerrado' : openingHour, (!everyday) ? 'Cerrado' : closingHour],
         ]);
     };
 
@@ -64,7 +64,7 @@ const BusinessDaysSchedule = ({ everyday, sendSchedule }: Props) => {
                 </View>
             </View>
             <View style={styles.hoursDropdownContainer}>
-                {(customized === false)
+                {(!customized)
                     ?
                     <>
                         {(schedule.length === 0) &&

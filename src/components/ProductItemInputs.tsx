@@ -71,7 +71,6 @@ const ProductItemInputs = ({ product, newItem }: Props) => {
     };
 
     const onDelete = async () => {
-        const p = Number(price);
         const response = await deleteProduct(product._id!);
         if (response) {
             Snackbar.show({ text: 'Producto eliminado', duration: Snackbar.LENGTH_SHORT });
@@ -90,9 +89,9 @@ const ProductItemInputs = ({ product, newItem }: Props) => {
 
     return (
         <>
-            {(loading === true) && <LoadingScreen />}
-
-            {(loading === false) &&
+            {(loading)
+                ? <LoadingScreen />
+                :
                 <View>
                     <View style={styles.mediumMarginTop}>
                         <Text style={styles.captionTwoBlack}>Nombre</Text>

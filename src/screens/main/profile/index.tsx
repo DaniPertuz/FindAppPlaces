@@ -77,7 +77,7 @@ const ProfileScreen = () => {
     };
 
     useEffect(() => {
-        if (isFocused === true) {
+        if (isFocused) {
             load();
         }
     }, [isFocused, userDB]);
@@ -102,9 +102,9 @@ const ProfileScreen = () => {
 
     return (
         <>
-            {(loading === false) && <LoadingScreen />}
-
-            {(loading === true) &&
+            {(!loading)
+                ? <LoadingScreen />
+                :
                 <>
                     <View style={{ paddingHorizontal: 20, paddingTop: 60 }}>
                         <View style={styles.flexDirectionRowJustifyCenter}>
