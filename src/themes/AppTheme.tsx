@@ -571,7 +571,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         marginHorizontal: 20,
         marginVertical: 25,
-        minHeight: '90%',
+        paddingBottom: '10%',
         paddingHorizontal: 22
     },
     mainContainer: {
@@ -614,6 +614,14 @@ const styles = StyleSheet.create({
     modalBackButtonMargins: {
         marginEnd: 10,
         marginTop: 10
+    },
+    newPasswordFormContainer: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 16,
+        marginHorizontal: 20,
+        marginVertical: 25,
+        paddingBottom: '50%',
+        paddingHorizontal: 22
     },
     newPasswordInputTextSize: {
         flex: 2
