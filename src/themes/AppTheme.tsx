@@ -408,10 +408,10 @@ const styles = StyleSheet.create({
     },
     inputField: {
         color: '#081023',
-        fontSize: 12,
+        fontSize: 14,
         letterSpacing: -0.24,
         lineHeight: 16,
-        padding: 16
+        padding: 12
     },
     inputFieldBlack: {
         color: '#1F273A',
@@ -565,8 +565,8 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         marginBottom: 35,
         marginHorizontal: 20,
-        marginTop: 74,
-        minHeight: 720,
+        marginTop: 30,
+        minHeight: '90%',
         paddingHorizontal: 22
     },
     mainContainer: {
