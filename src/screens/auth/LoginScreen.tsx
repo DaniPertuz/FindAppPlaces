@@ -1,21 +1,19 @@
 import React, { useContext, useEffect } from 'react';
-import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
-import { StackScreenProps } from '@react-navigation/stack';
-
+import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+import Toast from 'react-native-root-toast';
 
 import Background from '../../components/Background';
 import FormInputs from '../../components/FormInputs';
+import StatusBarComponent from '../../components/StatusBarComponent';
 import { AuthContext } from '../../context/auth';
 import { useForm } from '../../hooks/useForm';
 
 import styles from '../../themes/AppTheme';
 
-interface Props extends StackScreenProps<any, any> { }
+const LoginScreen = () => {
 
-const LoginScreen = ({ navigation }: Props) => {
-
-    const { signIn, errorMessage, removeError } = useContext(AuthContext);
+    const { errorMessage, removeError } = useContext(AuthContext);
 
     const { email, password, onChange } = useForm({
         email: '',
@@ -29,11 +27,12 @@ const LoginScreen = ({ navigation }: Props) => {
     useEffect(() => {
         if (errorMessage.length === 0) return;
 
-        Alert.alert('Error', errorMessage, [{ text: 'OK', onPress: removeError }]);
+        Toast.show(errorMessage, { duration: Toast.durations.SHORT, position: Toast.positions.BOTTOM, hideOnPress: true, delay: 0, onHidden: removeError });
     }, [errorMessage]);
 
     return (
         <ScrollView keyboardShouldPersistTaps='handled' style={styles.scrollViewBackground}>
+            <StatusBarComponent color='#081023' theme='light-content' />
             <KeyboardAvoidingView behavior={(Platform.OS === 'ios') ? 'padding' : 'height'}>
                 <Background />
                 <View style={styles.loginFormContainer}>
@@ -42,20 +41,18 @@ const LoginScreen = ({ navigation }: Props) => {
                         <View style={styles.companiesNameMargins}>
                             <Text style={styles.footnote}>Empresas</Text>
                         </View>
-                        <View style={styles.largeMarginTop}>
-                            <View style={styles.mediumMarginBottom}>
-                                <View style={styles.tinyMarginBottom}>
-                                    <Text style={styles.h4}>Bienvenido</Text>
-                                </View>
-                                <Text style={styles.bodySmall}>Ingresa tus credenciales para continuar</Text>
-                            </View>
-                            <FormInputs
-                                email={email.trim()}
-                                password={password}
-                                onChange={onChange}
-                            />
-                        </View>
                     </View>
+                    <View style={styles.mediumMarginBottom}>
+                        <View style={styles.tinyMarginBottom}>
+                            <Text style={styles.h4}>Bienvenido</Text>
+                        </View>
+                        <Text style={styles.bodySmall}>Ingresa tus credenciales para continuar</Text>
+                    </View>
+                    <FormInputs
+                        email={email.trim()}
+                        password={password}
+                        onChange={onChange}
+                    />
                 </View>
             </KeyboardAvoidingView>
         </ScrollView>
