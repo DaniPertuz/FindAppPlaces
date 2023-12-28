@@ -75,9 +75,9 @@ export const AuthProvider = ({ children }: any) => {
 
     const signIn = async ({ email, password }: LoginData): Promise<void> => {
         try {
-            const response = await findAPI.get<IUser>('/users/email', { params: { email }})
+            const response = await findAPI.get<IUser>('/users/email', { params: { email } });
 
-            if (response.data === null) {
+            if (!response.data) {
                 dispatch({
                     type: 'addError',
                     payload: 'Este usuario no es válido'
@@ -85,7 +85,11 @@ export const AuthProvider = ({ children }: any) => {
                 return;
             }
 
-            if (response.data.role !== roles.PLACE) {
+            const { data } = await findAPI.post<LoginInterface>('/auth/login', { email, password });
+
+            const { user, token } = data;
+
+            if (user.role !== roles.PLACE) {
                 dispatch({
                     type: 'addError',
                     payload: 'Este usuario no es una empresa'
@@ -93,8 +97,6 @@ export const AuthProvider = ({ children }: any) => {
                 return;
             }
 
-            const { data } = await findAPI.post<LoginInterface>('/auth/login', { email, password });
-            const { user, token } = data;
             dispatch({
                 type: 'signUp',
                 payload: {
@@ -108,7 +110,7 @@ export const AuthProvider = ({ children }: any) => {
         } catch (error: any) {
             dispatch({
                 type: 'addError',
-                payload: 'Información errada'
+                payload: 'Credenciales incorrectas.\nIntenta de nuevo.'
             });
         }
     };
