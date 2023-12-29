@@ -5,8 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackParams } from '../navigation/MainNavigator';
 import LoginButton from './LoginButton';
-import { useIcons, usePasswordVisibility } from '../hooks';
-import useFieldValidation from '../hooks/useFieldValidation';
+import { useFieldValidation, useIcons, usePasswordVisibility } from '../hooks';
 
 import styles from '../themes/AppTheme';
 

@@ -4,12 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { UsersContext } from '../context/users';
-import { useIcons, usePasswordVisibility } from '../hooks';
+import { useFieldValidation, useIcons, usePasswordVisibility } from '../hooks';
 import { roles } from '../interfaces';
 import { RootStackParams } from '../navigation/MainNavigator';
 
 import styles from '../themes/AppTheme';
-import useFieldValidation from '../hooks/useFieldValidation';
 
 interface Props {
     email: string;
@@ -33,15 +32,15 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
 
     const onUpdate = async () => {
         Keyboard.dismiss();
-    
+
         const validation = await loadUserByEmail(email);
-    
+
         validateFields({
             email: email.length === 0,
             password: password.length === 0,
             confirmPassword: confirmPassword.length === 0
         });
-    
+
         if (email.length === 0 && password.length !== 0 && confirmPassword.length !== 0) {
             handleResize('40%');
         } else if (email.length !== 0 && password.length === 0 && confirmPassword.length !== 0) {
@@ -56,13 +55,13 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
         } else if (email.length === 0 && password.length === 0 && confirmPassword.length === 0) {
             handleResize('32%');
         }
-    
+
         if (validation && (password.length === 0 && confirmPassword.length === 0)) {
             setDisplay(false);
             setNullPlace(false);
             handleResize('38%');
         }
-    
+
         if (email.length !== 0 && password.length !== 0 && confirmPassword.length !== 0) {
             if (!validation || password !== confirmPassword) {
                 setDisplay(true);
@@ -70,12 +69,12 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
                 handleResize('38%');
                 return;
             }
-    
+
             if (validation.role !== roles.PLACE) {
                 setAuthorized(true);
                 return;
             }
-    
+
             setDisplay(false);
             setNullPlace(false);
             handleResize('44%');
@@ -83,7 +82,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
             navigator.replace('LoginScreen');
         }
     };
-    
+
 
     return (
         <View>
