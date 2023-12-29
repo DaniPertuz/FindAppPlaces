@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
+import { AuthContext, PlacesContext } from '../context';
+import { useEmailValidation, useFieldValidation, useIcons, usePasswordVisibility } from '../hooks';
+import { roles } from '../interfaces';
 import { RootStackParams } from '../navigation/MainNavigator';
-import { useIcons } from '../hooks';
-import RegisterLoginButton from './RegisterLoginButton';
 
 import styles from '../themes/AppTheme';
 
@@ -14,34 +15,107 @@ interface Props {
     email: string;
     password: string;
     onChange: (value: string, field: 'name' | 'email' | 'password') => void;
+    handleResize: (value: string) => void;
 }
 
-const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
+const RegisterFormInputs = ({ name, email, password, onChange, handleResize }: Props) => {
 
-    const [passwordVisibility, setPasswordVisibility] = useState(true);
-    const [eyeIcon] = useState('../assets/eye-closed.png');
-    const [fieldLength, setFieldLength] = useState({
-        name: false,
-        email: false,
-        password: false
-    });
+    const [display, setDisplay] = useState(false);
+    const { signUp } = useContext(AuthContext);
+    const { registerPlace } = useContext(PlacesContext);
+    const { fieldLength, validateFields } = useFieldValidation();
+    const { eyeIcon, passwordVisibility, handlePasswordVisibility } = usePasswordVisibility();
 
     const navigator = useNavigation<StackNavigationProp<RootStackParams>>();
 
-    const handlePasswordVisibility = () => {
-        if (eyeIcon === '../assets/eye-closed.png') {
-            setPasswordVisibility(!passwordVisibility);
-        } else if (eyeIcon === '../assets/eye.png') {
-            setPasswordVisibility(!passwordVisibility);
-        }
-    };
+    const onLogin = () => {
+        Keyboard.dismiss();
 
-    const handleFieldLength = (name: boolean, email: boolean, password: boolean) => {
-        setFieldLength({
-            name,
-            email,
-            password
+        validateFields({
+            name: name.length === 0,
+            email: email.length === 0,
+            password: password.length === 0
         });
+
+        const isValidEmail = useEmailValidation(email);
+        const isEmailEmpty = email.length === 0;
+        const isNameEmpty = name.length === 0;
+        const isPasswordEmpty = password.length === 0;
+
+        if (isEmailEmpty) {
+            if (isNameEmpty && isPasswordEmpty) {
+                handleResize('12%');
+                return;
+            }
+
+            if (isNameEmpty && !isPasswordEmpty) {
+                handleResize('18%');
+                return;
+            }
+
+            if (!isNameEmpty && isPasswordEmpty) {
+                handleResize('18%');
+                return;
+            }
+
+            setDisplay(false);
+            handleResize('24%');
+            return;
+        }
+
+        let resizePercentage = '12%';
+
+        if (!isEmailEmpty && !isValidEmail) {
+            if (isPasswordEmpty && isNameEmpty) {
+                resizePercentage = '12%';
+            } else if (isPasswordEmpty && !isNameEmpty) {
+                resizePercentage = '18%';
+            } else if (!isPasswordEmpty && !isNameEmpty) {
+                resizePercentage = '24%';
+                setDisplay(true);
+            } else if (!isPasswordEmpty && isNameEmpty) {
+                resizePercentage = '24%';
+            }
+        } else if (isValidEmail) {
+            if (!isPasswordEmpty && !isNameEmpty) {
+                resizePercentage = '24%';
+            } else if (isPasswordEmpty && !isNameEmpty) {
+                resizePercentage = '18%';
+            } else if (isPasswordEmpty && isNameEmpty) {
+                resizePercentage = '18%';
+            }
+        }
+
+        handleResize(resizePercentage);
+
+        if (name.length !== 0 && email.length !== 0 && password.length !== 0 && isValidEmail) {
+            signUp({
+                name,
+                email,
+                password,
+                role: roles.PLACE,
+                status: true
+            });
+
+            registerPlace({
+                name,
+                description: '',
+                category: '',
+                address: '',
+                email,
+                coords: { latitude: 0, longitude: 0 },
+                phone: 3000000,
+                city: '',
+                state: '',
+                country: '',
+                schedule: [],
+                premium: 3,
+                rate: {
+                    $numberDecimal: '0'
+                },
+                status: true
+            });
+        }
     };
 
     return (
@@ -50,13 +124,15 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                 <View style={styles.tinyMarginBottom}>
                     <Text style={styles.footnote}>Nombre de la Empresa</Text>
                 </View>
-                <View style={[styles.inputFieldContainer, (fieldLength.email) && styles.warningBorder]}>
-                    {useIcons('Users', 20, 20)}
+                <View style={[styles.inputFieldContainer, (fieldLength.name) && styles.warningBorder]}>
+                    <View style={{ ...styles.flexOne, ...styles.alignItemsCenter }}>
+                        {useIcons('Users', 20, 20)}
+                    </View>
                     <TextInput
-                        placeholder='Ingresa tu nombre'
+                        placeholder='Ingresa el nombre de la empresa'
                         placeholderTextColor='#9A9A9A'
                         keyboardType='default'
-                        style={styles.inputField}
+                        style={[styles.inputField, { flex: 9 }]}
                         selectionColor='#9A9A9A'
                         autoCapitalize='none'
                         autoCorrect={false}
@@ -64,7 +140,7 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                         value={name}
                     />
                 </View>
-                {(fieldLength.email) &&
+                {(fieldLength.name) &&
                     <View style={styles.flexDirectionRowTinyMarginTop}>
                         <View style={styles.warningIconMargins}>
                             {useIcons('Warning', 15, 15)}
@@ -78,12 +154,14 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                     <Text style={styles.footnote}>Correo corporativo</Text>
                 </View>
                 <View style={[styles.inputFieldContainer, (fieldLength.email) && styles.warningBorder]}>
-                    {useIcons('Envelope', 20, 20)}
+                    <View style={{ ...styles.flexOne, ...styles.alignItemsCenter }}>
+                        {useIcons('Envelope', 20, 20)}
+                    </View>
                     <TextInput
-                        placeholder='Ingresa tu usuario o correo'
+                        placeholder='Ingresa tu correo'
                         placeholderTextColor='#9A9A9A'
                         keyboardType='email-address'
-                        style={styles.inputField}
+                        style={[styles.inputField, { flex: 9 }]}
                         selectionColor='#9A9A9A'
                         autoCapitalize='none'
                         autoCorrect={false}
@@ -99,6 +177,14 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                         <Text style={styles.warningText}>Ingresa tu correo</Text>
                     </View>
                 }
+                {(display) &&
+                    <View style={styles.flexDirectionRowTinyMarginTop}>
+                        <View style={styles.warningIconMargins}>
+                            {useIcons('Warning', 15, 15)}
+                        </View>
+                        <Text style={styles.warningText}>Correo inválido</Text>
+                    </View>
+                }
             </View>
             <View style={styles.mediumMarginTop}>
                 <View style={styles.tinyMarginBottom}>
@@ -112,10 +198,7 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                         placeholder='Ingresa tu contraseña'
                         placeholderTextColor='#9A9A9A'
                         secureTextEntry={passwordVisibility}
-                        style={[
-                            styles.inputField,
-                            { flex: 3, marginEnd: 10 }
-                        ]}
+                        style={[styles.inputField, { flex: 3, marginEnd: 10 }]}
                         selectionColor='#9A9A9A'
                         autoCapitalize='none'
                         autoCorrect={false}
@@ -126,14 +209,7 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                         activeOpacity={1.0}
                         onPress={handlePasswordVisibility}
                     >
-                        {(passwordVisibility === false)
-                            ? <View style={styles.alignItemsCenter}>
-                                {useIcons('Eye', 20, 20)}
-                            </View>
-                            : <View style={styles.alignItemsCenter}>
-                                {useIcons('EyeClosed', 20, 20)}
-                            </View>
-                        }
+                        {useIcons(eyeIcon, 20, 20)}
                     </TouchableOpacity>
                 </View>
                 {(fieldLength.password) &&
@@ -146,7 +222,13 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                 }
             </View>
             <View style={{ marginTop: 29 }}>
-                <RegisterLoginButton name={name} email={email} password={password} handleFieldLength={handleFieldLength} />
+                <TouchableOpacity
+                    activeOpacity={1.0}
+                    style={styles.button}
+                    onPress={onLogin}
+                >
+                    <Text style={styles.buttonText}>Crear Cuenta</Text>
+                </TouchableOpacity>
             </View>
             <View style={styles.createAccountButtonsContainer}>
                 <View style={styles.tinyMarginEnd}>
