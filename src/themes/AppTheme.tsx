@@ -690,8 +690,12 @@ const styles = StyleSheet.create({
         paddingVertical: 8
     },
     registerFormContainer: {
-        paddingHorizontal: 30,
-        marginTop: 10
+        backgroundColor: '#FFFFFF',
+        borderRadius: 16,
+        marginHorizontal: 20,
+        marginVertical: 25,
+        paddingBottom: '30%',
+        paddingHorizontal: 22
     },
     reviewsModal: {
         backgroundColor: 'rgba(250, 250, 250, 1)',
