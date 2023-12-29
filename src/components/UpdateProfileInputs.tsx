@@ -11,13 +11,13 @@ import Snackbar from 'react-native-snackbar';
 import BusinessDaysSchedule from './BusinessDaysSchedule';
 import CustomizedSchedule from './CustomizedSchedule';
 import { AuthContext, PlacesContext, UsersContext } from '../context';
-import { useCoords, useForm, useIcons } from '../hooks';
+import { useCoords, useForm, useIcons, usePasswordVisibility } from '../hooks';
 import { IPlace, Location } from '../interfaces';
 import { RootStackParams } from '../navigation/MainNavigator';
+import { LoadingScreen } from '../screens';
 import { categories, headers, scheduleData } from '../utils';
 
 import styles from '../themes/AppTheme';
-import { LoadingScreen } from '../screens';
 
 interface Props {
     place: IPlace;
@@ -49,11 +49,8 @@ const UpdateProfileInputs = ({ place }: Props) => {
     const [placeImageTwo, setPlaceImageTwo] = useState<string>('');
     const [allImages, setAllImages] = useState<(string | undefined)[]>([]);
     const [placeImages, setPlaceImages] = useState<(string | undefined)[]>([]);
-    const [passwordVisibility, setPasswordVisibility] = useState(true);
-    const [passwordConfirmVisibility, setPasswordConfirmVisibility] = useState(true);
     const [fieldLength, setFieldLength] = useState({ password: false, confirmPassword: false });
-    const [eyeIcon, setEyeIcon] = useState('EyeClosed');
-    const [eyeIconConfirm, setEyeIconConfirm] = useState('EyeClosed');
+    const { eyeIcon, eyeIconConfirm, passwordVisibility, passwordConfirmVisibility, handlePasswordVisibility, handleConfirmPasswordVisibility } = usePasswordVisibility();
 
     const { description, name, category, address, phone, whatsapp, instagram, password, confirmPassword, other, onChange } = useForm({
         description: place.description,
@@ -100,20 +97,6 @@ const UpdateProfileInputs = ({ place }: Props) => {
             password,
             confirmPassword
         });
-    };
-
-    const handlePasswordVisibility = () => {
-        setPasswordVisibility(!passwordVisibility);
-        setEyeIcon((prevIcon) =>
-            prevIcon === 'EyeClosed' ? 'Eye' : 'EyeClosed'
-        );
-    };
-
-    const handleConfirmPasswordVisibility = () => {
-        setPasswordConfirmVisibility(!passwordConfirmVisibility);
-        setEyeIconConfirm((prevIcon) =>
-            prevIcon === 'EyeClosed' ? 'Eye' : 'EyeClosed'
-        );
     };
 
     const addGalleryImage = () => {

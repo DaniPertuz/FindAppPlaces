@@ -5,7 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackParams } from '../navigation/MainNavigator';
 import LoginButton from './LoginButton';
-import { useIcons } from '../hooks';
+import { useIcons, usePasswordVisibility } from '../hooks';
 import useFieldValidation from '../hooks/useFieldValidation';
 
 import styles from '../themes/AppTheme';
@@ -18,17 +18,9 @@ interface Props {
 
 const FormInputs = ({ email, password, onChange }: Props) => {
 
-    const [passwordVisibility, setPasswordVisibility] = useState(true);
-    const [eyeIcon, setEyeIcon] = useState('EyeClosed');
     const navigator = useNavigation<StackNavigationProp<RootStackParams>>();
     const { fieldLength, validateFields } = useFieldValidation();
-
-    const handlePasswordVisibility = () => {
-        setPasswordVisibility(!passwordVisibility);
-        setEyeIcon((prevIcon) =>
-            prevIcon === 'EyeClosed' ? 'Eye' : 'EyeClosed'
-        );
-    };
+    const { eyeIcon, passwordVisibility, handlePasswordVisibility } = usePasswordVisibility();
 
     const handleFieldLength = (emailEmpty: boolean, passwordEmpty: boolean) => {
         validateFields({
