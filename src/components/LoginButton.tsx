@@ -1,26 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ActivityIndicator, Keyboard, Text, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
 import { AuthContext } from '../context/auth';
+import { useEmailValidation, useEmptyFieldValidation } from '../hooks';
 import styles from '../themes/AppTheme';
 
 interface Props {
     email: string;
     password: string;
-    handleFieldLength: (email: boolean, password: boolean) => void;
+    handleEmailValidation: (valid: boolean) => void;
+    handleFieldLength: (email: string, password: string) => void;
 }
 
-const LoginButton = ({ email, password, handleFieldLength }: Props) => {
+const LoginButton = ({ email, password, handleEmailValidation, handleFieldLength }: Props) => {
     const { signIn, errorMessage } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
+
+    const isValidEmail = useEmailValidation(email);
+    const { isEmpty: isEmailEmpty } = useEmptyFieldValidation();
+    const { isEmpty: isPasswordEmpty } = useEmptyFieldValidation();
 
     useEffect(() => {
         if (errorMessage.length > 0) setLoading(false);
     }, [errorMessage]);
 
     const onLogin = async () => {
-        handleFieldLength(email.length === 0, password.length === 0);
+        handleFieldLength(email, password);
+        handleEmailValidation(isValidEmail);
 
-        if (email.length !== 0 && password.length !== 0) {
+        if (!isEmailEmpty && !isPasswordEmpty && isValidEmail) {
             setLoading(true);
             signIn({ email, password });
         }
