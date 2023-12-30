@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { UsersContext } from '../context/users';
-import { useFieldValidation, useIcons, usePasswordVisibility } from '../hooks';
+import { useEmailValidation, useEmptyFieldValidation, useIcons, usePasswordVisibility } from '../hooks';
 import { roles } from '../interfaces';
 import { RootStackParams } from '../navigation/MainNavigator';
 
@@ -15,58 +15,45 @@ interface Props {
     password: string;
     confirmPassword: string;
     onChange: (value: string, field: 'email' | 'password' | 'confirmPassword') => void;
-    handleResize: (value: string) => void;
 }
 
-const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, handleResize }: Props) => {
+const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange }: Props) => {
 
     const navigator = useNavigation<StackNavigationProp<RootStackParams>>();
 
     const { loadUserByEmail, updateUserPassword } = useContext(UsersContext);
 
-    const [display, setDisplay] = useState(false);
     const [authorized, setAuthorized] = useState(false);
+    const [emailValid, setEmailValid] = useState(true);
     const [nullPlace, setNullPlace] = useState(false);
-    const { fieldLength, validateFields } = useFieldValidation();
+    const [passMeet, setPassMeet] = useState(false);
+    const [warning, setWarning] = useState(false);
+
+    const isValidEmail = useEmailValidation(email);
+    const { isEmpty: isEmailEmpty, checkEmptyFields: checkEmailEmpty } = useEmptyFieldValidation();
+    const { isEmpty: isPasswordEmpty, checkEmptyFields: checkPasswordEmpty } = useEmptyFieldValidation();
+    const { isEmpty: isConfirmedPasswordEmpty, checkEmptyFields: checkConfirmedPasswordEmpty } = useEmptyFieldValidation();
     const { eyeIcon, eyeIconConfirm, passwordVisibility, passwordConfirmVisibility, handlePasswordVisibility, handleConfirmPasswordVisibility } = usePasswordVisibility();
 
     const onUpdate = async () => {
         Keyboard.dismiss();
 
         const validation = await loadUserByEmail(email);
+        checkEmailEmpty(email);
+        checkPasswordEmpty(password);
+        checkConfirmedPasswordEmpty(confirmPassword);
+        setEmailValid(isValidEmail);
+        setWarning(!isValidEmail);
 
-        validateFields({
-            email: email.length === 0,
-            password: password.length === 0,
-            confirmPassword: confirmPassword.length === 0
-        });
-
-        if (email.length === 0 && password.length !== 0 && confirmPassword.length !== 0) {
-            handleResize('40%');
-        } else if (email.length !== 0 && password.length === 0 && confirmPassword.length !== 0) {
-            handleResize('45%');
-        } else if (email.length !== 0 && password.length === 0 && confirmPassword.length === 0) {
+        if (validation && (isPasswordEmpty && isConfirmedPasswordEmpty)) {
+            setPassMeet(false);
             setNullPlace(false);
-            handleResize('38%');
-        } else if (email.length !== 0 && password.length !== 0 && confirmPassword.length === 0) {
-            handleResize('35%');
-        } else if (email.length !== 0 && password.length === 0 && confirmPassword.length === 0) {
-            handleResize('40%');
-        } else if (email.length === 0 && password.length === 0 && confirmPassword.length === 0) {
-            handleResize('32%');
         }
 
-        if (validation && (password.length === 0 && confirmPassword.length === 0)) {
-            setDisplay(false);
-            setNullPlace(false);
-            handleResize('38%');
-        }
-
-        if (email.length !== 0 && password.length !== 0 && confirmPassword.length !== 0) {
+        if (!isEmailEmpty && !isPasswordEmpty && !isConfirmedPasswordEmpty && isValidEmail) {
             if (!validation || password !== confirmPassword) {
-                setDisplay(true);
+                setPassMeet(true);
                 setNullPlace(!validation);
-                handleResize('38%');
                 return;
             }
 
@@ -75,20 +62,18 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
                 return;
             }
 
-            setDisplay(false);
+            setPassMeet(false);
             setNullPlace(false);
-            handleResize('44%');
             updateUserPassword(email, password);
             navigator.replace('LoginScreen');
         }
     };
 
-
     return (
-        <View>
+        <KeyboardAvoidingView behavior={(Platform.OS === 'ios') ? 'padding' : 'height'}>
             <View style={styles.mediumMarginTop}>
                 <Text style={styles.footnote}>Email</Text>
-                <View style={[styles.inputFieldContainer, (fieldLength.email) && styles.warningBorder]}>
+                <View style={[styles.inputFieldContainer, (isEmailEmpty || warning) && styles.warningBorder]}>
                     <View style={{ ...styles.flexOne, ...styles.alignItemsCenter }}>
                         {useIcons('Envelope', 20, 20)}
                     </View>
@@ -104,7 +89,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
                         value={email}
                     />
                 </View>
-                {(fieldLength.email) &&
+                {(isEmailEmpty) &&
                     <View style={styles.flexDirectionRowTinyMarginTop}>
                         <View style={styles.warningIconMargins}>
                             {useIcons('Warning', 15, 15)}
@@ -112,10 +97,18 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
                         <Text style={styles.warningText}>Ingresa tu correo</Text>
                     </View>
                 }
+                {(!emailValid && !isEmailEmpty) &&
+                    <View style={styles.flexDirectionRowTinyMarginTop}>
+                        <View style={styles.warningIconMargins}>
+                            {useIcons('Warning', 15, 15)}
+                        </View>
+                        <Text style={styles.warningText}>Correo inválido</Text>
+                    </View>
+                }
             </View>
             <View style={styles.mediumMarginTop}>
                 <Text style={styles.footnote}>Contraseña</Text>
-                <View style={[styles.inputFieldContainer, (fieldLength.password) && styles.warningBorder]}>
+                <View style={[styles.inputFieldContainer, (isPasswordEmpty) && styles.warningBorder]}>
                     <View style={styles.tinyButtonSize}>
                         {useIcons('Lock', 20, 20)}
                     </View>
@@ -123,7 +116,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
                         placeholder='Ingresa tu contraseña'
                         placeholderTextColor='#9A9A9A'
                         secureTextEntry={passwordVisibility}
-                        style={[styles.inputField, styles.newPasswordInputTextSize]}
+                        style={[styles.inputField, styles.flexTwo]}
                         selectionColor='#9A9A9A'
                         autoCapitalize='none'
                         autoCorrect={false}
@@ -140,7 +133,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
                     </TouchableOpacity>
                 </View>
             </View>
-            {(fieldLength.password) &&
+            {(isPasswordEmpty) &&
                 <View style={styles.flexDirectionRowTinyMarginTop}>
                     <View style={styles.warningIconMargins}>
                         {useIcons('Warning', 15, 15)}
@@ -150,7 +143,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
             }
             <View style={styles.mediumMarginTop}>
                 <Text style={styles.footnote}>Repetir contraseña</Text>
-                <View style={[styles.inputFieldContainer, (fieldLength.confirmPassword) && styles.warningBorder]}>
+                <View style={[styles.inputFieldContainer, (isConfirmedPasswordEmpty) && styles.warningBorder]}>
                     <View style={styles.tinyButtonSize}>
                         {useIcons('Lock', 20, 20)}
                     </View>
@@ -158,7 +151,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
                         placeholder='Ingresa tu contraseña'
                         placeholderTextColor='#9A9A9A'
                         secureTextEntry={passwordConfirmVisibility}
-                        style={[styles.inputField, styles.newPasswordInputTextSize]}
+                        style={[styles.inputField, styles.flexTwo]}
                         selectionColor='#9A9A9A'
                         autoCapitalize='none'
                         autoCorrect={false}
@@ -175,7 +168,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
                     </TouchableOpacity>
                 </View>
             </View>
-            {(fieldLength.confirmPassword) &&
+            {(isConfirmedPasswordEmpty) &&
                 <View style={styles.flexDirectionRowTinyMarginTop}>
                     <View style={styles.warningIconMargins}>
                         {useIcons('Warning', 15, 15)}
@@ -183,7 +176,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
                     <Text style={styles.warningText}>Ingresa tu contraseña</Text>
                 </View>
             }
-            {(display) &&
+            {(passMeet) &&
                 <View style={styles.flexDirectionRowTinyMarginTop}>
                     <View style={styles.warningIconMargins}>
                         {useIcons('Warning', 15, 15)}
@@ -222,7 +215,7 @@ const NewPasswordFormInputs = ({ email, password, confirmPassword, onChange, han
                     <Text style={styles.buttonText}>Guardar e iniciar sesión</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </KeyboardAvoidingView>
     );
 };
 

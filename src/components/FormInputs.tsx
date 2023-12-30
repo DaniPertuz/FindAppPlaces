@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackParams } from '../navigation/MainNavigator';
 import LoginButton from './LoginButton';
-import { useFieldValidation, useIcons, usePasswordVisibility } from '../hooks';
+import { useEmptyFieldValidation, useIcons, usePasswordVisibility } from '../hooks';
 
 import styles from '../themes/AppTheme';
 
@@ -18,22 +18,30 @@ interface Props {
 const FormInputs = ({ email, password, onChange }: Props) => {
 
     const navigator = useNavigation<StackNavigationProp<RootStackParams>>();
-    const { fieldLength, validateFields } = useFieldValidation();
+
+    const [validEmail, setValidEmail] = useState(true);
+    const [warning, setWarning] = useState(false);
+
+    const { isEmpty: isEmailEmpty, checkEmptyFields: checkEmailEmpty } = useEmptyFieldValidation();
+    const { isEmpty: isPasswordEmpty, checkEmptyFields: checkPasswordEmpty } = useEmptyFieldValidation();
     const { eyeIcon, passwordVisibility, handlePasswordVisibility } = usePasswordVisibility();
 
-    const handleFieldLength = (emailEmpty: boolean, passwordEmpty: boolean) => {
-        validateFields({
-            email: emailEmpty,
-            password: passwordEmpty
-        });
+    const handleFieldLength = (emailEmpty: string, passwordEmpty: string) => {
+        checkEmailEmpty(emailEmpty);
+        checkPasswordEmpty(passwordEmpty);
+    };
+
+    const handleEmailValidation = (emailValid: boolean) => {
+        setValidEmail(emailValid);
+        setWarning(!emailValid);
     };
 
     return (
-        <View>
+        <KeyboardAvoidingView behavior={(Platform.OS === 'ios') ? 'padding' : 'height'}>
             <View style={styles.tinyMarginBottom}>
                 <Text style={styles.footnote}>Correo corporativo</Text>
             </View>
-            <View style={[styles.inputFieldContainer, (fieldLength.email) && styles.warningBorder]}>
+            <View style={[styles.inputFieldContainer, (isEmailEmpty || warning) && styles.warningBorder]}>
                 <View style={{ ...styles.flexOne, ...styles.alignItemsCenter }}>
                     {useIcons('Envelope', 20, 20)}
                 </View>
@@ -52,7 +60,7 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                     value={email}
                 />
             </View>
-            {(fieldLength.email) &&
+            {(isEmailEmpty) &&
                 <View style={styles.flexDirectionRowTinyMarginTop}>
                     <View style={styles.warningIconMargins}>
                         {useIcons('Warning', 15, 15)}
@@ -60,11 +68,19 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                     <Text style={styles.warningText}>Ingresa tu correo</Text>
                 </View>
             }
+            {(!validEmail && !isEmailEmpty) &&
+                <View style={styles.flexDirectionRowTinyMarginTop}>
+                    <View style={styles.warningIconMargins}>
+                        {useIcons('Warning', 15, 15)}
+                    </View>
+                    <Text style={styles.warningText}>Correo inválido</Text>
+                </View>
+            }
             <View style={styles.mediumMarginTop}>
                 <View style={styles.tinyMarginBottom}>
                     <Text style={styles.footnote}>Contraseña</Text>
                 </View>
-                <View style={[styles.inputFieldContainer, (fieldLength.password) && styles.warningBorder]}>
+                <View style={[styles.inputFieldContainer, (isPasswordEmpty) && styles.warningBorder]}>
                     <View style={{ ...styles.flexOne, ...styles.alignItemsCenter }}>
                         {useIcons('Lock', 20, 20)}
                     </View>
@@ -91,7 +107,7 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                 </View>
                 <View style={styles.flexDirectionRowJustifySpaceBetween}>
                     <View style={styles.forgotPasswordContainerWarning}>
-                        {(fieldLength.password) &&
+                        {(isPasswordEmpty) &&
                             <View style={styles.flexDirectionRowTinyMarginTop}>
                                 <View style={styles.warningIconMargins}>
                                     {useIcons('Warning', 15, 15)}
@@ -110,7 +126,7 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                     </View>
                 </View>
             </View>
-            <LoginButton email={email} password={password} handleFieldLength={handleFieldLength} />
+            <LoginButton email={email} password={password} handleFieldLength={handleFieldLength} handleEmailValidation={handleEmailValidation} />
             <View style={styles.createAccountButtonsContainer}>
                 <View style={styles.tinyMarginEnd}>
                     <Text style={styles.plainMediumText}>¿No tienes una empresa registrada?</Text>
@@ -123,7 +139,7 @@ const FormInputs = ({ email, password, onChange }: Props) => {
                     <Text style={styles.plainMediumTextLink}>Crear cuenta</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </KeyboardAvoidingView>
     );
 };
 
