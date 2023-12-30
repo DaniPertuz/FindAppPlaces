@@ -551,7 +551,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#081023',
         borderBottomEndRadius: 16,
         borderBottomStartRadius: 16,
-        height: '35%',
+        height: 275,
         position: 'absolute',
         width: '100%'
     },
@@ -571,7 +571,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         marginHorizontal: 20,
         marginVertical: 25,
-        paddingBottom: '10%',
+        height: '90%',
         paddingHorizontal: 22
     },
     mainContainer: {
@@ -620,11 +620,8 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         marginHorizontal: 20,
         marginVertical: 25,
-        paddingBottom: '50%',
+        height: 650,
         paddingHorizontal: 22
-    },
-    newPasswordInputTextSize: {
-        flex: 2
     },
     newUserButtonContainer: {
         alignItems: 'flex-end',
@@ -694,7 +691,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         marginHorizontal: 20,
         marginVertical: 25,
-        paddingBottom: '30%',
+        height: '88%',
         paddingHorizontal: 22
     },
     reviewsModal: {
