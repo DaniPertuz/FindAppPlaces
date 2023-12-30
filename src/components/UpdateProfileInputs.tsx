@@ -693,10 +693,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                     placeholder='Ingresa tu contraseña'
                                     placeholderTextColor='#9A9A9A'
                                     secureTextEntry={passwordVisibility}
-                                    style={[
-                                        styles.inputField,
-                                        styles.newPasswordInputTextSize
-                                    ]}
+                                    style={[styles.inputField, styles.flexTwo]}
                                     selectionColor='#9A9A9A'
                                     autoCapitalize='none'
                                     autoCorrect={false}
@@ -733,10 +730,7 @@ const UpdateProfileInputs = ({ place }: Props) => {
                                         placeholder='Repite tu contraseña'
                                         placeholderTextColor='#9A9A9A'
                                         secureTextEntry={passwordConfirmVisibility}
-                                        style={[
-                                            styles.inputField,
-                                            styles.newPasswordInputTextSize
-                                        ]}
+                                        style={[styles.inputField, styles.flexTwo]}
                                         selectionColor='#9A9A9A'
                                         autoCapitalize='none'
                                         autoCorrect={false}
