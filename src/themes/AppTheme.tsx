@@ -179,14 +179,14 @@ const styles = StyleSheet.create({
     },
     captionLink: {
         color: '#207CFD',
-        fontSize: 13,
+        fontSize: 14,
         fontWeight: '500',
         lineHeight: 15,
         letterSpacing: -0.26
     },
     captionWarning: {
         color: '#D13232',
-        fontSize: 13,
+        fontSize: 14,
         fontWeight: '500',
         lineHeight: 15,
         letterSpacing: -0.26
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     },
     captionTwoBlack: {
         color: '#1F273A',
-        fontSize: 12,
+        fontSize: 14,
         fontWeight: '500',
         lineHeight: 20,
         letterSpacing: -0.24
@@ -576,7 +576,7 @@ const styles = StyleSheet.create({
     },
     mainContainer: {
         marginHorizontal: 20,
-        marginTop: 50
+        marginTop: 40
     },
     mainLogo: {
         height: 107,
