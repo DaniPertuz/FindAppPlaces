@@ -19,7 +19,7 @@ const MainScreen = () => {
 
     const navigator = useNavigation<StackNavigationProp<RootStackParams>>();
 
-    const { favorites, history, place, ratings } = usePlace();
+    const { favorites, history, place, placeRatingAverage, ratings } = usePlace();
 
     return (
         <>
@@ -47,7 +47,7 @@ const MainScreen = () => {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.mediumMarginTop}>
-                        <BigButtons category={place?.category!} favorites={favorites.total} rate={Number(place?.rate?.$numberDecimal!)} ratings={ratings} />
+                        <BigButtons category={place?.category!} favorites={favorites.total} rate={placeRatingAverage} ratings={ratings} />
                     </View>
                     <View style={styles.mediumMarginTop}>
                         <Text style={styles.subheadline}>Estadísticas</Text>
