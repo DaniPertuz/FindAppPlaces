@@ -6,6 +6,7 @@ import { ProductsContext } from '../../../context';
 import { useIcons, usePlace } from '../../../hooks';
 import { IProduct } from '../../../interfaces';
 import { RootStackParams } from '../../../navigation/MainNavigator';
+import LoadingScreen from '../../LoadingScreen';
 import ProductsList from './ProductsList';
 
 import styles from '../../../themes/AppTheme';
@@ -54,26 +55,33 @@ const ProductsScreen = ({ navigation }: Props) => {
                     <Text style={styles.captionTwoBlack}>Mis productos</Text>
                 </View>
             </View>
-            <View style={styles.flexDirectionRowJustifyFlexEnd}>
-                <TouchableOpacity
-                    activeOpacity={1.0}
-                    style={styles.buttonAddProduct}
-                    onPress={() => navigation.navigate('ProductDetails', {
-                        product: {
-                            name: '',
-                            description: '',
-                            category: '',
-                            price: 0,
-                            place: place?._id!,
-                            img: ''
-                        },
-                        newItem: true
-                    })}
-                >
-                    <Text style={styles.buttonAddProductText}>Agregar</Text>
-                </TouchableOpacity>
-            </View>
-            <ProductsList products={products} />
+            {(products.length === 0)
+                ?
+                <LoadingScreen />
+                :
+                <>
+                    <View style={styles.flexDirectionRowJustifyFlexEnd}>
+                        <TouchableOpacity
+                            activeOpacity={1.0}
+                            style={styles.buttonAddProduct}
+                            onPress={() => navigation.navigate('ProductDetails', {
+                                product: {
+                                    name: '',
+                                    description: '',
+                                    category: '',
+                                    price: 0,
+                                    place: place?._id!,
+                                    img: ''
+                                },
+                                newItem: true
+                            })}
+                        >
+                            <Text style={styles.buttonAddProductText}>Agregar</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <ProductsList products={products} />
+                </>
+            }
         </View>
     );
 };

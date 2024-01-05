@@ -102,7 +102,7 @@ const ProfileScreen = () => {
 
     return (
         <>
-            {(!loading)
+            {(!loading || !place)
                 ? <LoadingScreen />
                 :
                 <>
