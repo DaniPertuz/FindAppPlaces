@@ -53,7 +53,7 @@ const MainScreen = () => {
                         <Text style={styles.subheadline}>Estadísticas</Text>
                     </View>
                     <View style={styles.mediumPaddingVertical}>
-                        <ScrollView showsVerticalScrollIndicator={false} contentInset={{ bottom: 450 }}>
+                        <ScrollView showsVerticalScrollIndicator={false} style={{ maxHeight: '75%' }}>
                             <SearchChart services={history.services} />
                             <UsersChart favorites={favorites.total} history={history.total} />
                             <KeywordsChart services={history.services} />
