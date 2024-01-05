@@ -22,7 +22,7 @@ const UpdateProfileScreen = ({ route, navigation }: Props) => {
                         activeOpacity={1.0}
                         onPress={() => navigation.goBack()}
                     >
-                        {useIcons('Back', 20, 20)}
+                        {useIcons('Back', 25, 25)}
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 200, ...styles.alignJustifyCenter }}>
