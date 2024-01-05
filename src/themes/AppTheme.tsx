@@ -420,7 +420,7 @@ const styles = StyleSheet.create({
     },
     inputFieldBlack: {
         color: '#1F273A',
-        fontSize: 12,
+        fontSize: 13,
         fontWeight: '500',
         height: 35,
         lineHeight: 14,
@@ -431,7 +431,7 @@ const styles = StyleSheet.create({
     },
     inputFieldBlackDescription: {
         color: '#1F273A',
-        fontSize: 12,
+        fontSize: 13,
         fontWeight: '500',
         height: 80,
         lineHeight: 16,
@@ -441,13 +441,14 @@ const styles = StyleSheet.create({
     },
     inputFieldGray: {
         color: '#9A9A9A',
-        fontSize: 12,
+        fontSize: 13,
         fontWeight: '400',
-        height: 35,
-        lineHeight: 16,
+        height: 40,
+        lineHeight: 14,
         letterSpacing: -0.24,
-        marginVertical: 10,
-        paddingHorizontal: 16
+        marginVertical: 8,
+        paddingHorizontal: 12,
+        width: '95%'
     },
     inputFieldContainer: {
         alignItems: 'center',
@@ -468,7 +469,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         flexDirection: 'row',
         marginTop: 5,
-        paddingHorizontal: 16
+        paddingHorizontal: 8
     },
     inputFieldContainerGray: {
         alignItems: 'center',
