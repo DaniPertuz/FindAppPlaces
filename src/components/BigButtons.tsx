@@ -39,7 +39,7 @@ const BigButtons = ({ category, favorites, rate, ratings }: Props) => {
                     <Text style={styles.bodySmall}>Favoritos</Text>
                 </View>
                 <View style={styles.tinyMarginTop}>
-                    <Text style={styles.footnote}>{favorites} usuarios</Text>
+                    <Text style={styles.footnote}>{favorites} {(favorites === 1) ? 'usuario' : 'usuarios'}</Text>
                 </View>
             </View>
             <TouchableOpacity
@@ -54,7 +54,7 @@ const BigButtons = ({ category, favorites, rate, ratings }: Props) => {
                         <Text style={styles.bodySmall}>{(isNaN(rate) ? 0.0 : rate.toFixed(1))}</Text>
                     </View>
                     <View style={styles.tinyMarginTop}>
-                        <Text style={styles.footnoteLink}>{ratings.total} usuarios</Text>
+                        <Text style={styles.footnoteLink}>{ratings.total} {(ratings.total === 1) ? 'usuario' : 'usuarios'}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
