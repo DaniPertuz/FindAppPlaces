@@ -88,6 +88,7 @@ import SexShop from '../assets/sex-shop.svg';
 import Shoe from '../assets/shoe.svg';
 import Sports from '../assets/sports.svg';
 import Star from '../assets/star.svg';
+import StarOut from '../assets/star-out.svg';
 import Tech from '../assets/tech.svg';
 import Timer from '../assets/timer.svg';
 import Trophy from '../assets/trophy.svg';
@@ -280,6 +281,8 @@ export const useIcons = (name: string, height: number, width: number) => {
             return <SexShop height={height} width={width} />;
         case 'Star':
             return <Star height={height} width={width} />;
+        case 'StarOut':
+            return <StarOut height={height} width={width} />;
         case 'Tecnología':
             return <Tech height={height} width={width} />;
         case 'Timer':
