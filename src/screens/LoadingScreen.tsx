@@ -5,7 +5,7 @@ import styles from '../themes/AppTheme';
 
 const LoadingScreen = () => {
     return (
-        <View>
+        <View style={styles.flexOneAlignJustifyCenter}>
             <StatusBarComponent color='rgba(104, 110, 222, 0)' theme='dark-content' />
             <ActivityIndicator size={50} color='#000000' />
         </View>
