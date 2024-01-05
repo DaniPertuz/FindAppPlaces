@@ -422,26 +422,31 @@ const styles = StyleSheet.create({
         color: '#1F273A',
         fontSize: 12,
         fontWeight: '500',
+        height: 35,
         lineHeight: 14,
         letterSpacing: -0.24,
         marginStart: 16,
-        marginVertical: 12,
+        marginVertical: 10,
         width: '90%'
     },
     inputFieldBlackDescription: {
         color: '#1F273A',
         fontSize: 12,
         fontWeight: '500',
-        height: 82,
+        height: 80,
         lineHeight: 16,
-        letterSpacing: -0.24
+        letterSpacing: -0.24,
+        textAlignVertical: 'top',
+        width: '100%'
     },
     inputFieldGray: {
         color: '#9A9A9A',
         fontSize: 12,
         fontWeight: '400',
+        height: 35,
         lineHeight: 16,
         letterSpacing: -0.24,
+        marginVertical: 10,
         paddingHorizontal: 16
     },
     inputFieldContainer: {
@@ -463,8 +468,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         flexDirection: 'row',
         marginTop: 5,
-        paddingHorizontal: 16,
-        paddingVertical: 10
+        paddingHorizontal: 16
     },
     inputFieldContainerGray: {
         alignItems: 'center',
@@ -474,7 +478,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         flexDirection: 'row',
         marginTop: 5,
-        padding: 16
+        paddingHorizontal: 16
     },
     inputFieldContainerWhite: {
         alignItems: 'center',
