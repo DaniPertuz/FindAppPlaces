@@ -9,6 +9,7 @@ import BigButtons from '../../components/BigButtons';
 import PremiumLevel from '../../components/PremiumLevel';
 import KeywordsChart from '../../components/KeywordsChart';
 import SearchChart from '../../components/SearchChart';
+import StatusBarComponent from '../../components/StatusBarComponent';
 import UsersChart from '../../components/UsersChart';
 import LoadingScreen from '../LoadingScreen';
 
@@ -22,10 +23,11 @@ const MainScreen = () => {
 
     return (
         <>
-            {!place && <LoadingScreen />}
-
-            {place &&
+            {!place
+                ? <LoadingScreen />
+                :
                 <View style={styles.mainContainer}>
+                    <StatusBarComponent color='rgba(104, 110, 222, 0)' theme='dark-content' />
                     <View style={styles.flexDirectionRowJustifySpaceBetween}>
                         <View>
                             <Text style={styles.subheadline}>Bienvenid@</Text>
