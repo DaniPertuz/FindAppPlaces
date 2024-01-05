@@ -7,7 +7,6 @@ import { IProduct } from '../../../interfaces';
 import { RootStackParams } from '../../../navigation/MainNavigator';
 
 import styles from '../../../themes/AppTheme';
-import { useIcons } from '../../../hooks';
 
 interface Props {
     product: IProduct;
