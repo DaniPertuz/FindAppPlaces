@@ -38,6 +38,15 @@ export const PlacesProvider = ({ children }: any) => {
         }
     };
 
+    const getPlaceRatingAverage = async (placeID: string): Promise<number> => {
+        try {
+            const { data } = await findAPI.get<{ average: number; }>(`/ratings/place/${placeID}`);
+            return data.average;
+        } catch (error) {
+            throw new Error(`${error}`);
+        }
+    };
+
     const getRatings = async (placeId: string): Promise<IRatingList> => {
         try {
             const { data } = await findAPI.get<IRatingList>(`/ratings/all/${placeId}`);
@@ -164,6 +173,7 @@ export const PlacesProvider = ({ children }: any) => {
             ...state,
             getFavorites,
             getHistory,
+            getPlaceRatingAverage,
             getRatings,
             loadPlaceByEmail,
             registerPlace,
