@@ -57,7 +57,7 @@ const ProductsScreen = ({ navigation }: Props) => {
             </View>
             {(products.length === 0)
                 ?
-                <LoadingScreen />
+                <View style={{ height: '95%' }}><LoadingScreen /></View>
                 :
                 <>
                     <View style={styles.flexDirectionRowJustifyFlexEnd}>
