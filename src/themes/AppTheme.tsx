@@ -422,7 +422,7 @@ const styles = StyleSheet.create({
         color: '#1F273A',
         fontSize: 13,
         fontWeight: '500',
-        height: 35,
+        height: 40,
         lineHeight: 14,
         letterSpacing: -0.24,
         marginStart: 16,
@@ -674,6 +674,11 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingHorizontal: 10,
         paddingVertical: 8
+    },
+    profileScreenPic: {
+        borderRadius: 50,
+        height: 97,
+        width: 97
     },
     rateItemContainer: {
         backgroundColor: '#FFFFFF',
