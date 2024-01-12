@@ -3,5 +3,7 @@ export * from './useEmailValidation';
 export * from './useEmptyFieldValidation';
 export * from './useForm';
 export * from './useIcons';
+export * from './useImages';
 export * from './usePasswordVisibility';
 export * from './usePlace';
+export * from './useUpdateProfileProps';
