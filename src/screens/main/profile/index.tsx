@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Image, Modal, Text, TouchableOpacity, View } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
 import { launchCamera, launchImageLibrary, ImagePickerResponse } from 'react-native-image-picker';
 import Snackbar from 'react-native-snackbar';
 
@@ -13,7 +13,9 @@ import LoadingScreen from '../../LoadingScreen';
 
 import styles from '../../../themes/AppTheme';
 
-const ProfileScreen = () => {
+interface Props extends StackScreenProps<RootStackParams, 'UpdateProfileScreen'> { };
+
+const ProfileScreen = ({ navigation }: Props) => {
     const isFocused = useIsFocused();
 
     const { logOut, user } = useContext(AuthContext);
@@ -26,8 +28,6 @@ const ProfileScreen = () => {
     const [place, setPlace] = useState<IPlace>();
     // const [response, setResponse] = useState<any>(null);
     const [userDB, setUserDB] = useState<IUser>();
-
-    const navigator = useNavigation<StackNavigationProp<RootStackParams>>();
 
     const addPhoto = () => {
         launchCamera({
@@ -112,7 +112,7 @@ const ProfileScreen = () => {
                                 source={(!userDB || userDB?.photo === '')
                                     ? require('../../../assets/fa_blue.png')
                                     : { uri: userDB?.photo }}
-                                style={{ borderRadius: 50, height: 97, width: 97 }}
+                                style={styles.profileScreenPic}
                             />
                             <TouchableOpacity
                                 activeOpacity={1.0}
@@ -128,7 +128,7 @@ const ProfileScreen = () => {
                                 <View style={styles.alignJustifyCenter}>
                                     <TouchableOpacity
                                         activeOpacity={0.9}
-                                        onPress={() => { navigator.navigate('UpdateProfileScreen', { place: place! }); }}
+                                        onPress={() => navigation.navigate('UpdateProfileScreen', { place: place! })}
                                         style={styles.editProfileButton}
                                     >
                                         {useIcons('Edit', 20, 20)}
@@ -182,7 +182,7 @@ const ProfileScreen = () => {
                                 <TouchableOpacity
                                     activeOpacity={1.0}
                                     style={styles.alignItemsBaseline}
-                                    onPress={() => navigator.navigate('ProductsScreen')}
+                                    onPress={() => navigation.navigate('ProductsScreen')}
                                 >
                                     <Text style={styles.captionLink}>Productos</Text>
                                 </TouchableOpacity>
