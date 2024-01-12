@@ -61,12 +61,12 @@ export interface IPlace {
     whatsapp?:   string;
     instagram?:  string;
     city:        string;
-    state:       string;
+    cityState:   string;
     country:     string;
     schedule:    string[];
     photo?:      string;
     premium?:    number;
-    pics?:       (string | undefined)[];
+    pics:        string[];
     rate?:       NumericRate;
     status:      boolean;
 }
