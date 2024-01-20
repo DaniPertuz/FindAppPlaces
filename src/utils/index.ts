@@ -94,6 +94,11 @@ export const categories = [
     { category: 'Otro' }
 ];
 
+export const allowedDays = ['Lunes a Viernes', 'Lunes a Domingo', 'Personalizado'];
+export const daysOfWeekEnglish = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+export const daysOfWeekSpanish = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+export const formatHour = (hour: string) => hour.replace('AM', ' AM').replace('PM', ' PM');
+
 export const scheduleData = [
     { days: 'Lunes a Viernes' },
     { days: 'Lunes a Domingo' },
