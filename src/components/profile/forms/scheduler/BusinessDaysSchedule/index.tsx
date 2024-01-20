@@ -56,8 +56,6 @@ const BusinessDaysSchedule = ({ everyday, sendSchedule, handleScheduleUpdated }:
     }
 
     const handleUpdateSchedule = (value: boolean) => {
-        console.log('value', value);
-
         setScheduleUpdated(value);
         handleScheduleUpdated(value);
     };
