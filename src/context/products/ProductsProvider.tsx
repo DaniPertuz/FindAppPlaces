@@ -13,7 +13,6 @@ export const ProductsProvider = ({ children }: any) => {
             const { data } = await findAPI.get<IProduct[]>(`/products/place/${placeId}`);
             return data;
         } catch (error: any) {
-            console.log(error.response.data.message);
             throw new Error(`${error}`);
         }
     };
@@ -23,7 +22,6 @@ export const ProductsProvider = ({ children }: any) => {
             const { data } = await findAPI.get<IProduct>(`/products/${id}`);
             return data;
         } catch (error: any) {
-            console.log(error.response.data.message);
             throw new Error(`${error}`);
         }
     };
@@ -33,7 +31,6 @@ export const ProductsProvider = ({ children }: any) => {
             const { data } = await findAPI.post<IProduct>('/products', product);
             return data;
         } catch (error: any) {
-            console.log(error.response);
             throw new Error(`${error}`);
         }
     };
@@ -43,7 +40,6 @@ export const ProductsProvider = ({ children }: any) => {
             const resp = await findAPI.put<IProduct>(`/products/${id}`, data);
             return resp.data;
         } catch (error: any) {
-            console.log(error.response.data.message);
             throw new Error(`${error}`);
         }
     };
@@ -53,7 +49,6 @@ export const ProductsProvider = ({ children }: any) => {
             const resp = await findAPI.put<IProduct>(`/products/image/${id}`, { img });
             return resp.data;
         } catch (error: any) {
-            console.log(error.response.data);
             throw new Error(`${error}`);
         }
     };
@@ -63,7 +58,6 @@ export const ProductsProvider = ({ children }: any) => {
             const { data } = await findAPI.delete<IProduct>(`/products/${id}`);
             return data;
         } catch (error: any) {
-            console.log(error.response.data);
             throw new Error(`${error}`);
         }
     };
@@ -124,7 +118,6 @@ export const ProductsProvider = ({ children }: any) => {
 
             return secure_url;
         } catch (error: any) {
-            console.log(error.response.data);
             throw new Error(`${error}`);
         }
     };
