@@ -1,12 +1,14 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import UpdateProfileInputs from '../../../components/UpdateProfileInputs';
-import { useIcons } from '../../../hooks';
+import UpdateProfileInputs from '../../../components/profile/update-profile/UpdateProfileInputs';
 import { RootStackParams } from '../../../navigation/MainNavigator';
 
-import styles from '../../../themes/AppTheme';
+import BackButton from '../../../components/ui/BackButton';
+import HeaderTitle from '../../../components/profile/ui/HeaderTitle';
+
+import { styles } from './styles';
 
 interface Props extends StackScreenProps<RootStackParams, 'UpdateProfileScreen'> { };
 
@@ -16,20 +18,15 @@ const UpdateProfileScreen = ({ route, navigation }: Props) => {
 
     return (
         <View style={styles.mainContainer}>
-            <View style={{ ...styles.flexDirectionRow, ...styles.smallMediumMarginBottom }}>
+            <View style={styles.headerContainer}>
                 <View style={styles.flexOneAlignJustifyCenter}>
-                    <TouchableOpacity
-                        activeOpacity={1.0}
-                        onPress={() => navigation.goBack()}
-                    >
-                        {useIcons('Back', 25, 25)}
-                    </TouchableOpacity>
+                    <BackButton onPress={() => navigation.goBack()} />
                 </View>
-                <View style={{ flex: 200, ...styles.alignJustifyCenter }}>
-                    <Text style={styles.captionTwoBlack}>Editar Perfil</Text>
+                <View style={styles.headerAlignment}>
+                    <HeaderTitle />
                 </View>
             </View>
-            <View style={{ marginHorizontal: 15 }}>
+            <View style={styles.containerMargins}>
                 <UpdateProfileInputs place={place} />
             </View>
         </View>
