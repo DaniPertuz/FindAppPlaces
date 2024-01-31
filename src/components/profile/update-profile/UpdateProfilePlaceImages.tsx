@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 import UpdateProfileMultipleImages from './UpdateProfileMultipleImages';
-import AddImageButton from '../forms/images-gallery/Button';
-import styles from '../../../themes/AppTheme';
+import AddImageButton from '../forms/images-gallery/AddImageButton';
+import { styles } from './styles';
 
 interface Props {
     images: string[];
