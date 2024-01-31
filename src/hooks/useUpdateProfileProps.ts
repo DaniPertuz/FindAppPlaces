@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { ImagePickerResponse } from 'react-native-image-picker';
 import Snackbar from 'react-native-snackbar';
 
 import { AuthContext, PlacesContext, UsersContext } from '../context';
 import { IPlace, Location } from '../interfaces';
 import { RootStackParams } from '../navigation/MainNavigator';
-import { useCoords, useForm, useImages } from './';
+import { useCoords, useForm, useImagesGallery } from './';
 
 interface Props {
     place: IPlace;
@@ -41,10 +42,12 @@ export const useUpdateProfileProps = ({ place }: Props) => {
     const [placeCategory, setPlaceCategory] = useState('');
     const [placeSchedule, setPlaceSchedule] = useState<string[]>([]);
     const [placeImages, setPlaceImages] = useState<string[]>([]);
+    const [response, setResponse] = useState<ImagePickerResponse>();
 
-    const { handleUploadPics } = useImages();
+    const { handleUploadPics } = useImagesGallery({ place });
 
-    const handlePlaceImages = (images: string[]) => setPlaceImages(images);
+    const handlePicsFromGallery = (response: ImagePickerResponse) => setResponse(response);
+
     const handleSchedule = (schedule: string[]) => setPlaceSchedule(schedule);
 
     const splitAddress = (address: string) => {
@@ -93,7 +96,7 @@ export const useUpdateProfileProps = ({ place }: Props) => {
         }
 
         if (password.length === 0 && confirmPassword.length === 0) {
-            const pics = await handleUploadPics();
+            const pics = await handleUploadPics(response!);
 
             const data: IPlace = {
                 name,
@@ -122,6 +125,7 @@ export const useUpdateProfileProps = ({ place }: Props) => {
 
     useEffect(() => {
         setPlaceCategory(category);
+        setPlaceImages(place.pics);
     }, []);
 
     useEffect(() => {
@@ -146,10 +150,10 @@ export const useUpdateProfileProps = ({ place }: Props) => {
         password,
         confirmPassword,
         other,
-        onChange,
-        handlePlaceImages,
+        handlePicsFromGallery,
         handleSchedule,
         onAddressBlur,
+        onChange,
         onSubmit,
         setPlaceCategory
     };
