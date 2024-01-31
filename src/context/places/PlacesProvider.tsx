@@ -23,7 +23,6 @@ export const PlacesProvider = ({ children }: any) => {
             const { data } = await findAPI.get<IFavorites>(`/favorites/place/${placeId}`);
             return data;
         } catch (error: any) {
-            console.log(error.response.data.message);
             throw new Error(`${error}`);
         }
     };
@@ -33,7 +32,6 @@ export const PlacesProvider = ({ children }: any) => {
             const { data } = await findAPI.get<IHistory>(`/services/place/${placeId}`);
             return data;
         } catch (error: any) {
-            console.log(error.response.data.message);
             throw new Error(`${error}`);
         }
     };
@@ -52,7 +50,6 @@ export const PlacesProvider = ({ children }: any) => {
             const { data } = await findAPI.get<IRatingList>(`/ratings/all/${placeId}`);
             return data;
         } catch (error: any) {
-            console.log(error.response.data.message);
             throw new Error(`${error}`);
         }
     };
@@ -79,7 +76,7 @@ export const PlacesProvider = ({ children }: any) => {
                 whatsapp,
                 instagram,
                 city,
-                state,
+                cityState,
                 country,
                 schedule,
                 photo,
@@ -100,7 +97,7 @@ export const PlacesProvider = ({ children }: any) => {
                 whatsapp,
                 instagram,
                 city,
-                state,
+                cityState,
                 country,
                 schedule,
                 photo,
@@ -110,7 +107,6 @@ export const PlacesProvider = ({ children }: any) => {
                 status
             });
         } catch (error: any) {
-            console.log(error.response);
             throw new Error(`${error}`);
         }
     };
