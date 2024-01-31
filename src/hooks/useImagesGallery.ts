@@ -129,7 +129,6 @@ export const useImagesGallery = ({ place }: Props) => {
         setPlaceImage,
         setPlaceImageOne,
         setPlaceImageTwo,
-        setPlaceImages,
-        setResponse
+        setPlaceImages
     };
 };
