@@ -1,11 +1,10 @@
 import React from 'react';
-import { Image, ScrollView, TouchableOpacity, View } from 'react-native';
-import { useIcons } from '../../../hooks';
-import AddImageButton from '../forms/images-gallery/Button';
-import styles from '../../../themes/AppTheme';
+import { ScrollView, View } from 'react-native';
+import AddImageButton from '../forms/images-gallery/AddImageButton';
+import UpdateProfileRemoveImage from './UpdateProfileRemoveImage';
 
 interface Props {
-    images: (string | undefined)[];
+    images: string[];
     onAdd: () => void;
     onRemove: (value: number) => void;
 }
@@ -15,14 +14,7 @@ const UpdateProfileMultipleImages = ({ images, onAdd, onRemove }: Props) => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {images.map((image, index) => (
                 <View key={index}>
-                    <TouchableOpacity
-                        activeOpacity={1.0}
-                        style={styles.minusButton}
-                        onPress={() => onRemove(index)}
-                    >
-                        {useIcons('Minus', 20, 20)}
-                    </TouchableOpacity>
-                    <Image source={{ uri: image }} style={styles.imageFromGallery} />
+                    <UpdateProfileRemoveImage uri={image} onRemove={() => onRemove(index)} />
                 </View>
             ))}
             <AddImageButton onPress={onAdd} icon="CameraPlus" />
