@@ -15,6 +15,7 @@ type PlaceContextProps = {
     updatePlacePhoto:      (id: string, photoURL: string) => Promise<IPlace>;
     uploadPics:            (data: ImagePickerResponse) => Promise<string[]>;
     removeError:           () => void;
+    removePic:             (url: string) => void;
 }
 
 export const PlacesContext = createContext({} as PlaceContextProps);
