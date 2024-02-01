@@ -1,4 +1,5 @@
 export * from './useCoords';
+export * from './useCloudinaryOperation';
 export * from './useEmailValidation';
 export * from './useEmptyFieldValidation';
 export * from './useForm';
