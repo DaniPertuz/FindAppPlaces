@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import { ImagePickerResponse, launchImageLibrary } from 'react-native-image-picker';
+
 import { PlacesContext } from '../context';
 import { IPlace } from '../interfaces';
 
@@ -8,7 +9,7 @@ interface Props {
 }
 
 export const useImagesGallery = ({ place }: Props) => {
-    const { uploadPics } = useContext(PlacesContext);
+    const { updatePlace, uploadPics, removePic } = useContext(PlacesContext);
 
     const [displayCamera, setDisplayCamera] = useState(false);
     const [displayCameraOne, setDisplayCameraOne] = useState(false);
@@ -98,7 +99,10 @@ export const useImagesGallery = ({ place }: Props) => {
 
     const handleRemovePic = (index: number) => {
         const updatedImages = [...placeImages];
+        const imageToDelete: string = updatedImages[index];
+        removePic(imageToDelete);
         updatedImages.splice(index, 1);
+        updatePlace(place._id!, { ...place, pics: updatedImages });
         setPlaceImages(updatedImages);
     };
 
