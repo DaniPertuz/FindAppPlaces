@@ -1,24 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { ImagePickerResponse } from 'react-native-image-picker';
 
-import sha1 from 'sha1';
-import { CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_CLOUD_NAME, CLOUDINARY_UPLOAD_PRESET } from '@env';
-
-import findAPI from '../../api/findapi';
-import { IUser } from '../../interfaces';
 import { UsersContext } from './';
-
-export interface UsersState {
-    role: string;
-    name: string;
-    document: string;
-    email: string;
-    address: string;
-    phone: number;
-    username: string;
-    status: boolean;
-    img?: string;
-}
+import { handleUpdateCloudinaryPic } from '../../hooks';
+import { IUser } from '../../interfaces';
+import findAPI from '../../api/findapi';
 
 export const UsersProvider = ({ children }: any) => {
 
@@ -109,56 +95,10 @@ export const UsersProvider = ({ children }: any) => {
 
     const updatePhoto = async (data: ImagePickerResponse, userId: string) => {
         const { photo } = await loadUserByID(userId);
+        const pic = await handleUpdateCloudinaryPic(data, true, photo);
+        const secure_url = pic[0];
 
-        const headers = {
-            'Content-Type': 'multipart/form-data'
-        };
-
-        if (photo) {
-            const nameArr = photo.split('/');
-            const name = nameArr[nameArr.length - 1];
-            const [public_id] = name.split('.');
-
-            const timestamp = new Date().getTime();
-            const image = `public_id=${public_id}&timestamp=${timestamp}${CLOUDINARY_API_SECRET}`;
-            const signature = sha1(image);
-
-            const destroyData = new FormData();
-
-            destroyData.append('public_id', public_id);
-            destroyData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-            destroyData.append('api_key', CLOUDINARY_API_KEY);
-            destroyData.append('cloud_name', CLOUDINARY_CLOUD_NAME);
-            destroyData.append('signature', signature);
-            destroyData.append('timestamp', timestamp);
-
-
-            await fetch('https://api.cloudinary.com/v1_1/dpertuzo/image/destroy', {
-                method: 'POST',
-                headers,
-                body: destroyData
-            });
-        }
-
-        const { uri, type, fileName } = data.assets![0];
-
-        const fileToUpload = {
-            uri,
-            type,
-            name: fileName
-        };
-
-        const uploadData = new FormData();
-        uploadData.append('file', fileToUpload);
-        uploadData.append('upload_preset', 'findapp');
-
-        const upload = await fetch('https://api.cloudinary.com/v1_1/dpertuzo/upload', {
-            method: 'POST',
-            headers,
-            body: uploadData
-        });
-
-        const { secure_url } = await upload.json();
+        await findAPI.put(`/users/${userId}`, { photo: secure_url });
 
         return secure_url;
     };
@@ -179,4 +119,4 @@ export const UsersProvider = ({ children }: any) => {
             {children}
         </UsersContext.Provider>
     );
-};;
+};
