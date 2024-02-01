@@ -1,8 +1,10 @@
 import React, { useReducer } from 'react';
-import findAPI from '../../api/findapi';
 import { ImagePickerResponse } from 'react-native-image-picker';
+
 import { PlacesContext, PlacesReducer } from '.';
 import { IFavorites, IHistory, IPlace, IRatingList } from '../../interfaces';
+import { deleteCloudinaryPic, handleUpdateCloudinaryPic } from '../../hooks';
+import findAPI from '../../api/findapi';
 
 export interface PlacesState {
     place: IPlace | null;
@@ -63,7 +65,7 @@ export const PlacesProvider = ({ children }: any) => {
         }
     };
 
-    const registerPlace = async (place: IPlace) => {
+    const registerPlace = async (place: IPlace): Promise<void> => {
         try {
             const {
                 name,
@@ -129,40 +131,11 @@ export const PlacesProvider = ({ children }: any) => {
         }
     };
 
-    const uploadPics = async (data: ImagePickerResponse) => {
-        let pics: string[] = [];
-        const headers = {
-            'Content-Type': 'multipart/form-data'
-        };
+    const uploadPics = async (data: ImagePickerResponse): Promise<string[]> => await handleUpdateCloudinaryPic(data);
 
-        for (let i = 0; i < data.assets!.length; i++) {
-            const element = data.assets![i];
-            const { uri, type, fileName } = element;
+    const removeError = (): void => dispatch({ type: 'removeError' });
 
-            const fileToUpload = {
-                uri,
-                type,
-                name: fileName
-            };
-            const uploadData = new FormData();
-            uploadData.append('file', fileToUpload);
-            uploadData.append('upload_preset', 'findapp');
-
-            const upload = await fetch('https://api.cloudinary.com/v1_1/dpertuzo/upload', {
-                method: 'POST',
-                headers,
-                body: uploadData
-            });
-            const { secure_url } = await upload.json();
-            pics.push(secure_url);
-        }
-
-        return pics;
-    };
-
-    const removeError = (): void => {
-        dispatch({ type: 'removeError' });
-    };
+    const removePic = async (url: string): Promise<void> => await deleteCloudinaryPic(url);
 
     return (
         <PlacesContext.Provider value={{
@@ -176,7 +149,8 @@ export const PlacesProvider = ({ children }: any) => {
             updatePlacePhoto,
             updatePlace,
             uploadPics,
-            removeError
+            removeError,
+            removePic
         }}
         >
             {children}
