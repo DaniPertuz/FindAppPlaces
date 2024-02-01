@@ -1,9 +1,8 @@
 import React, { useEffect, useReducer } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ImagePickerResponse } from 'react-native-image-picker';
 
-import { IUser, LoginData, LoginInterface, roles } from '../../interfaces';
 import { AuthContext, AuthReducer } from './';
+import { IUser, LoginData, LoginInterface, roles } from '../../interfaces';
 import findAPI from '../../api/findapi';
 
 export interface AuthState {
@@ -115,44 +114,6 @@ export const AuthProvider = ({ children }: any) => {
         }
     };
 
-    const uploadImage = async (data: ImagePickerResponse, userId: string) => {
-        try {
-            const { uri, type, fileName } = data.assets![0];
-
-            const fileToUpload = {
-                uri,
-                type,
-                name: fileName
-            };
-
-            const formData = new FormData();
-
-            formData.append('file', fileToUpload);
-            formData.append('upload_preset', 'findapp');
-
-            const headers = {
-                'Content-Type': 'multipart/form-data'
-            };
-
-            const response = await fetch('https://api.cloudinary.com/v1_1/dpertuzo/upload', {
-                method: 'POST',
-                headers,
-                body: formData
-            });
-
-            const { secure_url } = await response.json();
-
-            await findAPI.put(`/users/${userId}`, { photo: secure_url });
-
-            return secure_url;
-        } catch (err: any) {
-            dispatch({
-                type: 'addError',
-                payload: 'Información errada'
-            });
-        }
-    };
-
     const logOut = async (): Promise<void> => {
         await AsyncStorage.removeItem('token');
         await AsyncStorage.removeItem('user');
@@ -168,7 +129,6 @@ export const AuthProvider = ({ children }: any) => {
             ...state,
             signUp,
             signIn,
-            uploadImage,
             logOut,
             removeError
         }}
