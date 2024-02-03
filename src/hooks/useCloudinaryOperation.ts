@@ -65,7 +65,7 @@ export const useCloudinaryOperation = () => {
             destroyData.append('cloud_name', CLOUDINARY_CLOUD_NAME);
             destroyData.append('signature', signature);
             destroyData.append('timestamp', timestamp);
-            console.log(destroyData);
+
             await fetch('https://api.cloudinary.com/v1_1/dpertuzo/image/destroy', {
                 method: 'POST',
                 headers,
