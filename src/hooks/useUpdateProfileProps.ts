@@ -119,7 +119,7 @@ export const useUpdateProfileProps = ({ place }: Props) => {
             await updatePlace(place._id!, data);
             setLoading(false);
             Snackbar.show({ text: 'Cambios registrados', duration: Snackbar.LENGTH_SHORT });
-            navigation.replace('Profile');
+            navigation.goBack();
         }
     };
 
