@@ -3,7 +3,7 @@ import { ImagePickerResponse } from 'react-native-image-picker';
 
 import { PlacesContext, PlacesReducer } from '.';
 import { IFavorites, IHistory, IPlace, IRatingList } from '../../interfaces';
-import { deleteCloudinaryPic, handleUpdateCloudinaryPic } from '../../hooks';
+import { useCloudinaryOperation } from '../../hooks';
 import findAPI from '../../api/findapi';
 
 export interface PlacesState {
@@ -19,6 +19,7 @@ const PLACES_INITIAL_STATE: PlacesState = {
 export const PlacesProvider = ({ children }: any) => {
 
     const [state, dispatch] = useReducer(PlacesReducer, PLACES_INITIAL_STATE);
+    const { deleteCloudinaryPic, handleUpdateCloudinaryPic } = useCloudinaryOperation();
 
     const getFavorites = async (placeId: string): Promise<IFavorites> => {
         try {

@@ -3,10 +3,11 @@ import { ImagePickerResponse } from 'react-native-image-picker';
 
 import { ProductsContext } from './';
 import { IProduct } from '../../interfaces';
-import {  handleUpdateCloudinaryPic } from '../../hooks';
+import { useCloudinaryOperation } from '../../hooks';
 import findAPI from '../../api/findapi';
 
 export const ProductsProvider = ({ children }: any) => {
+    const { handleUpdateCloudinaryPic } = useCloudinaryOperation();
 
     const getProductsByPlace = async (placeId: string): Promise<IProduct[]> => {
         try {

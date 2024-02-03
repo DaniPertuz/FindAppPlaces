@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { ImagePickerResponse } from 'react-native-image-picker';
 
 import { UsersContext } from './';
-import { handleUpdateCloudinaryPic } from '../../hooks';
+import { useCloudinaryOperation } from '../../hooks'
 import { IUser } from '../../interfaces';
 import findAPI from '../../api/findapi';
 
 export const UsersProvider = ({ children }: any) => {
 
     const [users, setUsers] = useState<IUser[]>([]);
+    const { handleUpdateCloudinaryPic } = useCloudinaryOperation();
 
     useEffect(() => {
         loadUsers();
