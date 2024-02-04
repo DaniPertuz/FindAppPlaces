@@ -9,5 +9,12 @@ export const styles = StyleSheet.create({
         height: 100,
         marginEnd: 15,
         width: 100
+    },
+    warningText: {
+        color: '#D13232',
+        fontSize: 13,
+        fontWeight: '500',
+        letterSpacing: -0.24,
+        lineHeight: 20
     }
 });
