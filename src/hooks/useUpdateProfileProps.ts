@@ -92,7 +92,7 @@ export const useUpdateProfileProps = ({ place }: Props) => {
             updateUserPassword(user?.email!, password);
             setValidPassword(true);
             Snackbar.show({ text: 'Contraseña actualizada', duration: Snackbar.LENGTH_SHORT });
-            navigation.replace('Profile');
+            navigation.goBack();
         }
 
         if (password.length === 0 && confirmPassword.length === 0) {
