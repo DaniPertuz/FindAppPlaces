@@ -6,7 +6,7 @@ interface Props {
     onPress: () => void;
 }
 
-const SchedulerEditButton = ({ onPress }: Props) => {
+const EditButton = ({ onPress }: Props) => {
     return (
         <View style={styles.scheduleMarginTop}>
             <TouchableOpacity activeOpacity={1.0} onPress={onPress}>
@@ -16,4 +16,4 @@ const SchedulerEditButton = ({ onPress }: Props) => {
     );
 };
 
-export default SchedulerEditButton;
+export default EditButton;
