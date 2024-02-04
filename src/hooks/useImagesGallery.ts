@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ImagePickerResponse, launchImageLibrary } from 'react-native-image-picker';
 
 import { PlacesContext } from '../context';
@@ -9,67 +9,36 @@ interface Props {
 }
 
 export const useImagesGallery = ({ place }: Props) => {
-    const { updatePlace, uploadPics, removePic } = useContext(PlacesContext);
+    const { uploadPics, removePic } = useContext(PlacesContext);
 
-    const [displayCamera, setDisplayCamera] = useState(false);
-    const [displayCameraOne, setDisplayCameraOne] = useState(false);
-    const [displayCameraTwo, setDisplayCameraTwo] = useState(false);
-    const [placeImage, setPlaceImage] = useState<string>('');
-    const [placeImageOne, setPlaceImageOne] = useState<string>('');
-    const [placeImageTwo, setPlaceImageTwo] = useState<string>('');
     const [placeImages, setPlaceImages] = useState<string[]>([]);
     const [response, setResponse] = useState<ImagePickerResponse>();
 
-    const removeSingleImage = () => {
-        setPlaceImages(placeImages.splice(0, 1));
-        setDisplayCamera(true);
-    };
-
-    const removeImageOneFromAllImages = () => {
-        placeImages[0] = '';
-        setDisplayCameraOne(true);
-    };
-
-    const removeImageOne = () => {
-        setPlaceImageOne('');
-        setDisplayCameraOne(true);
-    };
-
-    const removeImageTwoFromAllImages = () => {
-        placeImages[1] = '';
-        setDisplayCameraTwo(true);
-    };
-
-    const removeImageTwo = () => {
-        setPlaceImageTwo('');
-        setDisplayCameraTwo(true);
-    };
-
-    const launchImageLibraryAsync = () => {
+    const launchImageLibraryAsync = (selectionLimit: number) => {
         return new Promise<ImagePickerResponse>((resolve) => {
             launchImageLibrary({
                 mediaType: 'photo',
                 quality: 0.8,
-                selectionLimit: 1
+                selectionLimit
             }, (resp: ImagePickerResponse) => {
-                resolve(resp);
+                const modifiedResp: ImagePickerResponse = {
+                    ...resp,
+                    assets: resp.assets ? ((place.premium === 2 && place.pics.length === 0) ? resp.assets.slice(0, 2) : (place.premium === 2 && place.pics.length === 1) ? resp.assets.slice(0, 1) : resp.assets) : [],
+                };
+
+                resolve(modifiedResp);
             });
         });
     };
 
-    const addGalleryPic = async (setImage: (uri: string) => void, setDisplayCamera?: Dispatch<SetStateAction<boolean>>) => {
+    const addGalleryPic = async () => {
         try {
-            const resp = await launchImageLibraryAsync();
+            const resp = await launchImageLibraryAsync(1);
             if (resp.didCancel || !resp.assets![0].uri) return;
 
             const uri = resp.assets![0].uri;
 
-            setImage(uri);
-
-            if (setDisplayCamera) {
-                setDisplayCamera(false);
-            }
-
+            setPlaceImages([uri]);
             setResponse(resp);
         } catch (error) {
             console.error(error);
@@ -78,12 +47,13 @@ export const useImagesGallery = ({ place }: Props) => {
 
     const addGalleryPics = async () => {
         try {
-            const resp = await launchImageLibraryAsync();
-            if (!resp.assets || resp.didCancel || !resp.assets[0]?.uri) return;
+            const resp = await launchImageLibraryAsync(0);
 
-            const uris = resp.assets!.map((asset) => asset.uri).filter(Boolean) as string[];
+            if (!resp.assets || resp.didCancel) return;
 
-            setPlaceImages(prevImages => [...prevImages, ...uris]);
+            const uris = resp.assets.map((asset) => asset.uri).filter(Boolean) as string[];
+
+            setPlaceImages([...uris]);
             setResponse(resp);
         } catch (error) {
             console.error(error);
@@ -91,19 +61,14 @@ export const useImagesGallery = ({ place }: Props) => {
     };
 
     const handleUploadPics = async (response: ImagePickerResponse) => {
-        if (response) {
-            const upload = await uploadPics(response);
-            return upload;
-        }
-    };
+        if (!response) return;
 
-    const handleRemovePic = (index: number) => {
-        const updatedImages = [...placeImages];
-        const imageToDelete: string = updatedImages[index];
-        removePic(imageToDelete);
-        updatedImages.splice(index, 1);
-        updatePlace(place._id!, { ...place, pics: updatedImages });
-        setPlaceImages(updatedImages);
+        try {
+            await Promise.all(place.pics.map((pic) => removePic(pic)));
+            return await uploadPics(response);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     useEffect(() => {
@@ -111,28 +76,11 @@ export const useImagesGallery = ({ place }: Props) => {
     }, []);
 
     return {
-        displayCamera,
-        displayCameraOne,
-        displayCameraTwo,
-        placeImage,
-        placeImageOne,
         placeImages,
-        placeImageTwo,
         response,
         addGalleryPic,
         addGalleryPics,
-        handleRemovePic,
         handleUploadPics,
-        removeImageOne,
-        removeImageOneFromAllImages,
-        removeImageTwo,
-        removeImageTwoFromAllImages,
-        removeSingleImage,
-        setDisplayCameraOne,
-        setDisplayCameraTwo,
-        setPlaceImage,
-        setPlaceImageOne,
-        setPlaceImageTwo,
         setPlaceImages
     };
 };
