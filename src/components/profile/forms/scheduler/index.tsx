@@ -5,7 +5,7 @@ import BusinessDaysSchedule from './BusinessDaysSchedule';
 import CustomizedSchedule from './CustomizedSchedule';
 import SchedulerDropdownDays from './SchedulerDropdownDays';
 import SchedulerTable from './SchedulerTable';
-import SchedulerEditButton from './ui/SchedulerEditButton';
+import EditButton from '../../../ui/EditButton';
 
 import { IPlace } from '../../../../interfaces';
 import { allowedDays } from '../../../../utils';
@@ -43,8 +43,7 @@ const Scheduler = ({ place, handleSchedule }: Props) => {
                 ?
                 <View>
                     <SchedulerTable displaySchedule={displaySchedule} />
-                    {/* <SchedulerEditButton onPress={() => setDays('')} /> */}
-                    <SchedulerEditButton onPress={handleEditPress} />
+                    <EditButton onPress={handleEditPress} />
                 </View>
                 :
                 <>

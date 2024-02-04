@@ -5,7 +5,7 @@ import CustomizedSchedule from '../CustomizedSchedule';
 import SchedulerTable from '../SchedulerTable';
 import SaveScheduleButton from '../ui/SaveScheduleButton';
 import SchedulerCheckBox from '../ui/SchedulerCheckBox';
-import SchedulerEditButton from '../ui/SchedulerEditButton';
+import EditButton from '../../../../ui/EditButton';
 import SchedulerDropdownHours from '../SchedulerDropdownHours';
 import { daysOfWeekSpanish, formatHour } from '../../../../../utils';
 
@@ -53,7 +53,7 @@ const BusinessDaysSchedule = ({ everyday, sendSchedule, handleScheduleUpdated }:
     const onEdit = () => {
         setSchedule([]);
         setScheduleUpdated(false);
-    }
+    };
 
     const handleUpdateSchedule = (value: boolean) => {
         setScheduleUpdated(value);
@@ -84,7 +84,7 @@ const BusinessDaysSchedule = ({ everyday, sendSchedule, handleScheduleUpdated }:
                         {(schedule.length !== 0) &&
                             <ScrollView>
                                 <SchedulerTable displaySchedule={tableData} />
-                                <SchedulerEditButton onPress={onEdit} />
+                                <EditButton onPress={onEdit} />
                             </ScrollView>
                         }
                     </>

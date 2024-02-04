@@ -4,7 +4,7 @@ import { ScrollView, Text, View } from 'react-native';
 import SchedulerDropdownHours from '../SchedulerDropdownHours';
 import SchedulerTable from '../SchedulerTable';
 import SaveScheduleTransparentButton from '../ui/SaveScheduleTransparentButton';
-import SchedulerEditButton from '../ui/SchedulerEditButton';
+import EditButton from '../../../../ui/EditButton';
 import { daysOfWeekEnglish, daysOfWeekSpanish } from '../../../../../utils';
 
 import { styles } from './styles';
@@ -109,7 +109,7 @@ const CustomizedSchedule = ({ everyday, sendSchedule, handleScheduleUpdated }: P
             {(schedule.length !== 0) && (
                 <ScrollView style={styles.fullWidth}>
                     <SchedulerTable displaySchedule={tableData} customHeaders={['Día', 'Abre', 'Cierra']} />
-                    <SchedulerEditButton onPress={() => setSchedule([])} />
+                    <EditButton onPress={() => setSchedule([])} />
                 </ScrollView>
             )}
         </>
