@@ -6,6 +6,6 @@ interface Props {
     value: string;
 }
 
-const Label = ({ value }: Props) => <Text style={styles.captionTwoBlack}>{value}</Text>;
+const FormLabel = ({ value }: Props) => <Text style={styles.captionTwoBlack}>{value}</Text>;
 
-export default Label;
+export default FormLabel;

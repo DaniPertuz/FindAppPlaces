@@ -9,7 +9,7 @@ import DefaultInput from '../forms/default-input';
 import DisabledInput from '../forms/disabled-input';
 import DropdownCategory from '../forms/dropdown';
 import ImagesGallery from '../forms/images-gallery';
-import Label from '../forms/label';
+import FormLabel from '../forms/label';
 import PasswordInput from '../forms/password-input';
 import Scheduler from '../forms/scheduler';
 import SubmitButton from '../ui/SubmitButton';
@@ -47,22 +47,22 @@ const UpdateProfileInputs = ({ place }: Props) => {
     return (
         <ScrollView contentContainerStyle={styles.containerPaddingBottom} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps='always'>
             <View style={styles.mediumMarginTop}>
-                <Label value='Descripción' />
+                <FormLabel value='Descripción' />
                 <UpdateProfileDescriptionInput description={description} onChange={onChange} />
                 <View style={styles.mediumMarginTop}>
-                    <Label value='Nombre de la empresa' />
+                    <FormLabel value='Nombre de la empresa' />
                     <DefaultInput field={name} fieldValue='name' placeholder='Nombre de la empresa' icon='Users' keyboardType='default' onChange={onChange} />
                 </View>
                 <View style={styles.mediumMarginTop}>
-                    <Label value='Correo corporativo' />
+                    <FormLabel value='Correo corporativo' />
                     <DisabledInput email={place.email} />
                 </View>
                 <View style={styles.mediumMarginTop}>
-                    <Label value='Dirección' />
+                    <FormLabel value='Dirección' />
                     <AddressInput field={address} onBlur={onAddressBlur} onChange={onChange} />
                 </View>
                 <View style={styles.mediumMarginTop}>
-                    <Label value='Categoría' />
+                    <FormLabel value='Categoría' />
                     <DropdownCategory field={placeCategory} handlePlaceCategory={setPlaceCategory} />
                     {(placeCategory === 'Otro') &&
                         <View style={styles.mediumMarginTop}>
@@ -70,36 +70,36 @@ const UpdateProfileInputs = ({ place }: Props) => {
                         </View>
                     }
                     <View style={styles.mediumMarginTop}>
-                        <Label value='Horario' />
+                        <FormLabel value='Horario' />
                         <Scheduler place={place} handleSchedule={handleSchedule} />
                     </View>
                 </View>
                 <View style={styles.mediumMarginTop}>
-                    <Label value='Imágenes' />
+                    <FormLabel value='Imágenes' />
                     <ImagesGallery place={place} handlePicsFromGallery={handlePicsFromGallery} />
                 </View>
                 <View style={styles.mediumMarginTop}>
-                    <Label value='Teléfono' />
+                    <FormLabel value='Teléfono' />
                     <DefaultInput field={phone} fieldValue='phone' placeholder='Escribe el teléfono' icon='Phone' keyboardType='phone-pad' onChange={onChange} />
                 </View>
                 {(place.premium !== 1) &&
                     <>
                         <View style={styles.mediumMarginTop}>
-                            <Label value='WhatsApp' />
+                            <FormLabel value='WhatsApp' />
                             <DefaultInput field={whatsapp!} fieldValue={'name'} placeholder={'WhatsApp'} icon={'Whatsapp'} keyboardType={'number-pad'} onChange={onChange} />
                         </View>
                         <View style={styles.mediumMarginTop}>
-                            <Label value='Instagram' />
+                            <FormLabel value='Instagram' />
                             <DefaultInput field={instagram!} fieldValue={'name'} placeholder={'Instagram'} icon={'Instagram'} keyboardType={'default'} onChange={onChange} />
                         </View>
                     </>
                 }
                 <View style={styles.mediumMarginTop}>
-                    <Label value='Contraseña' />
+                    <FormLabel value='Contraseña' />
                     <PasswordInput field={password} fieldValue={'password'} placeholder='Escribe tu contraseña' onChange={onChange} />
                 </View>
                 <View style={styles.mediumMarginTop}>
-                    <Label value='Repetir contraseña' />
+                    <FormLabel value='Repetir contraseña' />
                     <PasswordInput field={confirmPassword} fieldValue={'confirmPassword'} placeholder='Repite tu contraseña' onChange={onChange} />
                 </View>
                 {(!validPassword) &&
