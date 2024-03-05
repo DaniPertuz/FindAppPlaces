@@ -1,12 +1,19 @@
 import React, { useContext, useState } from 'react';
-import { Keyboard, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import Snackbar from 'react-native-snackbar';
 
 import { AuthContext, PlacesContext } from '../context';
-import { useEmailValidation, useEmptyFieldValidation, useIcons, usePasswordVisibility } from '../hooks';
+import { useEmailValidation, useEmptyFieldValidation, usePasswordVisibility } from '../hooks';
 import { roles } from '../interfaces';
 import { RootStackParams } from '../navigation/MainNavigator';
+
+import DefaultInput from './profile/forms/default-input';
+import EmailInput from './profile/forms/email-input';
+import PasswordInput from './profile/forms/password-input';
+import SubmitButton from './profile/ui/SubmitButton';
+import WarningMessage from './ui/WarningMessage';
 
 import styles from '../themes/AppTheme';
 
@@ -14,7 +21,7 @@ interface Props {
     name: string;
     email: string;
     password: string;
-    onChange: (value: string, field: 'name' | 'email' | 'password') => void;
+    onChange: (value: string, field: 'name' | 'password' | 'confirmPassword' | 'email' | 'category' | 'other' | 'phone' | 'whatsapp' | 'instagram') => void;
 }
 
 const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
@@ -25,6 +32,7 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
     const { registerPlace } = useContext(PlacesContext);
 
     const [emailValid, setEmailValid] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [warning, setWarning] = useState(false);
 
     const isValidEmail = useEmailValidation(email);
@@ -35,12 +43,17 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
 
     const onLogin = () => {
         Keyboard.dismiss();
+        setLoading(true);
 
         checkNameEmpty(name);
         checkEmailEmpty(email);
         checkPasswordEmpty(password);
         setEmailValid(isValidEmail);
-        setWarning(!isValidEmail)
+        setWarning(!isValidEmail);
+
+        if (isNameEmpty || !isEmailEmpty || !isPasswordEmpty || !isValidEmail) {
+            setLoading(false);
+        }
 
         if (!isNameEmpty && !isEmailEmpty && !isPasswordEmpty && isValidEmail) {
             signUp({
@@ -60,15 +73,19 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                 coords: { latitude: 0, longitude: 0 },
                 phone: 3000000,
                 city: '',
-                state: '',
+                cityState: '',
                 country: '',
                 schedule: [],
                 premium: 3,
+                pics: [],
                 rate: {
                     $numberDecimal: '0'
                 },
-                status: true
+                status: true,
             });
+
+            setLoading(false);
+            Snackbar.show({ text: 'Registro exitoso', duration: Snackbar.LENGTH_SHORT });
         }
     };
 
@@ -78,111 +95,34 @@ const RegisterFormInputs = ({ name, email, password, onChange }: Props) => {
                 <View style={styles.tinyMarginBottom}>
                     <Text style={styles.footnote}>Nombre de la Empresa</Text>
                 </View>
-                <View style={[styles.inputFieldContainer, (isNameEmpty) && styles.warningBorder]}>
-                    <View style={{ ...styles.flexOne, ...styles.alignItemsCenter }}>
-                        {useIcons('Users', 20, 20)}
-                    </View>
-                    <TextInput
-                        placeholder='Ingresa el nombre de la empresa'
-                        placeholderTextColor='#9A9A9A'
-                        keyboardType='default'
-                        style={[styles.inputField, { flex: 9 }]}
-                        selectionColor='#9A9A9A'
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                        onChangeText={(value) => onChange(value, 'name')}
-                        value={name}
-                    />
-                </View>
+                <DefaultInput field={name} fieldValue={'name'} placeholder={'Ingresa el nombre de la empresa'} icon={'Users'} keyboardType={'default'} onChange={onChange} />
                 {(isNameEmpty) &&
-                    <View style={styles.flexDirectionRowTinyMarginTop}>
-                        <View style={styles.warningIconMargins}>
-                            {useIcons('Warning', 15, 15)}
-                        </View>
-                        <Text style={styles.warningText}>Ingresa el nombre de tu empresa</Text>
-                    </View>
+                    <WarningMessage warningText='Ingresa el nombre de tu empresa' />
                 }
             </View>
             <View style={styles.mediumMarginTop}>
                 <View style={styles.tinyMarginBottom}>
                     <Text style={styles.footnote}>Correo corporativo</Text>
                 </View>
-                <View style={[styles.inputFieldContainer, (isEmailEmpty || warning) && styles.warningBorder]}>
-                    <View style={{ ...styles.flexOne, ...styles.alignItemsCenter }}>
-                        {useIcons('Envelope', 20, 20)}
-                    </View>
-                    <TextInput
-                        placeholder='Ingresa tu correo'
-                        placeholderTextColor='#9A9A9A'
-                        keyboardType='email-address'
-                        style={[styles.inputField, { flex: 9 }]}
-                        selectionColor='#9A9A9A'
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                        onChangeText={(value) => onChange(value, 'email')}
-                        value={email}
-                    />
-                </View>
+                <EmailInput field={email} fieldValue={'email'} placeholder={'Ingresa tu correo'} warning={(isEmailEmpty || warning)} onChange={onChange} />
                 {(isEmailEmpty) &&
-                    <View style={styles.flexDirectionRowTinyMarginTop}>
-                        <View style={styles.warningIconMargins}>
-                            {useIcons('Warning', 15, 15)}
-                        </View>
-                        <Text style={styles.warningText}>Ingresa tu correo</Text>
-                    </View>
+                    <WarningMessage warningText='Ingresa tu correo' />
                 }
                 {(!emailValid && !isEmailEmpty) &&
-                    <View style={styles.flexDirectionRowTinyMarginTop}>
-                        <View style={styles.warningIconMargins}>
-                            {useIcons('Warning', 15, 15)}
-                        </View>
-                        <Text style={styles.warningText}>Correo inválido</Text>
-                    </View>
+                    <WarningMessage warningText='Correo inválido' />
                 }
             </View>
             <View style={styles.mediumMarginTop}>
                 <View style={styles.tinyMarginBottom}>
                     <Text style={styles.footnote}>Contraseña</Text>
                 </View>
-                <View style={[styles.inputFieldContainer, (isPasswordEmpty) && styles.warningBorder]}>
-                    <View style={{ flex: 0.35 }}>
-                        {useIcons('Lock', 20, 20)}
-                    </View>
-                    <TextInput
-                        placeholder='Ingresa tu contraseña'
-                        placeholderTextColor='#9A9A9A'
-                        secureTextEntry={passwordVisibility}
-                        style={[styles.inputField, { flex: 3, marginEnd: 10 }]}
-                        selectionColor='#9A9A9A'
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                        onChangeText={(value) => onChange(value, 'password')}
-                        value={password}
-                    />
-                    <TouchableOpacity
-                        activeOpacity={1.0}
-                        onPress={handlePasswordVisibility}
-                    >
-                        {useIcons(eyeIcon, 20, 20)}
-                    </TouchableOpacity>
-                </View>
+                <PasswordInput field={password} fieldValue={'password'} placeholder={'Ingresa tu contraseña'} warning={isPasswordEmpty} onChange={onChange} />
                 {(isPasswordEmpty) &&
-                    <View style={styles.flexDirectionRowTinyMarginTop}>
-                        <View style={styles.warningIconMargins}>
-                            {useIcons('Warning', 15, 15)}
-                        </View>
-                        <Text style={styles.warningText}>Ingresa tu contraseña</Text>
-                    </View>
+                    <WarningMessage warningText='Ingresa tu contraseña' />
                 }
             </View>
             <View style={{ marginTop: 29 }}>
-                <TouchableOpacity
-                    activeOpacity={1.0}
-                    style={styles.button}
-                    onPress={onLogin}
-                >
-                    <Text style={styles.buttonText}>Crear Cuenta</Text>
-                </TouchableOpacity>
+                <SubmitButton loading={loading} value={'Crear Cuenta'} onPress={onLogin} />
             </View>
             <View style={styles.createAccountButtonsContainer}>
                 <View style={styles.tinyMarginEnd}>
