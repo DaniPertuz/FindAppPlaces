@@ -21,5 +21,9 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 5,
         paddingHorizontal: 16
+    },
+    warningBorder: {
+        borderColor: '#D13232',
+        borderWidth: 1
     }
 });

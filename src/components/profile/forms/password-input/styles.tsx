@@ -27,5 +27,9 @@ export const styles = StyleSheet.create({
     },
     tinyButtonSize: {
         flex: 0.2
+    },
+    warningBorder: {
+        borderColor: '#D13232',
+        borderWidth: 1
     }
 });

@@ -9,12 +9,13 @@ interface Props {
     placeholder: string;
     icon: string;
     keyboardType: 'default' | 'numeric' | 'email-address' | "ascii-capable" | 'numbers-and-punctuation' | 'url' | 'number-pad' | 'phone-pad' | 'name-phone-pad' | 'decimal-pad' | 'twitter' | 'web-search' | 'visible-password';
+    warning?: boolean;
     onChange: (value: string, field: 'name' | 'category' | 'other' | 'phone' | 'whatsapp' | 'instagram') => void;
 }
 
-const DefaultInput = ({ field, fieldValue, placeholder, icon, keyboardType, onChange }: Props) => {
+const DefaultInput = ({ field, fieldValue, placeholder, icon, keyboardType, warning, onChange }: Props) => {
     return (
-        <View style={styles.inputFieldContainerWhite}>
+        <View style={[styles.inputFieldContainerWhite, (warning) && styles.warningBorder]}>
             {useIcons(icon, 20, 20)}
             <TextInput
                 placeholder={placeholder}

@@ -7,15 +7,16 @@ interface Props {
     field: string;
     fieldValue: 'password' | 'confirmPassword';
     placeholder: string;
+    warning?: boolean;
     onChange: (value: string, field: 'password' | 'confirmPassword') => void;
 }
 
-const PasswordInput = ({ field, fieldValue, placeholder, onChange }: Props) => {
+const PasswordInput = ({ field, fieldValue, placeholder, warning, onChange }: Props) => {
 
     const { eyeIcon, passwordVisibility, handlePasswordVisibility } = usePasswordVisibility();
 
     return (
-        <View style={styles.inputFieldContainerWhite}>
+        <View style={[styles.inputFieldContainerWhite, (warning) && styles.warningBorder]}>
             <View style={styles.tinyButtonSize}>{useIcons('Lock', 20, 20)}</View>
             <TextInput
                 autoCapitalize='none'
